@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Dashboard — Coaching Gen Z Athletes</title>
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --gold: #f5a623;
+            --gold-dark: #d4891a;
+            --white: #ffffff;
+            --gray-light: #f4f5f7;
+            --gray: #8a9bb0;
+            --green: #2ecc71;
+            --red: #e74c3c;
+            --card-bg: #1a2d42;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--navy);
+            border-bottom: 3px solid var(--gold);
+            padding: 16px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+
+        .header p {
+            font-size: 0.75rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        .nav {
+            display: flex;
+            overflow-x: auto;
+            background: var(--card-bg);
+            border-bottom: 1px solid #2a3f58;
+            scrollbar-width: none;
+        }
+
+        .nav::-webkit-scrollbar { display: none; }
+
+        .nav-btn {
+            flex: 0 0 auto;
+            padding: 12px 16px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray);
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+        .nav-btn:hover { color: var(--white); }
+
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section { display: none; }
+        .section.active { display: block; }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: var(--white);
+        }
+
+        .section-sub {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #2a3f58;
+        }
+
+        .card-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--card-bg);
+            border: 1px solid #2a3f58;
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            outline: none;
+        }
+
+        .search-box:focus { border-color: var(--gold); }
+        .search-box::placeholder { color: var(--gray); }
+
+        .cue-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #2a3f58;
+        }
+
+        .cue-item:last-child { border-bottom: none; }
+
+        .cue-badge {
+            flex: 0 0 auto;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .cue-badge.say { background: #1a4a2e; color: var(--green); }
+        .cue-badge.dont { background: #4a1a1a; color: var(--red); }
+
+        .cue-text {
+            font-size: 0.9rem;
+            color: var(--white);
+            font-style: italic;
+            flex: 1;
+        }
+
+        .cue-context {
+            font-size: 0.72rem;
+            color: var(--gray);
+            margin-top: 2px;
+            font-style: normal;
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .filter-tag {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            border: 1px solid #2a3f58;
+            background: transparent;
+            color: var(--gray);
+            transition: all 0.2s;
+        }
+
+        .filter-tag.active {
+            background: var(--gold);
+            color: var(--navy);
+            border-color: var(--gold);
+        }
+
+        .archetype-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--gold);
+            cursor: pointer;
+        }
+
+        .archetype-card.expanded .archetype-detail { display: block; }
+        .archetype-detail { display: none; margin-top: 14px; }
+
+        .archetype-name {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .archetype-trigger {
+            font-size: 0.78rem;
+            color: var(--gray);
+        }
+
+        .symptom-list { list-style: none; margin: 10px 0; }
+
+        .symptom-list li {
+            font-size: 0.82rem;
+            color: var(--gray);
+            padding: 3px 0;
+        }
+
+        .symptom-list li::before { content: "→ "; color: var(--gold); }
+
+        .response-box {
+            background: #0d2518;
+            border-left: 3px solid var(--green);
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .response-box .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .response-box .cue {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .response-box .note {
+            font-size: 0.78rem;
+            color: #7db89a;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .avoid-box {
+            background: #2a0d0d;
+            border-left: 3px solid var(--red);
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-top: 8px;
+            font-size: 0.78rem;
+            color: #cc8888;
+        }
+
+        .avoid-box .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--red);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .archetype-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chevron {
+            transition: transform 0.2s;
+            color: var(--gold);
+            font-size: 0.8rem;
+        }
+
+        .archetype-card.expanded .chevron { transform: rotate(180deg); }
+
+        .reset-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        @media (min-width: 600px) {
+            .reset-steps { flex-direction: row; align-items: stretch; }
+        }
+
+        .reset-step {
+            flex: 1;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .reset-step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--gold);
+            color: var(--navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 900;
+            margin: 0 auto 10px;
+        }
+
+        .reset-step-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .reset-step-desc {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .reset-step-cues { list-style: none; }
+
+        .reset-step-cues li {
+            font-size: 0.82rem;
+            color: var(--white);
+            font-style: italic;
+            padding: 5px 0;
+            border-bottom: 1px solid #2a3f58;
+        }
+
+        .reset-step-cues li:last-child { border-bottom: none; }
+
+        .reset-arrow {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--gold);
+            align-self: center;
+        }
+
+        @media (max-width: 599px) {
+            .reset-arrow { transform: rotate(90deg); }
+        }
+
+        .signs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .sign-item {
+            background: #2a1a0d;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 0.78rem;
+            color: #cc9955;
+        }
+
+        .sign-item::before { content: "⚠ "; }
+
+        .goal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 11px 14px;
+            background: var(--card-bg);
+            border: 1px solid #2a3f58;
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 0.88rem;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus { border-color: var(--gold); }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: var(--gray); }
+
+        .form-group textarea { resize: vertical; min-height: 70px; }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238a9bb0' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            cursor: pointer;
+        }
+
+        .form-group select option { background: var(--navy); }
+
+        .btn {
+            padding: 13px 20px;
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .btn:hover { background: var(--gold-dark); }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            margin-top: 8px;
+        }
+
+        .btn-secondary:hover { background: rgba(245,166,35,0.1); }
+
+        .goal-output {
+            display: none;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 16px;
+            border: 1px solid var(--gold);
+        }
+
+        .goal-output.visible { display: block; }
+
+        .goal-output-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .goal-output-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 8px 0;
+            border-bottom: 1px solid #2a3f58;
+        }
+
+        .goal-output-row:last-child { border-bottom: none; }
+
+        .goal-output-label {
+            flex: 0 0 100px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gray);
+            padding-top: 2px;
+        }
+
+        .goal-output-value {
+            font-size: 0.88rem;
+            color: var(--white);
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .goal-output-value.strong {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .planner-session {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+
+        .planner-session-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .planner-session-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .rep-row {
+            display: grid;
+            grid-template-columns: 50px 1fr 32px;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .rep-label {
+            font-size: 0.78rem;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        .rep-cue-input {
+            padding: 9px 12px;
+            background: #0d1b2a;
+            border: 1px solid #2a3f58;
+            border-radius: 6px;
+            color: var(--white);
+            font-size: 0.85rem;
+            width: 100%;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .rep-cue-input:focus { border-color: var(--gold); }
+        .rep-cue-input::placeholder { color: #3a5068; }
+
+        .remove-btn {
+            width: 28px;
+            height: 28px;
+            background: #4a1a1a;
+            color: var(--red);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-rep-btn {
+            background: transparent;
+            border: 1px dashed #2a3f58;
+            color: var(--gray);
+            border-radius: 6px;
+            padding: 9px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .add-rep-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+        .planner-print {
+            background: var(--card-bg);
+            border: 1px solid #2a3f58;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 16px;
+        }
+
+        .planner-card-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .planner-card-meta {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-bottom: 14px;
+        }
+
+        .planner-rep-item {
+            display: flex;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #2a3f58;
+            align-items: center;
+        }
+
+        .planner-rep-item:last-child { border-bottom: none; }
+
+        .planner-rep-num {
+            flex: 0 0 28px;
+            height: 28px;
+            background: var(--gold);
+            color: var(--navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 900;
+        }
+
+        .planner-rep-text {
+            font-size: 0.88rem;
+            color: var(--white);
+            font-style: italic;
+        }
+
+        .divider {
+            height: 1px;
+            background: #2a3f58;
+            margin: 14px 0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .principle-box {
+            background: #0d1b2a;
+            border: 1px solid #2a3f58;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: var(--gray);
+            line-height: 1.6;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="index.html" style="display:inline-block; font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--gold); text-decoration:none; margin-bottom:6px;">&#8592; Home</a>
+    <h1>Coaching Gen Z Athletes</h1>
+    <p>Coach Dashboard &mdash; Kent Rhodes</p>
+</div>
+
+<nav class="nav">
+    <button class="nav-btn active" onclick="showSection('cues', this)">Cue Library</button>
+    <button class="nav-btn" onclick="showSection('archetypes', this)">Archetypes</button>
+    <button class="nav-btn" onclick="showSection('reset', this)">Reset Protocol</button>
+    <button class="nav-btn" onclick="showSection('goals', this)">Goal Setting</button>
+    <button class="nav-btn" onclick="showSection('planner', this)">Practice Planner</button>
+</nav>
+
+<div class="content">
+
+    <!-- 1. CUE LIBRARY -->
+    <div id="section-cues" class="section active">
+        <div class="section-title">Coaching Cue Library</div>
+        <div class="section-sub">Short, repeatable cues from the book. Search by situation or filter by category.</div>
+
+        <input type="text" class="search-box" id="cue-search" placeholder="Search cues, situations..." oninput="renderCues()">
+
+        <div class="filter-row">
+            <button class="filter-tag active" onclick="setCueFilter('all', this)">All</button>
+            <button class="filter-tag" onclick="setCueFilter('correction', this)">Correction</button>
+            <button class="filter-tag" onclick="setCueFilter('overload', this)">Overload</button>
+            <button class="filter-tag" onclick="setCueFilter('competition', this)">Competition</button>
+            <button class="filter-tag" onclick="setCueFilter('motivation', this)">Motivation</button>
+            <button class="filter-tag" onclick="setCueFilter('trust', this)">Trust</button>
+        </div>
+
+        <div id="cue-list"></div>
+    </div>
+
+    <!-- 2. ARCHETYPES -->
+    <div id="section-archetypes" class="section">
+        <div class="section-title">Athlete Archetype Guide</div>
+        <div class="section-sub">Identify what you're seeing &mdash; tap an archetype to get the right response immediately.</div>
+        <div id="archetype-list"></div>
+    </div>
+
+    <!-- 3. RESET PROTOCOL -->
+    <div id="section-reset" class="section">
+        <div class="section-title">The Reset Protocol</div>
+        <div class="section-sub">Deploy when an athlete is spiraling. Reduce first. Rebuild from there.</div>
+
+        <div class="card" style="margin-bottom: 20px;">
+            <div class="card-title">Trigger Signs — When to Deploy</div>
+            <div class="signs-grid">
+                <div class="sign-item">Hesitation</div>
+                <div class="sign-item">Emotional withdrawal</div>
+                <div class="sign-item">Frustration</div>
+                <div class="sign-item">Inconsistency spikes</div>
+                <div class="sign-item">Shoulders tighten</div>
+                <div class="sign-item">Eye contact drops</div>
+                <div class="sign-item">Shutdown behavior</div>
+                <div class="sign-item">Silence</div>
+            </div>
+        </div>
+
+        <div class="reset-steps">
+            <div class="reset-step">
+                <div class="reset-step-number">1</div>
+                <div class="reset-step-title">Simplify</div>
+                <div class="reset-step-desc">Cut all technical information. Give the athlete one thing and only one thing.</div>
+                <ul class="reset-step-cues">
+                    <li>"Reset."</li>
+                    <li>"One focus."</li>
+                    <li>"First three steps only."</li>
+                    <li>"Hit your mid-mark."</li>
+                </ul>
+            </div>
+            <div class="reset-arrow">&#8594;</div>
+            <div class="reset-step">
+                <div class="reset-step-number">2</div>
+                <div class="reset-step-title">Stabilize</div>
+                <div class="reset-step-desc">Let emotions settle. Calm the environment before adding anything back.</div>
+                <ul class="reset-step-cues">
+                    <li>"Take a breath."</li>
+                    <li>"We're resetting the rhythm."</li>
+                    <li>"Same run, same takeoff."</li>
+                    <li>"Clean rhythm."</li>
+                </ul>
+            </div>
+            <div class="reset-arrow">&#8594;</div>
+            <div class="reset-step">
+                <div class="reset-step-number">3</div>
+                <div class="reset-step-title">Rebuild</div>
+                <div class="reset-step-desc">Reintroduce one controllable action. Build from a small win first.</div>
+                <ul class="reset-step-cues">
+                    <li>"Give me one clean rep."</li>
+                    <li>"Repeat that execution."</li>
+                    <li>"Today we only care about approach rhythm."</li>
+                    <li>"One focus. Let's go."</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 8px;">
+            <div class="card-title">What NOT to do during a spiral</div>
+            <div style="display: flex; flex-direction: column; gap: 7px; margin-top: 6px;">
+                <div style="font-size: 0.82rem; color: var(--red);">&#10007; Add more technical corrections</div>
+                <div style="font-size: 0.82rem; color: var(--red);">&#10007; Raise your voice</div>
+                <div style="font-size: 0.82rem; color: var(--red);">&#10007; Show frustration or disappointment</div>
+                <div style="font-size: 0.82rem; color: var(--red);">&#10007; Say &ldquo;You&rsquo;re overthinking&rdquo; or &ldquo;Relax&rdquo;</div>
+                <div style="font-size: 0.82rem; color: var(--red);">&#10007; Stack cues &mdash; even well-intentioned ones add overload</div>
+            </div>
+        </div>
+
+        <div class="principle-box">
+            &ldquo;The worse an athlete feels, the simpler coaching must become. Overloaded athletes cannot process multiple corrections. The best coaches reduce information instead of increasing it.&rdquo;
+        </div>
+    </div>
+
+    <!-- 4. GOAL SETTING -->
+    <div id="section-goals" class="section">
+        <div class="section-title">Goal Setting Tool</div>
+        <div class="section-sub">Turn vague goals into specific, measurable, controllable targets.</div>
+
+        <div class="card">
+            <div class="card-title">The Framework</div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px;">
+                <div style="flex: 1; min-width: 120px; text-align: center; background: #0d1b2a; border-radius: 8px; padding: 12px;">
+                    <div style="font-size: 1.1rem; font-weight: 900; color: var(--gold);">S</div>
+                    <div style="font-size: 0.75rem; color: var(--gray); margin-top: 2px;">Specific</div>
+                </div>
+                <div style="flex: 1; min-width: 120px; text-align: center; background: #0d1b2a; border-radius: 8px; padding: 12px;">
+                    <div style="font-size: 1.1rem; font-weight: 900; color: var(--gold);">M</div>
+                    <div style="font-size: 0.75rem; color: var(--gray); margin-top: 2px;">Measurable</div>
+                </div>
+                <div style="flex: 1; min-width: 120px; text-align: center; background: #0d1b2a; border-radius: 8px; padding: 12px;">
+                    <div style="font-size: 1.1rem; font-weight: 900; color: var(--gold);">C</div>
+                    <div style="font-size: 0.75rem; color: var(--gray); margin-top: 2px;">Controllable</div>
+                </div>
+            </div>
+            <div class="principle-box" style="margin-top: 10px;">
+                Weak: &ldquo;Jump higher.&rdquo; &nbsp;&rarr;&nbsp; Strong: &ldquo;Hit the mid-mark consistently in 8 of 10 reps.&rdquo;
+            </div>
+        </div>
+
+        <div class="goal-form" style="margin-top: 16px;">
+            <div class="form-group">
+                <label>Athlete Name</label>
+                <input type="text" id="goal-athlete" placeholder="e.g. Jordan M.">
+            </div>
+            <div class="form-group">
+                <label>Current Weak Goal or Problem Statement</label>
+                <input type="text" id="goal-weak" placeholder="e.g. Jump higher / Be more consistent">
+            </div>
+            <div class="form-group">
+                <label>Specific Action &mdash; What exactly should the athlete do?</label>
+                <input type="text" id="goal-specific" placeholder="e.g. Hit the mid-mark on the approach run">
+            </div>
+            <div class="form-group">
+                <label>How Will You Measure It?</label>
+                <input type="text" id="goal-measure" placeholder="e.g. 8 out of 10 reps in practice">
+            </div>
+            <div class="form-group">
+                <label>Is This In the Athlete's Control?</label>
+                <select id="goal-control">
+                    <option value="">Select...</option>
+                    <option value="yes">Yes &mdash; this is a process / execution goal</option>
+                    <option value="partial">Partially &mdash; depends on conditions or opponent</option>
+                    <option value="no">No &mdash; this is an outcome goal (needs revision)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Time Frame</label>
+                <input type="text" id="goal-timeframe" placeholder="e.g. By end of this week / By conference meet">
+            </div>
+            <button class="btn" onclick="generateGoal()">Generate Goal Card</button>
+        </div>
+
+        <div class="goal-output" id="goal-output">
+            <div class="goal-output-title">Goal Card</div>
+            <div id="goal-output-content"></div>
+            <button class="btn btn-secondary" onclick="resetGoal()">Create Another Goal</button>
+        </div>
+    </div>
+
+    <!-- 5. PRACTICE PLANNER -->
+    <div id="section-planner" class="section">
+        <div class="section-title">Practice Planner</div>
+        <div class="section-sub">Build your session around one focus per rep. Keep instruction simple.</div>
+
+        <div class="card">
+            <div class="card-title">Session Details</div>
+            <div class="goal-form" style="margin-top: 8px;">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="plan-date">
+                </div>
+                <div class="form-group">
+                    <label>Athlete / Group</label>
+                    <input type="text" id="plan-athlete" placeholder="e.g. Varsity vaulters / Jordan M.">
+                </div>
+                <div class="form-group">
+                    <label>Session Focus &mdash; One thing only</label>
+                    <input type="text" id="plan-focus" placeholder="e.g. Approach rhythm / Takeoff position / Hand timing">
+                </div>
+            </div>
+        </div>
+
+        <div class="planner-session">
+            <div class="planner-session-header">
+                <div class="planner-session-title">Rep Sequence</div>
+                <div style="font-size: 0.72rem; color: var(--gray);">One cue per rep</div>
+            </div>
+            <div style="display: grid; grid-template-columns: 50px 1fr 32px; gap: 8px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #2a3f58;">
+                <div style="font-size: 0.68rem; text-transform: uppercase; color: var(--gray); letter-spacing: 0.5px; text-align: center;">Rep</div>
+                <div style="font-size: 0.68rem; text-transform: uppercase; color: var(--gray); letter-spacing: 0.5px;">Coaching Cue</div>
+                <div></div>
+            </div>
+            <div id="rep-list"></div>
+            <button class="add-rep-btn" onclick="addRep()">+ Add Rep</button>
+        </div>
+
+        <button class="btn" onclick="generatePracticeCard()" style="margin-bottom: 12px;">Generate Practice Card</button>
+
+        <div id="practice-card" style="display: none;">
+            <div class="planner-print">
+                <div class="planner-card-title" id="pc-title"></div>
+                <div class="planner-card-meta" id="pc-meta"></div>
+                <div class="divider"></div>
+                <div style="font-size: 0.72rem; text-transform: uppercase; color: var(--gold); letter-spacing: 0.5px; font-weight: 700; margin-bottom: 10px;">Rep Sequence</div>
+                <div id="pc-reps"></div>
+            </div>
+            <button class="btn btn-secondary" onclick="resetPlanner()" style="margin-top: 8px;">New Session</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+
+const CUES = [
+    { text: "Hit your mid-mark.", type: "say", context: "Athlete missing takeoff marks — single correction", tags: ["correction"] },
+    { text: "Reset.", type: "say", context: "After a missed rep or visible frustration", tags: ["correction", "overload"] },
+    { text: "One correction.", type: "say", context: "Redirecting focus during practice", tags: ["correction"] },
+    { text: "Take a breath. We are resetting the rhythm.", type: "say", context: "Athlete visibly frustrated or spiraling", tags: ["overload", "trust"] },
+    { text: "Eyes up.", type: "say", context: "Posture and awareness cue", tags: ["correction"] },
+    { text: "Hit your mark.", type: "say", context: "Approach and execution reminder", tags: ["correction"] },
+    { text: "Same rhythm.", type: "say", context: "Competition or high-pressure moment", tags: ["correction", "competition"] },
+    { text: "Tall posture.", type: "say", context: "Body mechanics cue — short and actionable", tags: ["correction"] },
+    { text: "Give me one clean rep.", type: "say", context: "Rebuilding confidence mid-session", tags: ["motivation", "correction"] },
+    { text: "Repeat that execution.", type: "say", context: "After a good rep — reinforce it immediately", tags: ["motivation"] },
+    { text: "One focus.", type: "say", context: "Overloaded athlete — reduce complexity now", tags: ["overload"] },
+    { text: "Just hit your mark.", type: "say", context: "Athlete overthinking under pressure", tags: ["overload", "competition"] },
+    { text: "Try it once.", type: "say", context: "Resistant athlete — remove the argument", tags: ["trust", "correction"] },
+    { text: "What are you noticing?", type: "say", context: "Involve the athlete in their own correction", tags: ["trust"] },
+    { text: "Hands up earlier.", type: "say", context: "Specific technical cue with clear action", tags: ["correction"] },
+    { text: "Same run, same takeoff.", type: "say", context: "Overthinking athlete — simplify to process", tags: ["correction", "overload"] },
+    { text: "Reset and repeat.", type: "say", context: "Calm accountability after missed standard", tags: ["correction"] },
+    { text: "Hit your mark again.", type: "say", context: "Simple re-do instruction — no emotion", tags: ["correction"] },
+    { text: "Same execution.", type: "say", context: "Consistency reminder during competition", tags: ["competition", "correction"] },
+    { text: "First three steps only.", type: "say", context: "Athlete shut down or overwhelmed — reduce the task", tags: ["overload"] },
+    { text: "That rep was below standard. Reset.", type: "say", context: "Calm, direct accountability — no emotion", tags: ["correction"] },
+    { text: "Today we only care about approach rhythm.", type: "say", context: "Remove outcome pressure during a slump", tags: ["motivation", "overload"] },
+    { text: "What feels different today?", type: "say", context: "Athlete struggling — involve them in the diagnosis", tags: ["trust"] },
+    { text: "What did you feel?", type: "say", context: "Post-rep self-awareness prompt", tags: ["trust"] },
+    { text: "What changed?", type: "say", context: "Post-rep awareness — make them think", tags: ["trust"] },
+    { text: "What looked different?", type: "say", context: "Collaborative correction — athlete becomes part of the solution", tags: ["trust"] },
+    { text: "Clean rhythm.", type: "say", context: "Brief stabilization cue under pressure", tags: ["overload", "competition"] },
+    { text: "Repeat that rep.", type: "say", context: "After successful execution — lock it in", tags: ["motivation"] },
+    // AVOID ✗
+    { text: "What are you doing?", type: "dont", context: "Creates shame — athlete shuts down or gets defensive", tags: ["correction", "trust"] },
+    { text: "You should know better.", type: "dont", context: "Emotional — destroys trust, creates fear", tags: ["trust"] },
+    { text: "Focus.", type: "dont", context: "Vague — athlete is already trying, this adds nothing", tags: ["overload"] },
+    { text: "Want it more.", type: "dont", context: "Emotional appeal — not actionable", tags: ["motivation"] },
+    { text: "Try harder.", type: "dont", context: "Vague — no clear action, creates frustration", tags: ["motivation"] },
+    { text: "Do exactly what I say.", type: "dont", context: "Creates compliance, not ownership or buy-in", tags: ["trust"] },
+    { text: "Stop doing that.", type: "dont", context: "No replacement instruction — athlete left without guidance", tags: ["correction"] },
+    { text: "Fix everything.", type: "dont", context: "Overloads athlete immediately — opposite of what's needed", tags: ["overload", "correction"] },
+    { text: "Be more consistent.", type: "dont", context: "Outcome-focused, not process — athlete doesn't know how", tags: ["motivation", "correction"] },
+    { text: "Relax.", type: "dont", context: "Dismissive — athletes cannot execute this instruction", tags: ["overload"] },
+    { text: "You're overthinking.", type: "dont", context: "Labels the problem without providing a solution", tags: ["overload"] },
+    { text: "Wake up.", type: "dont", context: "Shaming a distracted athlete — increases withdrawal", tags: ["motivation"] },
+    { text: "Get fired up.", type: "dont", context: "Emotional, not executable — athletes don't know how to do this", tags: ["motivation"] },
+    { text: "Bring energy.", type: "dont", context: "Vague — athlete doesn't know what action to take", tags: ["motivation"] },
+    { text: "That's not good enough.", type: "dont", context: "Shame-based — no path forward given", tags: ["correction"] },
+    { text: "You're not trying.", type: "dont", context: "Almost always wrong — usually overload, not effort", tags: ["motivation", "overload"] },
+    { text: "We need a big jump.", type: "dont", context: "Outcome focus increases pressure at the worst moment", tags: ["competition"] },
+    { text: "Fix your run, stay tall, and get up earlier.", type: "dont", context: "Three corrections at once — guaranteed overload", tags: ["overload", "correction"] },
+];
+
+const ARCHETYPES = [
+    {
+        id: 0,
+        name: "The Overthinking Athlete",
+        trigger: "Over-processes every technical detail before and during reps",
+        color: "#6a3aaa",
+        symptoms: [
+            "Hesitation before every rep",
+            "Inconsistent timing despite knowing the technique",
+            "Lack of aggression or commitment at the critical moment",
+            "Visible frustration after technically incorrect feeling reps"
+        ],
+        response: "Simplify everything. Give them fewer thoughts — not more.",
+        cues: ['"Same run. Same takeoff."', '"Mid-mark."', '"One focus."'],
+        avoid: "More technical information — giving more corrections makes it worse",
+        lesson: "Overthinking athletes rarely need more information. They need fewer thoughts."
+    },
+    {
+        id: 1,
+        name: "The Resistant Athlete",
+        trigger: "Pushes back against correction — argues, dismisses, or ignores",
+        color: "#aa3a3a",
+        symptoms: [
+            "Argues with instruction or body language signals disagreement",
+            "Eye-rolls or visible dismissal of correction",
+            "Maintains their own approach regardless",
+            "Frustration escalates when corrected repeatedly"
+        ],
+        response: "Don't argue. Let them feel the correction — not hear it.",
+        cues: ['"Try it once."', '"Give me one rep this way."', '"What are you noticing?"'],
+        avoid: "Power struggles / Repeating the same correction louder",
+        lesson: "Athletes believe what they feel — not what they are told. Get them to experience the correction."
+    },
+    {
+        id: 2,
+        name: "The Athlete Who Shuts Down",
+        trigger: "Emotionally overwhelmed — withdraws from the practice environment",
+        color: "#3a6aaa",
+        symptoms: [
+            "Silence — stops responding to instruction",
+            "Drops eye contact, turns away",
+            "Stops attempting reps or goes through motions",
+            "Emotional withdrawal visible in body language"
+        ],
+        response: "Deploy the Reset Protocol. Simplify to one controllable action.",
+        cues: ['"First three steps only."', '"One focus."', '"Reset."'],
+        avoid: "Louder correction / More information / Any visible frustration",
+        lesson: "Overwhelmed athletes need simplicity — not intensity. The more overwhelmed, the simpler coaching must become."
+    },
+    {
+        id: 3,
+        name: "The Low Confidence Athlete",
+        trigger: "Afraid of failure — performs cautiously and avoids commitment",
+        color: "#3aaa5a",
+        symptoms: [
+            "Cautious, hesitant movement at key moments",
+            "Inconsistent execution — holds back",
+            "Lack of aggression when commitment is required",
+            "Avoids new attempts or heights"
+        ],
+        response: "Remove outcome pressure completely. Build through small wins.",
+        cues: ['"Today we only care about clean rhythm."', '"Give me one clean rep."', '"Repeat that execution."'],
+        avoid: '"We need bigger jumps." / Any outcome-focused language',
+        lesson: "Confidence grows through successful repetition — not speeches. Build small wins every single practice."
+    },
+    {
+        id: 4,
+        name: "The Distracted Athlete",
+        trigger: "Cannot maintain focus through practice — attention shifts constantly",
+        color: "#aa6a3a",
+        symptoms: [
+            "Checking phone or environment between reps",
+            "Late to respond to instruction",
+            "Short attention window on reps",
+            "Inconsistent effort across the session"
+        ],
+        response: "Shorten communication. Don't fight their attention — adapt to it.",
+        cues: ['"Eyes up."', '"Hit your mark."', '"Same rhythm."'],
+        avoid: '"Wake up." / Long technical explanations / Criticizing their focus directly',
+        lesson: "Attention improves when instruction becomes immediately actionable. Don't lecture — cue."
+    }
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+
+let currentCueFilter = 'all';
+let repCount = 0;
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────────────
+
+function showSection(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('section-' + id).classList.add('active');
+    btn.classList.add('active');
+}
+
+// ─── CUE LIBRARY ─────────────────────────────────────────────────────────────
+
+function renderCues() {
+    const search = document.getElementById('cue-search').value.toLowerCase().trim();
+
+    const filtered = CUES.filter(c => {
+        const matchesText = !search ||
+            c.text.toLowerCase().includes(search) ||
+            c.context.toLowerCase().includes(search);
+        const matchesFilter = currentCueFilter === 'all' || c.tags.includes(currentCueFilter);
+        return matchesText && matchesFilter;
+    });
+
+    const say = filtered.filter(c => c.type === 'say');
+    const dont = filtered.filter(c => c.type === 'dont');
+
+    let html = '';
+
+    if (say.length > 0) {
+        html += `<div class="card"><div class="card-title" style="color: var(--green);">&#10003; Say This</div>`;
+        say.forEach(c => {
+            html += `<div class="cue-item">
+                <div class="cue-badge say">&#10003;</div>
+                <div>
+                    <div class="cue-text">&ldquo;${c.text}&rdquo;</div>
+                    <div class="cue-context">${c.context}</div>
+                </div>
+            </div>`;
+        });
+        html += '</div>';
+    }
+
+    if (dont.length > 0) {
+        html += `<div class="card"><div class="card-title" style="color: var(--red);">&#10007; Avoid This</div>`;
+        dont.forEach(c => {
+            html += `<div class="cue-item">
+                <div class="cue-badge dont">&#10007;</div>
+                <div>
+                    <div class="cue-text">&ldquo;${c.text}&rdquo;</div>
+                    <div class="cue-context">${c.context}</div>
+                </div>
+            </div>`;
+        });
+        html += '</div>';
+    }
+
+    if (filtered.length === 0) {
+        html = '<div class="no-results">No cues match that search. Try a different term.</div>';
+    }
+
+    document.getElementById('cue-list').innerHTML = html;
+}
+
+function setCueFilter(filter, btn) {
+    currentCueFilter = filter;
+    document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    renderCues();
+}
+
+// ─── ARCHETYPES ──────────────────────────────────────────────────────────────
+
+function renderArchetypes() {
+    let html = '';
+    ARCHETYPES.forEach(a => {
+        html += `
+            <div class="archetype-card" id="arch-${a.id}" onclick="toggleArchetype(${a.id})" style="border-left-color: ${a.color}">
+                <div class="archetype-header">
+                    <div>
+                        <div class="archetype-name">${a.name}</div>
+                        <div class="archetype-trigger">${a.trigger}</div>
+                    </div>
+                    <span class="chevron">&#9660;</span>
+                </div>
+                <div class="archetype-detail">
+                    <div class="card-title" style="font-size: 0.7rem; margin-bottom: 6px;">Symptoms</div>
+                    <ul class="symptom-list">
+                        ${a.symptoms.map(s => `<li>${s}</li>`).join('')}
+                    </ul>
+                    <div class="response-box">
+                        <div class="label">Modern Response</div>
+                        <div class="cue">${a.response}</div>
+                        <div class="note">${a.cues.join(' &nbsp;&middot;&nbsp; ')}</div>
+                    </div>
+                    <div class="avoid-box">
+                        <div class="label">Avoid</div>
+                        ${a.avoid}
+                    </div>
+                    <div class="principle-box" style="margin-top: 10px;">${a.lesson}</div>
+                </div>
+            </div>`;
+    });
+    document.getElementById('archetype-list').innerHTML = html;
+}
+
+function toggleArchetype(id) {
+    document.getElementById('arch-' + id).classList.toggle('expanded');
+}
+
+// ─── GOAL SETTING ─────────────────────────────────────────────────────────────
+
+function generateGoal() {
+    const athlete = document.getElementById('goal-athlete').value.trim();
+    const weak = document.getElementById('goal-weak').value.trim();
+    const specific = document.getElementById('goal-specific').value.trim();
+    const measure = document.getElementById('goal-measure').value.trim();
+    const control = document.getElementById('goal-control').value;
+    const timeframe = document.getElementById('goal-timeframe').value.trim();
+
+    if (!specific) {
+        alert('Enter a specific action for the athlete first.');
+        return;
+    }
+
+    const controlMap = {
+        yes: { label: "Process Goal &#10003; &mdash; this is the right type", color: "var(--green)" },
+        partial: { label: "Partially controllable &mdash; consider revising to a pure process goal", color: "var(--gold)" },
+        no: { label: "Outcome goal &mdash; revise to focus on the process instead", color: "var(--red)" }
+    };
+
+    const ctrl = controlMap[control] || { label: "&mdash;", color: "var(--gray)" };
+
+    const parts = [specific, measure, timeframe].filter(Boolean);
+    const strongGoal = parts.join(' &mdash; ');
+
+    let html = '';
+    if (athlete) html += `<div class="goal-output-row"><div class="goal-output-label">Athlete</div><div class="goal-output-value">${athlete}</div></div>`;
+    if (weak) html += `<div class="goal-output-row"><div class="goal-output-label">Original</div><div class="goal-output-value" style="color: var(--red); text-decoration: line-through;">&ldquo;${weak}&rdquo;</div></div>`;
+    html += `<div class="goal-output-row"><div class="goal-output-label">Specific</div><div class="goal-output-value">${specific}</div></div>`;
+    if (measure) html += `<div class="goal-output-row"><div class="goal-output-label">Measurable</div><div class="goal-output-value">${measure}</div></div>`;
+    if (control) html += `<div class="goal-output-row"><div class="goal-output-label">Controllable</div><div class="goal-output-value" style="color: ${ctrl.color};">${ctrl.label}</div></div>`;
+    if (timeframe) html += `<div class="goal-output-row"><div class="goal-output-label">Time Frame</div><div class="goal-output-value">${timeframe}</div></div>`;
+    html += `<div class="goal-output-row" style="background: #0d2518; border-radius: 6px; padding: 12px; border: none; margin-top: 10px; flex-direction: column; gap: 4px;">
+        <div class="goal-output-label" style="color: var(--green); padding: 0;">Strong Goal</div>
+        <div class="goal-output-value strong" style="font-size: 1rem;">&ldquo;${strongGoal}&rdquo;</div>
+    </div>`;
+
+    document.getElementById('goal-output-content').innerHTML = html;
+    document.getElementById('goal-output').classList.add('visible');
+    document.getElementById('goal-output').scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetGoal() {
+    ['goal-athlete', 'goal-weak', 'goal-specific', 'goal-measure', 'goal-timeframe'].forEach(id => {
+        document.getElementById(id).value = '';
+    });
+    document.getElementById('goal-control').value = '';
+    document.getElementById('goal-output').classList.remove('visible');
+}
+
+// ─── PRACTICE PLANNER ────────────────────────────────────────────────────────
+
+function addRep() {
+    repCount++;
+    const list = document.getElementById('rep-list');
+    const div = document.createElement('div');
+    div.className = 'rep-row';
+    div.id = 'rep-row-' + repCount;
+    div.innerHTML = `
+        <div class="rep-label">Rep ${repCount}</div>
+        <input type="text" class="rep-cue-input" placeholder="e.g. Mid-mark" id="rep-cue-${repCount}">
+        <button class="remove-btn" onclick="removeRep(${repCount})" title="Remove">&times;</button>`;
+    list.appendChild(div);
+}
+
+function removeRep(id) {
+    const row = document.getElementById('rep-row-' + id);
+    if (row) row.remove();
+}
+
+function generatePracticeCard() {
+    const date = document.getElementById('plan-date').value;
+    const athlete = document.getElementById('plan-athlete').value.trim();
+    const focus = document.getElementById('plan-focus').value.trim();
+
+    const reps = [];
+    document.querySelectorAll('.rep-cue-input').forEach(input => {
+        if (input.value.trim()) reps.push(input.value.trim());
+    });
+
+    let dateStr = '';
+    if (date) {
+        const d = new Date(date + 'T12:00');
+        dateStr = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    }
+
+    document.getElementById('pc-title').textContent = focus || 'Practice Session';
+    document.getElementById('pc-meta').textContent = [athlete, dateStr].filter(Boolean).join(' · ');
+
+    let repsHtml = '';
+    if (reps.length === 0) {
+        repsHtml = '<div style="color: var(--gray); font-size: 0.82rem; padding: 10px 0;">No reps added yet.</div>';
+    } else {
+        reps.forEach((r, i) => {
+            repsHtml += `<div class="planner-rep-item">
+                <div class="planner-rep-num">${i + 1}</div>
+                <div class="planner-rep-text">&ldquo;${r}&rdquo;</div>
+            </div>`;
+        });
+    }
+
+    document.getElementById('pc-reps').innerHTML = repsHtml;
+    document.getElementById('practice-card').style.display = 'block';
+    document.getElementById('practice-card').scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetPlanner() {
+    document.getElementById('plan-athlete').value = '';
+    document.getElementById('plan-focus').value = '';
+    document.getElementById('rep-list').innerHTML = '';
+    repCount = 0;
+    document.getElementById('practice-card').style.display = 'none';
+    addRep(); addRep(); addRep();
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('plan-date').value = today;
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+
+renderCues();
+renderArchetypes();
+
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('plan-date').value = today;
+
+addRep(); addRep(); addRep();
+</script>
+</body>
+</html>
