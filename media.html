@@ -73,26 +73,26 @@
         /* BIO CARD */
         .bio-card {
             display: flex;
-            gap: 40px;
-            align-items: flex-start;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
             background: var(--navy-mid);
             border: 1px solid #2a3f58;
             border-radius: 12px;
             padding: 36px;
+            gap: 28px;
         }
         .bio-photo-wrap { flex: 0 0 auto; }
         .bio-photo {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            object-position: top;
-            border: 3px solid var(--gold);
+            width: 180px;
+            height: 180px;
             display: block;
+            border-radius: 0;
+            border: none;
         }
         .bio-initial {
-            width: 140px;
-            height: 140px;
+            width: 180px;
+            height: 180px;
             background: var(--gold);
             border-radius: 50%;
             display: flex;
@@ -111,6 +111,7 @@
             display: flex;
             gap: 24px;
             flex-wrap: wrap;
+            justify-content: center;
             margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid #2a3f58;
@@ -238,7 +239,7 @@
 
 <nav class="nav">
     <a href="index.html" class="nav-brand">Coaching <span>Gen Z</span> Athletes</a>
-    <a href="preorder.html" class="nav-cta">Get the Book &#8594;</a>
+    <a href="preorder.html" class="nav-cta">Preorder the Book &#8594;</a>
 </nav>
 
 <header class="page-header">
@@ -256,7 +257,7 @@
 
         <div class="bio-card">
             <div class="bio-photo-wrap">
-                <img src="assets/kent-headshot.jpg" alt="Kent Rhodes — Author and Pole Vault Coach"
+                <img src="assets/kent-circle.png" alt="Kent Rhodes — Author and Pole Vault Coach"
                      class="bio-photo"
                      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
                 <div class="bio-initial" style="display:none;">KR</div>
@@ -356,7 +357,7 @@
             <div class="book-block-text">
                 <h3>Coaching Generation Z Athletes: A Guide for Modern Sports Leaders</h3>
                 <p>14 chapters. A complete system for communication, motivation, accountability, and team culture with the generation shaped by COVID, social media, and constant information overload. Includes the Pole Vault Cue Dictionary appendix and access to five digital coaching tools.</p>
-                <a href="preorder.html" class="btn-sm">Order the Book &#8594;</a>
+                <a href="preorder.html" class="btn-sm">Preorder the Book &#8594;</a>
             </div>
         </div>
     </section>
@@ -382,7 +383,7 @@
     <p>
         <strong>Coaching Generation Z Athletes</strong> &nbsp;&middot;&nbsp; Kent Rhodes &nbsp;&middot;&nbsp;
         <a href="index.html">Home</a> &nbsp;&middot;&nbsp;
-        <a href="preorder.html">Get the Book</a> &nbsp;&middot;&nbsp;
+        <a href="preorder.html">Preorder the Book</a> &nbsp;&middot;&nbsp;
         <a href="mailto:kent.rhodes52@gmail.com">kent.rhodes52@gmail.com</a>
     </p>
 </footer>
