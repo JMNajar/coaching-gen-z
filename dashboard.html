@@ -665,6 +665,52 @@
             line-height: 1.6;
             font-style: italic;
         }
+
+        /* ─── BOOK READER ── */
+        .book-chapter-nav { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .book-chapter-select {
+            flex: 1;
+            padding: 11px 14px;
+            background: var(--card-bg);
+            border: 1px solid #2a3f58;
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 0.82rem;
+            outline: none;
+            font-family: inherit;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238a9bb0' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+        }
+        .book-chapter-select option { background: var(--navy); }
+        .book-chapter-select:focus { border-color: var(--gold); }
+        .book-nav-btn {
+            padding: 10px 14px;
+            background: var(--card-bg);
+            border: 1px solid #2a3f58;
+            color: var(--gold);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .book-nav-btn:hover { background: #2a3f58; }
+        .book-nav-btn:disabled { color: var(--gray); cursor: default; border-color: #1a2d42; background: transparent; }
+        .book-chapter-header { border-bottom: 1px solid #2a3f58; padding-bottom: 16px; margin-bottom: 20px; }
+        .book-chapter-num { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 4px; }
+        .book-chapter-title { font-size: 1.5rem; font-weight: 900; color: var(--white); margin-bottom: 8px; line-height: 1.2; }
+        .book-chapter-hook { font-size: 0.88rem; color: var(--gray); font-style: italic; line-height: 1.6; }
+        .book-body p { font-size: 0.92rem; color: var(--gray-light); line-height: 1.85; margin-bottom: 18px; }
+        .book-body h2 { font-size: 1.05rem; font-weight: 900; color: var(--white); margin: 36px 0 14px; padding-top: 8px; border-top: 1px solid #2a3f58; }
+        .book-pull-quote { border-left: 4px solid var(--gold); padding: 14px 20px; margin: 24px 0; background: var(--card-bg); border-radius: 0 8px 8px 0; }
+        .book-pull-quote p { font-size: 0.95rem; font-weight: 700; font-style: italic; color: var(--white); line-height: 1.55; margin-bottom: 0 !important; }
+        .book-chapter-footer { margin-top: 32px; padding-top: 20px; border-top: 1px solid #2a3f58; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .book-progress { font-size: 0.72rem; color: var(--gray); }
+        .book-footer-btns { display: flex; gap: 8px; }
     </style>
 </head>
 <body>
@@ -681,6 +727,7 @@
     <button class="nav-btn" onclick="showSection('reset', this)">Reset Protocol</button>
     <button class="nav-btn" onclick="showSection('goals', this)">Goal Setting</button>
     <button class="nav-btn" onclick="showSection('planner', this)">Practice Planner</button>
+    <button class="nav-btn" onclick="showSection('book', this)">Book</button>
 </nav>
 
 <div class="content">
@@ -898,6 +945,34 @@
                 <div id="pc-reps"></div>
             </div>
             <button class="btn btn-secondary" onclick="resetPlanner()" style="margin-top: 8px;">New Session</button>
+        </div>
+    </div>
+
+    <!-- 6. BOOK -->
+    <div id="section-book" class="section">
+        <div class="section-title">Coaching Generation Z Athletes</div>
+        <div class="section-sub">Full book &mdash; 14 chapters. Use the selector or arrows to navigate.</div>
+
+        <div class="book-chapter-nav">
+            <button class="book-nav-btn" id="book-prev" onclick="bookPrev()" disabled>&#8592;</button>
+            <select class="book-chapter-select" id="book-chapter-select" onchange="bookSelectChapter(this)"></select>
+            <button class="book-nav-btn" id="book-next" onclick="bookNext()">&#8594;</button>
+        </div>
+
+        <div class="book-chapter-header">
+            <div class="book-chapter-num" id="book-chapter-num"></div>
+            <div class="book-chapter-title" id="book-chapter-title"></div>
+            <div class="book-chapter-hook" id="book-chapter-hook"></div>
+        </div>
+
+        <div class="book-body" id="book-body"></div>
+
+        <div class="book-chapter-footer">
+            <div class="book-progress" id="book-progress"></div>
+            <div class="book-footer-btns">
+                <button class="book-nav-btn" onclick="bookPrev()">&#8592; Prev</button>
+                <button class="book-nav-btn" onclick="bookNext()">Next &#8594;</button>
+            </div>
         </div>
     </div>
 
@@ -1270,10 +1345,184 @@ function resetPlanner() {
     document.getElementById('plan-date').value = today;
 }
 
+// ─── BOOK READER ─────────────────────────────────────────────────────────────
+
+const CHAPTERS = [
+  { num: 1, title: "The COVID Effect",
+    hook: "What athletes lost during the pandemic years — and why those gaps are still showing up at practice.",
+    body: `<p>Every coach I&rsquo;ve talked to over the last several years describes the same thing. The athletes are different. Not bad &mdash; different. They respond differently to correction. They disengage differently. They recover from failure in ways that can look like indifference but aren&rsquo;t. The coaches who were doing everything right five years ago are finding that their approach isn&rsquo;t producing the same results.</p>
+<p>The instinct is to blame the athletes &mdash; to chalk it up to a generation that&rsquo;s soft, distracted, or entitled. That diagnosis is wrong, and it&rsquo;s costing programs development time they can&rsquo;t get back. The athletes aren&rsquo;t worse. They are shaped differently, by circumstances that no generation of athletes before them has faced at the same scale.</p>
+<p>The most significant shaping event of this generation wasn&rsquo;t social media. It wasn&rsquo;t smartphones. It was a global pandemic that hit during their most critical developmental years &mdash; and sport was one of the first things taken away.</p>
+<div class="book-pull-quote"><p>&ldquo;The athletes who returned to sport weren&rsquo;t defiant. They weren&rsquo;t lazy. They were underdeveloped in the exact competencies that competition normally builds.&rdquo;</p></div>
+<h2>What Actually Happened</h2>
+<p>In 2020 and 2021, athletes lost the invisible curriculum of sport. Not the drills or the conditioning. The daily rhythm of structured activity, real-time feedback, competition nerves, and team accountability that athletes absorb automatically over years of practice. When sport shut down, that curriculum stopped. When sport came back, those athletes &mdash; now in high school and early college &mdash; showed up without the developmental foundation that every previous generation had built by the same point in their athletic lives.</p>
+<h2>The Five Developmental Losses</h2>
+<p>When I work through this with coaching staffs, I break it down into five specific competencies this generation missed: <strong>Daily Structure and Accountability</strong> &mdash; the physical habit of commitment to something outside yourself. <strong>Real-Time Coaching Feedback</strong> &mdash; the experience of immediate correction under time pressure. <strong>Competition Experience Under Pressure</strong> &mdash; the ability to manage nerves and recover from failure in front of people. <strong>Accountability Cycles</strong> &mdash; the repeated loop of expectation, performance, consequence, and adjustment. And <strong>Team Belonging</strong> &mdash; the experience of being part of something bigger than yourself.</p>
+<h2>What This Looks Like at Practice</h2>
+<p>The athlete who shuts down when corrected. The athlete who can&rsquo;t hold standard across reps. The athlete who looks motivated but can&rsquo;t perform when stakes are real. These aren&rsquo;t character flaws &mdash; these are developmental gaps. They look like attitude problems. They feel like disrespect. The source is structural, not personal, and the response needs to match the source.</p>
+<div class="book-pull-quote"><p>&ldquo;You can&rsquo;t discipline your way out of a development deficit. You can&rsquo;t push an athlete through a gap they didn&rsquo;t choose to have.&rdquo;</p></div>
+<p>The good news: developmental gaps can be closed. The athletes you&rsquo;re coaching need three things right now &mdash; clarity about what&rsquo;s expected, a genuine connection that makes them willing to be coached, and consistency that rebuilds the trust in structure they lost. Not as a soft alternative to accountability &mdash; as the actual delivery mechanism for it.</p>` },
+
+  { num: 2, title: "The Information-Overloaded Athlete",
+    hook: "Today’s athlete processes more than any generation before. What they lack isn’t effort — it’s certainty.",
+    body: `<p>The Gen Z athlete isn&rsquo;t distracted because they lack discipline. They are distracted because their nervous systems have been optimized for a different kind of processing than sport requires. Understanding this distinction is the beginning of effective coaching for this generation.</p>
+<p>Working memory has a fixed capacity &mdash; roughly seven discrete items simultaneously, and far fewer under performance pressure. Gen Z athletes spend hours daily in rapid-switch information environments: social feeds, notifications, short-form video, multitasking across devices. This trains the brain to scan constantly rather than commit. In sport, this manifests as difficulty holding a coaching correction in working memory while simultaneously executing movement. They hear the correction. They acknowledge it. Then they run and it&rsquo;s gone.</p>
+<div class="book-pull-quote"><p>&ldquo;You can&rsquo;t add more to an already overloaded system. The only coaching that lands is the coaching that fits.&rdquo;</p></div>
+<h2>The Problem Isn&rsquo;t Attention Span</h2>
+<p>The mistake is diagnosing this as an attention problem. It isn&rsquo;t. These athletes pay intense attention &mdash; to things that match how their attention is trained to work. Sport requires a different kind of focus: sustained, low-stimulus, repetitive. Telling an athlete to focus harder doesn&rsquo;t change how their working memory is structured. Designing your coaching to work within those constraints does.</p>
+<p>One cue per rep. One focus per practice session. One correction delivered clearly before the next rep begins. These aren&rsquo;t accommodations for weakness &mdash; they are coaching principles backed by forty years of performance psychology research. They just matter more now than ever.</p>
+<p>Design your practice communication around working memory constraints, not around how much information the athlete theoretically could process. The coach who gives one perfect cue at the right moment produces more improvement than the coach who gives five corrections after every rep. Say less. Be clearer.</p>` },
+
+  { num: 3, title: "Why Old-School Is Breaking Down",
+    hook: "Intensity vs. clarity. Why the approach that worked for previous generations is failing today.",
+    body: `<p>Old-school coaching produced champions. That fact is not in dispute. The question is why the same methods that produced champions twenty years ago are now producing athletes who disengage, shut down, or perform poorly under pressure. The answer is not that athletes got weaker. It&rsquo;s that the mechanism through which old-school coaching worked has changed.</p>
+<p>Old-school coaching operated through two primary channels: fear of consequence (shame, punishment, exclusion) and social belonging (don&rsquo;t let the team down). Both still operate in Gen Z athletes. What&rsquo;s different is how they respond. The fear of shame no longer activates performance in this generation the way it did in previous ones. It activates withdrawal. The social belonging mechanism takes longer to build and can&rsquo;t be assumed.</p>
+<div class="book-pull-quote"><p>&ldquo;Demanding better doesn&rsquo;t teach how to be better. It just raises the stakes on failure.&rdquo;</p></div>
+<h2>What Breaks Down</h2>
+<p>High-volume criticism, shame-based accountability, and intensity without explanation all trigger the same response: cognitive narrowing. Under threat, the athlete focuses on managing the experience of failure rather than executing the task. The coaching designed to push performance actually shrinks it &mdash; not because the athlete is soft, but because the nervous system responds to social threat the same way it responds to physical threat. It protects.</p>
+<p>The replacement isn&rsquo;t lower standards. It&rsquo;s higher-quality communication. Every correction should answer one question: what specific action should happen on the next rep? If it doesn&rsquo;t answer that question, don&rsquo;t deliver it as a correction &mdash; deliver it as context. The distinction matters because context doesn&rsquo;t create performance pressure. Correction does. Use each one accordingly.</p>` },
+
+  { num: 4, title: "What Gen Z Actually Wants",
+    hook: "They don’t want less coaching. They want better coaching.",
+    body: `<p>Every generation of coaches eventually describes the next generation of athletes as soft, unmotivated, or difficult to reach. Every time, it turns out the diagnosis was wrong and the coaching needed to adapt. Gen Z is no different. They want to compete. They want to improve. They want to be coached. What they want is different delivery.</p>
+<p>When I ask Gen Z athletes directly what they need from a coach, four themes emerge consistently. Purpose &mdash; they want to understand why the drill matters, why this correction improves performance, why this standard exists. Clarity &mdash; they want to know exactly what&rsquo;s expected and what executing it well looks like. Autonomy &mdash; they want some agency over their development, even small amounts. And Connection &mdash; a real relationship with the coach, not a transactional one.</p>
+<div class="book-pull-quote"><p>&ldquo;They don&rsquo;t want less coaching. They want better coaching. The difference matters more than coaches realize.&rdquo;</p></div>
+<h2>What This Looks Like in Practice</h2>
+<p>The purpose question (&ldquo;why are we doing this?&rdquo;) is not defiance &mdash; it&rsquo;s information gathering. Answer it once, clearly, and the athlete will execute without asking again. Coaches who treat the question as disrespect are losing the opportunity to build the buy-in that makes the next ten corrections land without friction.</p>
+<p>Autonomy doesn&rsquo;t mean athletes decide what they work on. It means they have some involvement in how they work on it. A choice between two drills. Input on their own cue selection. A question after a rep: &ldquo;What did you feel?&rdquo; These are small. The effect on engagement is not. Athletes who feel ownership over their development are more coachable, not less.</p>` },
+
+  { num: 5, title: "Connection Before Correction",
+    hook: "The sequence that builds trust: Connect → Correct → Confirm. Why order matters.",
+    body: `<p>You can give instruction to an athlete who doesn&rsquo;t trust you. You can even get compliance. What you won&rsquo;t get is performance improvement at the rate the athlete is capable of. The relationship between coach and athlete is not a nicety &mdash; it is the medium through which coaching works.</p>
+<p>The Connect &rarr; Correct &rarr; Confirm sequence solves the most common breakdown in coaching communication. Most coaches skip directly to Correct. They see something wrong and they fix it. But without the Connect step, the athlete is receiving correction without being in a state to receive it. Their nervous system is in self-protection mode. The correction lands as criticism, not instruction.</p>
+<div class="book-pull-quote"><p>&ldquo;Five seconds of genuine acknowledgment opens the door to sixty seconds of instruction that actually lands.&rdquo;</p></div>
+<h2>The Three Steps</h2>
+<p><strong>Connect</strong> doesn&rsquo;t require a long conversation. It&rsquo;s a three-second acknowledgment before a correction: &ldquo;Good effort on that approach.&rdquo; &ldquo;I see what you&rsquo;re trying to do.&rdquo; Genuine, specific, brief. Not false praise &mdash; real acknowledgment of what the athlete did right or intended.</p>
+<p><strong>Correct</strong> follows immediately. One cue. Specific. Actionable. Delivered without emotional charge. This is the technical instruction. It&rsquo;s now landing in an athlete who has just been acknowledged and is in a receptive state.</p>
+<p><strong>Confirm</strong> closes the loop: &ldquo;What are you going to focus on for the next rep?&rdquo; This forces the athlete to encode the correction, not just receive it. It tells you whether the message landed. If they can&rsquo;t tell you, the correction wasn&rsquo;t clear enough. Deliver it again before the next rep.</p>` },
+
+  { num: 6, title: "The One-Cue Rule",
+    hook: "If the athlete can’t act on it immediately, it’s not effective communication.",
+    body: `<p>Watch a less experienced coach and an expert coach give feedback on the same rep. The inexperienced coach lists five corrections. The expert gives one. The gap between them isn&rsquo;t knowledge &mdash; the expert sees more problems, not fewer. The gap is the decision to act on only the most important one.</p>
+<p>Working memory constraints mean athletes can process and apply one instruction per rep, maybe two under ideal conditions. Three is overload. Five is noise. The athlete hears all five, stores approximately zero, and runs the next rep with whatever their body defaults to. The coach gave five corrections. The athlete received none. This happens in every sport at every level, every day.</p>
+<div class="book-pull-quote"><p>&ldquo;The cue you don&rsquo;t give is as important as the cue you do. Editing is coaching.&rdquo;</p></div>
+<h2>Choosing the Right Cue</h2>
+<p>The one-cue rule forces a decision that most coaches avoid: what&rsquo;s the highest-leverage correction right now? Not the most urgent correction from your perspective. Not the most visible error. The one correction that, if made, creates the most downstream improvement in this athlete in this moment.</p>
+<p>A good test: if the athlete executes this cue well on the next rep, does overall performance improve? If yes, that&rsquo;s the cue for today. Table the rest for another rep, another session. In competition, reduce further. Pre-competition cues should be one focus already rehearsed successfully in practice &mdash; nothing new, nothing complex. The job of the competition cue is to anchor execution, not introduce adjustment.</p>` },
+
+  { num: 7, title: "Accountability That Sticks",
+    hook: "Moving athletes from emotional accountability to structured accountability — without confrontation.",
+    body: `<p>Most programs with accountability problems have the wrong diagnosis. They assume the issue is insufficient consequence &mdash; that athletes don&rsquo;t feel the standard enough. The fix applied is emotional escalation: more disappointment, more frustration, more intensity. The result is usually worse accountability, not better.</p>
+<p>There are two types of accountability. Emotional accountability uses the coach&rsquo;s feelings as the enforcement mechanism &mdash; disappointment when a standard isn&rsquo;t met, visible frustration, anger. Athletes learn to read the coach&rsquo;s emotional state. What they learn is not the standard &mdash; it&rsquo;s whether the coach is having a good day. Emotional accountability is variable and unpredictable, and it teaches athletes to manage the relationship rather than the performance.</p>
+<div class="book-pull-quote"><p>&ldquo;Clear standards calmly enforced build more discipline than angry enforcement of unclear standards ever will.&rdquo;</p></div>
+<h2>Structural Accountability</h2>
+<p>Structural accountability creates clear standards with consistent enforcement and minimal emotional charge. Not &ldquo;give maximum effort&rdquo; &mdash; but &ldquo;complete the warm-up sequence before the first drill, every practice.&rdquo; Not &ldquo;be coachable&rdquo; &mdash; but &ldquo;when corrected, acknowledge it and attempt it on the next rep.&rdquo; Specific enough that any athlete could tell you whether they met it.</p>
+<p>The enforcement is consistent. If the standard is met, nothing special happens. If it isn&rsquo;t, the consequence is predictable, calm, and proportionate. No lecture. No emotional escalation. The standard and its consequence are the whole accountability system. Your emotional state is not part of it.</p>
+<p>Gen Z athletes respond to this better than any previous generation &mdash; not because they&rsquo;re softer, but because they grew up in information environments where the rules were explicit. Clear rules, consistent enforcement. Your coaching environment should work the same way.</p>` },
+
+  { num: 8, title: "Motivation Follows Execution",
+    hook: "Why pre-practice speeches don’t work — and what actually builds drive in a Gen Z athlete.",
+    body: `<p>Coaches give pre-practice speeches because they believe motivation is a prerequisite for performance. It isn&rsquo;t. It&rsquo;s a result. Intrinsic motivation grows from successful execution and visible progress, not from external exhortation. The speech has the sequence exactly backwards.</p>
+<p>When an athlete executes well, they want to do it again. When they experience improvement they can feel, they become motivated to improve further. This is not a theory &mdash; it is how motivation actually works in performance contexts. The job of coaching is not to create motivation before practice. It&rsquo;s to structure practice so that successful execution happens early and often enough to generate motivation as a byproduct.</p>
+<div class="book-pull-quote"><p>&ldquo;An athlete who just executed well is already motivated. You don&rsquo;t have to create it. You have to structure for it.&rdquo;</p></div>
+<h2>Engineering the Small Win</h2>
+<p>Design the first fifteen minutes of practice to guarantee small wins. Start at a standard every athlete can meet right now. Not easy &mdash; achievable with effort. The distinction matters. Easy breeds contempt. Achievable with effort breeds the success experience that generates the next effort.</p>
+<p>By thirty minutes in, motivation has been created from the inside. The athletes who were &ldquo;unmotivated&rdquo; before practice are executing and asking for the next challenge. This is what genuine motivation looks like. It shows up in the body before it shows up in the attitude.</p>
+<p>Athletes who are motivated from the inside treat failure as data. Athletes motivated by external pressure treat failure as threat. The difference in performance and development over a season is significant. Structure for the former and the latter takes care of itself.</p>` },
+
+  { num: 9, title: "The Athlete Who Shuts Down",
+    hook: "Shutdown is not defiance. It’s overload. How to recognize it and what to do.",
+    body: `<p>When an athlete shuts down, it looks like defiance. It feels like disrespect. It is neither. Shutdown is the nervous system&rsquo;s response to information overload combined with failure threat. The behavior is the same across every athlete who shuts down: withdrawal, silence, going through motions. The cause is structural, not personal &mdash; and responding to it as personal is the fastest way to make it permanent.</p>
+<p>The shutdown sequence is predictable. A trigger event occurs: a missed rep, a correction in front of peers, an increase in stakes. An internal overload response follows: cognitive and emotional systems become overwhelmed. External behavioral withdrawal appears: silence, dropped eye contact, reduced effort or complete stoppage. Each of these is a signal. None of them is a character statement about the athlete.</p>
+<div class="book-pull-quote"><p>&ldquo;The more overwhelmed an athlete is, the simpler coaching must become. This is not a kindness. It&rsquo;s a coaching principle.&rdquo;</p></div>
+<h2>The Effective Response</h2>
+<p>The worst response to shutdown is increased intensity: louder correction, visible frustration, more information. This confirms the threat the nervous system was already responding to. The athlete goes deeper into shutdown. Nothing improves, and something in the relationship breaks.</p>
+<p>The effective response is radical simplification. Remove complexity. Remove stakes. Remove emotional content from the environment. Give one instruction &mdash; the simplest executable action available. &ldquo;First three steps only.&rdquo; &ldquo;Reset.&rdquo; &ldquo;Hit your mark.&rdquo; Then stop talking and let the rep happen.</p>
+<p>The Reset Protocol (Simplify &rarr; Stabilize &rarr; Rebuild) was built specifically for this pattern. Simplify removes overload. Stabilize allows the nervous system to return to baseline. Rebuild reintroduces complexity only after a small success has occurred. Use the Reset Protocol tab in this dashboard for the specific cues.</p>` },
+
+  { num: 10, title: "The Resistant Athlete",
+    hook: "Resistance is not the problem. It’s a signal. What it’s telling you — and how to respond.",
+    body: `<p>The resistant athlete argues, dismisses, eye-rolls, and ignores. Every coach knows one. The instinct is to overpower the resistance &mdash; repeat more emphatically, assert authority, escalate consequence until the behavior stops. This approach creates compliance without belief, which produces performance only when the coach is present. It doesn&rsquo;t build an athlete.</p>
+<p>Resistance is almost always protective behavior. The athlete is protecting something: their self-concept, their prior investment in a competing technique, their experience of autonomy. Identifying what they&rsquo;re protecting tells you exactly how to proceed. An athlete who trained a different technique for three years is protecting that investment. An athlete who recently failed publicly is protecting their self-concept.</p>
+<div class="book-pull-quote"><p>&ldquo;Don&rsquo;t win the argument. Win the experience. Let them feel the correction, and the argument ends itself.&rdquo;</p></div>
+<h2>The &ldquo;Try It Once&rdquo; Approach</h2>
+<p>You cannot argue an athlete through their resistance. The intellectual resistance is the surface behavior; what&rsquo;s being protected is underneath it. Arguing at the surface doesn&rsquo;t reach what&rsquo;s underneath. Felt experience does.</p>
+<p>Remove the argument entirely. Say: &ldquo;Try it exactly this way, one rep. Just one.&rdquo; Then stop talking. Don&rsquo;t defend the correction. Don&rsquo;t explain it further. Let the rep happen. Then ask: &ldquo;What did you notice?&rdquo; You have now moved the athlete from the position of your target to the position of the investigator. Athletes believe what they feel. One felt success dissolves resistance that five arguments couldn&rsquo;t touch.</p>` },
+
+  { num: 11, title: "No Confidence",
+    hook: "Confidence is not something you say. It’s something you build.",
+    body: `<p>Low-confidence athletes aren&rsquo;t trying less hard. They&rsquo;re trying harder, in the wrong direction. They&rsquo;re managing the experience of failure rather than executing the task. The effort is real. The direction of that effort is the problem, and it&rsquo;s the coach&rsquo;s responsibility to redirect it.</p>
+<p>The confidence loop works like this: performance expectation creates an internal state, which shapes execution, which produces a result, which updates the expectation. In low-confidence athletes, expected failure distorts execution before the rep begins. They hold back, hedge, protect against a fall that hasn&rsquo;t happened yet. The hedged execution produces subpar results. The results confirm the expectation. The loop reinforces itself with every rep.</p>
+<div class="book-pull-quote"><p>&ldquo;Confidence doesn&rsquo;t come from believing you can do it. It comes from having done something similar enough times to know you can.&rdquo;</p></div>
+<h2>Breaking the Loop</h2>
+<p>Speeches don&rsquo;t break this loop. &ldquo;You can do this&rdquo; operates at the level of belief, which is downstream of the execution history. What breaks the loop is changing the execution history: structured success. Give the athlete a version of the task they can succeed at. Let them succeed. Then add difficulty incrementally.</p>
+<p>This is sequential success. Not easy success &mdash; genuine success at a challenging but achievable standard. The first time the athlete completes the task, it is real experience. Real experience updates the expectation. Different expectation changes the internal state. Different internal state changes execution. The loop shifts.</p>
+<p>Lower the task until success is possible. Build from there. Do not stay there &mdash; that is not the goal. The goal is to create a success sequence real enough to change the expectation. Once it changes, the athlete&rsquo;s own momentum takes over.</p>` },
+
+  { num: 12, title: "Parents, Pressure & Outside Noise",
+    hook: "You are filtering noise. How to manage external pressure and protect your athlete’s focus.",
+    body: `<p>The pressure parents put on athletes is real, it is significant, and it is mostly outside your control. The only productive question is what to do about the pressure that shows up at your practice &mdash; and it will show up. It arrives in the athlete&rsquo;s body language, in their relationship to failure, in how they respond when stakes are high. You didn&rsquo;t create it. You still have to coach through it.</p>
+<p>Parents create pressure in three ways. Outcome pressure: performance expectations, usually measured against past performance or other athletes. Comparison pressure: measuring the athlete against siblings, teammates, or an earlier version of themselves. Identity pressure: sport as central to the family&rsquo;s narrative and plans, which makes athletic performance feel like more than sport. Athletes absorb all three and carry them to practice without being able to name them.</p>
+<div class="book-pull-quote"><p>&ldquo;You can&rsquo;t manage external pressure. You can create an environment strong enough to absorb it.&rdquo;</p></div>
+<h2>Your Environment Is Your Control</h2>
+<p>You cannot control what happens in the car on the way to practice. You can control your environment. Make it a place where the standard is execution and process, not outcome &mdash; consistently, over time. That environment becomes a genuine refuge not because you said so but because athletes experience it that way.</p>
+<p>For parents who are actively undermining athlete development, one direct conversation works most of the time. Not a defensive conversation &mdash; an enrollment conversation: here&rsquo;s what I&rsquo;m building, here&rsquo;s what your athlete needs from you, here&rsquo;s one specific thing you can do differently. Most parents want to help. They&rsquo;re applying pressure because it&rsquo;s the only tool they know. Give them a better one.</p>` },
+
+  { num: 13, title: "Building Team Culture",
+    hook: "What you allow becomes the standard. What you reinforce becomes the culture.",
+    body: `<p>Culture is not what you declare. It is not the values statement on the wall or the speech you give on the first day of practice. Culture is what you allow and what you reinforce. Those two things &mdash; not your stated values &mdash; are the operating culture of your program. Every program has one. The question is whether it&rsquo;s the one you intended.</p>
+<p>What you allow becomes the floor. If warm-up is optional in practice, it&rsquo;s optional in the culture. If athletes can question standards without consequence, questioning standards is part of the culture. What you reinforce becomes the ceiling. If your visible celebration goes only to performance outcomes &mdash; wins, heights, records &mdash; you have made outcome the only thing that matters. Process behavior goes unreinforced and therefore uncultivated.</p>
+<div class="book-pull-quote"><p>&ldquo;You don&rsquo;t decide your culture on day one. You decide it daily, by what you allow and what you reinforce.&rdquo;</p></div>
+<h2>Culture Change in Practice</h2>
+<p>Culture change requires two targeted decisions, not an overhaul. What is one behavior you will no longer allow, enforced consistently? What is one behavior you will actively reinforce? Make those two shifts. Hold them for six weeks. The culture will move.</p>
+<p>Athletes who internalize your standards will eventually enforce them with each other. When a senior athlete holds a freshman to the standard without your involvement, you have a real culture. Until then, you&rsquo;re holding it yourself. That&rsquo;s normal. That&rsquo;s how it starts.</p>` },
+
+  { num: 14, title: "The Social Media Trap",
+    hook: "Comparison destroys confidence. Execution builds it. How to coach athletes in the comparison era.",
+    body: `<p>Gen Z athletes see a version of sport online that looks almost nothing like practice. Highlight reels of perfect execution. Records broken. Athletes who seem to never struggle, never miss, never doubt. Then those same athletes show up to practice, miss reps, receive corrections, and compare their internal experience &mdash; all the doubt and struggle &mdash; to what they&rsquo;ve been watching. This is one of the most consistent confidence killers in contemporary athletics.</p>
+<p>The comparison reflex is not new. Coaches have dealt with athletes comparing themselves to others since sport began. What&rsquo;s new is the volume, the proximity, and the production quality. Athletes aren&rsquo;t comparing to someone they heard about once. They&rsquo;re comparing in real time, daily, to curated performances with no bad days visible. The internal experience of every athlete &mdash; full of doubt, effort, and missed reps &mdash; is being measured against the external highlight reel of every competitor.</p>
+<div class="book-pull-quote"><p>&ldquo;You are not competing with their Instagram feed. Help them compete with their own best execution.&rdquo;</p></div>
+<h2>The Shift That Works</h2>
+<p>You cannot tell athletes to stop looking at social media. You can shift what they compare. The practice of process journaling &mdash; tracking what was executed well, what the cue was during the best rep, what was felt when performance was at its best &mdash; gives athletes a personal data set of their own development. That data set is more accurate, more relevant, and more useful than any highlight reel.</p>
+<p>Introduce one post-practice question: &ldquo;What was your best rep today, and what cue were you running?&rdquo; Ask it consistently. Over weeks, athletes build a mental model of their own execution at its best. That model becomes the comparison standard &mdash; not someone else&rsquo;s highlight, their own best version. This is a teachable skill, not a motivational principle. It works because it&rsquo;s specific, personal, and action-linked.</p>` }
+];
+
+let currentChapter = 0;
+
+function initBook() {
+    const select = document.getElementById('book-chapter-select');
+    CHAPTERS.forEach(function(ch, i) {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = 'Chapter ' + ch.num + ' — ' + ch.title;
+        select.appendChild(opt);
+    });
+    renderBookChapter(0);
+}
+
+function renderBookChapter(index) {
+    currentChapter = index;
+    const ch = CHAPTERS[index];
+    document.getElementById('book-chapter-num').textContent = 'Chapter ' + ch.num;
+    document.getElementById('book-chapter-title').textContent = ch.title;
+    document.getElementById('book-chapter-hook').textContent = ch.hook;
+    document.getElementById('book-body').innerHTML = ch.body;
+    document.getElementById('book-chapter-select').value = index;
+    document.getElementById('book-prev').disabled = (index === 0);
+    document.getElementById('book-next').disabled = (index === CHAPTERS.length - 1);
+    document.getElementById('book-progress').textContent = 'Chapter ' + ch.num + ' of ' + CHAPTERS.length;
+    document.getElementById('book-chapter-num').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function bookPrev() { if (currentChapter > 0) renderBookChapter(currentChapter - 1); }
+function bookNext() { if (currentChapter < CHAPTERS.length - 1) renderBookChapter(currentChapter + 1); }
+function bookSelectChapter(sel) { renderBookChapter(parseInt(sel.value, 10)); }
+
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 
 renderCues();
 renderArchetypes();
+initBook();
 
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('plan-date').value = today;

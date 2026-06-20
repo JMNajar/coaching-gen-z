@@ -612,6 +612,92 @@
         .cta-banner p { font-size: 0.9rem; color: var(--gray); margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
         .cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
+        /* ── CONTACT KENT ── */
+        .contact-band {
+            background: #080f18;
+            padding: 72px 24px;
+            border-top: 3px solid var(--gold);
+        }
+        .contact-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+        .contact-headline {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .contact-sub {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 32px;
+            letter-spacing: 0.5px;
+        }
+        .contact-form {
+            display: flex;
+            gap: 10px;
+            max-width: 680px;
+            margin: 0 auto 12px;
+            flex-wrap: wrap;
+        }
+        .contact-input {
+            flex: 1;
+            min-width: 160px;
+            padding: 15px 18px;
+            background: rgba(255,255,255,0.96);
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            color: #111;
+            outline: none;
+            font-family: inherit;
+        }
+        .contact-input::placeholder { color: #999; }
+        .contact-btn {
+            padding: 15px 28px;
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .contact-btn:hover { background: var(--gold-dark); }
+        .contact-message-wrap {
+            max-width: 680px;
+            margin: 0 auto 16px;
+        }
+        .contact-textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.96);
+            border: none;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            color: #111;
+            outline: none;
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+        }
+        .contact-textarea::placeholder { color: #999; }
+        .contact-result {
+            font-size: 0.85rem;
+            color: var(--gold);
+            min-height: 22px;
+            margin-bottom: 12px;
+        }
+        .contact-fine {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.3);
+        }
+        .contact-fine a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        .contact-fine a:hover { color: var(--gold); }
+
         /* ── FOOTER ── */
         footer {
             background: var(--navy-mid);
@@ -894,17 +980,61 @@
     </div>
 </div>
 
+<section class="contact-band" id="contact">
+    <div class="contact-inner">
+        <div class="section-label" style="color:rgba(245,166,35,0.7); margin-bottom:14px;">Book Kent</div>
+        <h2 class="contact-headline">Ready to bring this framework<br>to your program?</h2>
+        <p class="contact-sub">Keynotes &nbsp;&middot;&nbsp; Coaching Clinics &nbsp;&middot;&nbsp; Staff Workshops &nbsp;&middot;&nbsp; Athletic Department Training</p>
+        <form class="contact-form" id="contact-form" onsubmit="handleContact(event)">
+            <input type="text" class="contact-input" id="contact-name" placeholder="Your name" required>
+            <input type="email" class="contact-input" id="contact-email" placeholder="Your email address" required>
+            <button type="submit" class="contact-btn">Send to Kent &#8594;</button>
+        </form>
+        <div class="contact-message-wrap">
+            <textarea class="contact-textarea" id="contact-message" placeholder="Tell Kent about your program, event, or what you have in mind..."></textarea>
+        </div>
+        <div class="contact-result" id="contact-result"></div>
+        <p class="contact-fine">Or email directly: <a href="mailto:kent.rhodes52@gmail.com">kent.rhodes52@gmail.com</a></p>
+    </div>
+</section>
+
 <footer>
     <p>
         <strong>Coaching Generation Z Athletes</strong> &nbsp;&middot;&nbsp;
         Kent Rhodes, Pole Vault Coach &nbsp;&middot;&nbsp; Jessup University
         &nbsp;&middot;&nbsp;
         <a href="media.html">Media Kit</a> &nbsp;&middot;&nbsp;
-        <a href="mailto:kent.rhodes52@gmail.com">Contact</a>
+        <a href="#contact">Contact</a>
     </p>
 </footer>
 
 <script>
+async function handleContact(e) {
+    e.preventDefault();
+    const name = document.getElementById('contact-name').value.trim();
+    const email = document.getElementById('contact-email').value.trim();
+    const message = document.getElementById('contact-message').value.trim();
+    const result = document.getElementById('contact-result');
+    result.textContent = 'Sending…';
+    try {
+        const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, message })
+        });
+        if (res.ok) {
+            result.textContent = 'Message sent. Kent will be in touch soon.';
+            document.getElementById('contact-name').value = '';
+            document.getElementById('contact-email').value = '';
+            document.getElementById('contact-message').value = '';
+        } else {
+            result.textContent = 'Something went wrong. Email kent.rhodes52@gmail.com directly.';
+        }
+    } catch(err) {
+        result.textContent = 'Could not send. Email kent.rhodes52@gmail.com directly.';
+    }
+}
+
 async function handleSubscribe() {
     const name = document.getElementById('ec-name').value.trim();
     const email = document.getElementById('ec-email').value.trim();
