@@ -397,6 +397,50 @@
             padding: 60px 24px;
         }
         .book-kent-inner { max-width: 960px; margin: 0 auto; }
+
+        /* CHAMP BANNER */
+        .champ-banner {
+            background: var(--gold);
+            border-radius: 10px;
+            padding: 10px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+        .champ-banner .trophy { font-size: 1.2rem; }
+        .champ-banner p {
+            font-size: 0.78rem;
+            font-weight: 900;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        /* KENT INTRO ROW */
+        .kent-intro {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+            margin-bottom: 36px;
+        }
+        .kent-intro-photo { flex: 0 0 auto; }
+        .kent-intro-photo img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+        .kent-intro-text { flex: 1; }
+        @media (max-width: 580px) {
+            .kent-intro { flex-direction: column; gap: 20px; text-align: center; }
+            .champ-banner { display: flex; }
+        }
         .offerings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -687,8 +731,22 @@
 <section class="book-kent-outer" id="book-kent">
     <div class="book-kent-inner">
         <div class="section-label">Speaking &amp; Training</div>
-        <h2 class="section-title" style="margin-bottom:12px;">Bring This System<br>to Your Program.</h2>
-        <p class="section-body">Kent Rhodes brings the Clarity&ndash;Connection&ndash;Consistency framework to athletic departments, coaching clinics, and staff training sessions. Every session is built around one goal: coaches leaving with tools they can use at practice tomorrow.</p>
+
+        <div class="champ-banner">
+            <span class="trophy">&#127942;</span>
+            <p>Coach of the 2026 CIF State Pole Vault Champion &nbsp;&middot;&nbsp; Jessup University NAIA All-Americans</p>
+        </div>
+
+        <div class="kent-intro">
+            <div class="kent-intro-photo">
+                <img src="assets/kent-circle.png" alt="Kent Rhodes"
+                     onerror="this.src='assets/kent-headshot.jpg'">
+            </div>
+            <div class="kent-intro-text">
+                <h2 class="section-title" style="margin-bottom:12px;">Bring This System<br>to Your Program.</h2>
+                <p class="section-body">Kent Rhodes brings the Clarity&ndash;Connection&ndash;Consistency framework to athletic departments, coaching clinics, and staff training sessions. Every session is built around one goal: coaches leaving with tools they can use at practice tomorrow.</p>
+            </div>
+        </div>
 
         <div class="offerings-grid">
             <div class="offering-card">
@@ -740,10 +798,10 @@
                 <div class="philosophy-item">Process-Based Development</div>
             </div>
             <div class="author-credentials">
+                <div><div class="cred-num">&#127942;</div><div class="cred-lbl">Coach of the 2026 CIF State Pole Vault Champion</div></div>
                 <div><div class="cred-num">25+</div><div class="cred-lbl">Years developing athletes at HS and collegiate levels</div></div>
                 <div><div class="cred-num">20+</div><div class="cred-lbl">Athletes advanced to CIF State Championships</div></div>
                 <div><div class="cred-num">NAIA</div><div class="cred-lbl">All-Americans developed at Jessup University</div></div>
-                <div><div class="cred-num">3</div><div class="cred-lbl">High school programs coached across Northern California</div></div>
             </div>
         </div>
     </div>
