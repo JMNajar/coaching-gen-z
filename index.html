@@ -398,6 +398,68 @@
         }
         .book-kent-inner { max-width: 960px; margin: 0 auto; }
 
+        /* SOPHIA PROOF BLOCK */
+        .sophia-block {
+            background: rgba(13,27,42,0.8);
+            border: 1px solid #2a3f58;
+            border-left: 4px solid var(--gold);
+            border-radius: 10px;
+            padding: 28px 32px;
+            margin: 32px 0;
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+        }
+        .sophia-photo-wrap { flex: 0 0 auto; }
+        .sophia-photo {
+            width: 160px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            display: block;
+        }
+        .sophia-content { flex: 1; }
+        .sophia-sweep {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .sweep-pill {
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .sweep-pill.champion {
+            background: var(--white);
+            color: var(--navy);
+            font-size: 0.72rem;
+        }
+        .sophia-quote {
+            font-size: 0.92rem;
+            font-style: italic;
+            color: var(--gray-light);
+            line-height: 1.75;
+            margin-bottom: 12px;
+            border-left: none;
+        }
+        .sophia-attribution {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        @media (max-width: 620px) {
+            .sophia-block { flex-direction: column; gap: 20px; padding: 20px; }
+            .sophia-photo { width: 100%; max-width: 260px; margin: 0 auto; display: block; }
+        }
+
         /* CHAMP BANNER */
         .champ-banner {
             background: var(--gold);
@@ -763,6 +825,22 @@
                 <div class="offering-icon">&#127967;</div>
                 <div class="offering-title">Staff Workshop: Understanding Gen Z</div>
                 <div class="offering-desc">2&ndash;3 hours for athletic departments and school coaching staffs. The COVID effect, communication strategies for each athlete type, and how to build a team culture that actually holds.</div>
+            </div>
+        </div>
+
+        <div class="sophia-block">
+            <div class="sophia-photo-wrap">
+                <img src="assets/sophia-state-champ.jpg" alt="Sophia Forst — 2026 California State Pole Vault Champion" class="sophia-photo">
+            </div>
+            <div class="sophia-content">
+                <div class="sophia-sweep">
+                    <span class="sweep-pill">SJS D1 League Champion</span>
+                    <span class="sweep-pill">SJS Division Champion</span>
+                    <span class="sweep-pill">SJS Masters Champion</span>
+                    <span class="sweep-pill champion">&#127942; California State Champion</span>
+                </div>
+                <p class="sophia-quote">&ldquo;Congratulations to Sophia Forst for a perfect sweep &mdash; SJS D1 League Champion, SJS Division Champion, SJS Masters Champion, and now the California State Champion. What a finish to her high school career. It has been my pleasure to have coached Sophia the last three years, and I am looking forward to following her career as she will be vaulting next year at the University of Montana.&rdquo;</p>
+                <div class="sophia-attribution">&mdash; Kent Rhodes, on Sophia Forst &nbsp;&middot;&nbsp; 2026 CIF State Pole Vault Championship</div>
             </div>
         </div>
 
