@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coaching Generation Z Athletes — Kent Rhodes</title>
+    <meta name="description" content="25+ years coaching athletes at the high school and collegiate level. The practical guide for modern coaches: Clarity. Connection. Consistency. By Kent Rhodes, Jessup University.">
     <style>
         :root {
             --navy: #0d1b2a;
@@ -14,7 +15,6 @@
             --white: #ffffff;
             --gray: #8a9bb0;
             --gray-light: #c8d4e0;
-            --green: #2ecc71;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,18 +34,34 @@
             align-items: center;
             justify-content: space-between;
             gap: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-
         .nav-brand {
             font-size: 0.78rem;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--white);
+            text-decoration: none;
         }
-
         .nav-brand span { color: var(--gold); }
-
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+        .nav-link {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--gold); }
         .nav-cta {
             display: inline-block;
             padding: 8px 18px;
@@ -60,8 +76,8 @@
             white-space: nowrap;
             transition: background 0.2s;
         }
-
         .nav-cta:hover { background: var(--gold-dark); }
+        @media (max-width: 600px) { .nav-links { display: none; } }
 
         /* ── HERO ── */
         .hero {
@@ -69,7 +85,6 @@
             padding: 60px 24px;
             border-bottom: 1px solid #2a3f58;
         }
-
         .hero-inner {
             max-width: 960px;
             margin: 0 auto;
@@ -77,18 +92,13 @@
             gap: 48px;
             align-items: center;
         }
-
-        .hero-book {
-            flex: 0 0 auto;
-        }
-
+        .hero-book { flex: 0 0 auto; }
         .hero-book img {
             width: 220px;
             border-radius: 8px;
             box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 4px 16px rgba(245,166,35,0.2);
             display: block;
         }
-
         .hero-book-placeholder {
             width: 220px;
             height: 330px;
@@ -105,9 +115,7 @@
             text-align: center;
             padding: 20px;
         }
-
         .hero-text { flex: 1; }
-
         .hero-eyebrow {
             display: inline-block;
             font-size: 0.68rem;
@@ -120,7 +128,6 @@
             padding: 4px 12px;
             margin-bottom: 18px;
         }
-
         .hero-title {
             font-size: 2.4rem;
             font-weight: 900;
@@ -128,23 +135,25 @@
             color: var(--white);
             margin-bottom: 10px;
         }
-
         .hero-title span { color: var(--gold); }
-
         .hero-subtitle {
             font-size: 1rem;
             color: var(--gray-light);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             font-style: italic;
         }
-
+        .hero-byline {
+            font-size: 0.82rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        .hero-byline strong { color: var(--gold); }
         .hero-tagline {
             display: flex;
             gap: 12px;
-            margin: 20px 0 28px;
+            margin: 16px 0 28px;
             flex-wrap: wrap;
         }
-
         .hero-tag {
             font-size: 0.72rem;
             font-weight: 700;
@@ -155,7 +164,7 @@
             padding: 5px 12px;
             border-radius: 4px;
         }
-
+        .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
         .hero-btn {
             display: inline-block;
             padding: 14px 28px;
@@ -169,9 +178,7 @@
             border-radius: 8px;
             transition: background 0.2s;
         }
-
         .hero-btn:hover { background: var(--gold-dark); }
-
         .hero-btn-ghost {
             display: inline-block;
             padding: 14px 28px;
@@ -184,25 +191,47 @@
             text-decoration: none;
             border-radius: 8px;
             border: 1px solid var(--gold);
-            margin-left: 12px;
             transition: all 0.2s;
         }
-
         .hero-btn-ghost:hover { background: rgba(245,166,35,0.1); }
-
         @media (max-width: 680px) {
             .hero-inner { flex-direction: column; gap: 32px; text-align: center; }
             .hero-book img, .hero-book-placeholder { width: 180px; margin: 0 auto; }
             .hero-book-placeholder { height: 270px; }
             .hero-title { font-size: 1.8rem; }
             .hero-tagline { justify-content: center; }
-            .hero-btn-ghost { margin-left: 0; margin-top: 10px; }
+            .hero-buttons { justify-content: center; }
         }
 
-        /* ── MAIN ── */
-        main { max-width: 960px; margin: 0 auto; padding: 60px 24px; }
+        /* ── QUOTE BAND ── */
+        .quote-band {
+            background: var(--gold);
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .quote-band blockquote {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--navy);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.4;
+            font-style: italic;
+        }
+        .quote-band cite {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--navy);
+            opacity: 0.6;
+            margin-top: 8px;
+            font-style: normal;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-        /* ── SECTION HEADER ── */
+        /* ── SHARED LAYOUT ── */
+        .page-section { max-width: 960px; margin: 0 auto; padding: 60px 24px; }
         .section-label {
             font-size: 0.68rem;
             font-weight: 800;
@@ -211,7 +240,6 @@
             color: var(--gold);
             margin-bottom: 10px;
         }
-
         .section-title {
             font-size: 1.6rem;
             font-weight: 900;
@@ -219,24 +247,33 @@
             margin-bottom: 12px;
             line-height: 1.2;
         }
-
         .section-body {
             font-size: 0.95rem;
             color: var(--gray-light);
             line-height: 1.75;
             max-width: 700px;
         }
+        .divider { height: 1px; background: #2a3f58; margin: 60px 0; }
 
-        /* ── ABOUT SITE ── */
-        .about-site { margin-bottom: 64px; }
-
+        /* ── TOOLS ── */
+        .tools-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 5px 14px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 14px;
             margin-top: 32px;
         }
-
         .tool-card {
             background: var(--navy-mid);
             border: 1px solid #2a3f58;
@@ -244,7 +281,6 @@
             border-radius: 10px;
             padding: 18px 20px;
         }
-
         .tool-number {
             font-size: 0.68rem;
             font-weight: 800;
@@ -253,61 +289,175 @@
             color: var(--gold);
             margin-bottom: 6px;
         }
-
         .tool-name {
             font-size: 0.95rem;
             font-weight: 800;
             color: var(--white);
             margin-bottom: 6px;
         }
+        .tool-desc { font-size: 0.8rem; color: var(--gray); line-height: 1.55; }
 
-        .tool-desc {
-            font-size: 0.8rem;
-            color: var(--gray);
-            line-height: 1.55;
+        /* ── FREE SAMPLE ── */
+        .sample-block {
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-left: 4px solid var(--gold);
+            border-radius: 10px;
+            padding: 36px 40px;
+            margin-top: 28px;
         }
-
-        /* ── DIVIDER ── */
-        .divider {
-            height: 1px;
-            background: #2a3f58;
-            margin: 60px 0;
+        .sample-text {
+            border-left: 3px solid var(--gold);
+            padding-left: 22px;
+            margin: 0 0 24px;
         }
+        .sample-text p {
+            font-size: 0.95rem;
+            color: var(--gray-light);
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 14px;
+        }
+        .sample-text p:last-child { margin-bottom: 0; }
+        .sample-text strong { color: var(--white); font-style: normal; }
+        .sample-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
 
-        /* ── ABOUT AUTHOR ── */
-        .author-section { margin-bottom: 0; }
+        /* ── TESTIMONIALS ── */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 32px;
+        }
+        .testimonial-card {
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-radius: 10px;
+            padding: 24px;
+        }
+        .t-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 14px; }
+        .t-quote { font-size: 0.88rem; color: var(--gray-light); line-height: 1.7; font-style: italic; margin-bottom: 16px; }
+        .t-name { font-size: 0.75rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.5px; }
+        .t-role { font-size: 0.75rem; color: var(--gray); }
 
+        /* ── EMAIL BAND (full-width) ── */
+        .email-band-outer {
+            background: var(--navy-mid);
+            border-top: 3px solid var(--gold);
+            border-bottom: 1px solid #2a3f58;
+            padding: 60px 24px;
+            text-align: center;
+        }
+        .email-band-inner { max-width: 600px; margin: 0 auto; }
+        .email-band-outer h2 { font-size: 1.6rem; font-weight: 900; color: var(--white); margin-bottom: 8px; }
+        .email-band-outer .sub { font-size: 0.95rem; color: var(--gray-light); line-height: 1.6; margin-bottom: 28px; }
+        .email-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        .email-form input {
+            flex: 1;
+            min-width: 160px;
+            padding: 12px 16px;
+            background: var(--navy);
+            border: 1px solid #2a3f58;
+            border-radius: 6px;
+            color: var(--white);
+            font-size: 0.88rem;
+            outline: none;
+        }
+        .email-form input:focus { border-color: var(--gold); }
+        .email-form input::placeholder { color: var(--gray); }
+        .email-form button {
+            padding: 12px 24px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .email-form button:hover { background: var(--gold-dark); }
+        .email-form button:disabled { opacity: 0.6; cursor: default; }
+        .email-note { font-size: 0.75rem; color: var(--gray); }
+        #ec-msg { font-size: 0.88rem; min-height: 22px; margin-top: 10px; }
+
+        /* ── BOOK KENT (full-width) ── */
+        .book-kent-outer {
+            background: linear-gradient(160deg, #0a1520 0%, #1a2d42 100%);
+            border-top: 1px solid #2a3f58;
+            padding: 60px 24px;
+        }
+        .book-kent-inner { max-width: 960px; margin: 0 auto; }
+        .offerings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+        .offering-card {
+            background: rgba(13,27,42,0.7);
+            border: 1px solid #2a3f58;
+            border-radius: 8px;
+            padding: 22px;
+        }
+        .offering-icon { font-size: 1.5rem; margin-bottom: 10px; }
+        .offering-title { font-size: 0.92rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+        .offering-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+        .book-kent-cta {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.88rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        .book-kent-cta:hover { background: var(--gold-dark); }
+
+        /* ── AUTHOR ── */
         .author-card {
             display: flex;
             gap: 40px;
             align-items: flex-start;
             margin-top: 32px;
         }
-
         .author-photo-wrap { flex: 0 0 auto; }
-
+        .author-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            border: 3px solid var(--gold);
+            display: block;
+        }
         .author-initial {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background: var(--gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 900;
             color: var(--navy);
         }
-
         .author-content { flex: 1; }
-
-        .author-name {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: var(--white);
-            margin-bottom: 2px;
-        }
-
+        .author-name { font-size: 1.4rem; font-weight: 900; color: var(--white); margin-bottom: 2px; }
         .author-title {
             font-size: 0.72rem;
             font-weight: 800;
@@ -316,23 +466,9 @@
             color: var(--gold);
             margin-bottom: 20px;
         }
-
-        .author-bio p {
-            font-size: 0.9rem;
-            color: var(--gray-light);
-            line-height: 1.75;
-            margin-bottom: 14px;
-        }
-
+        .author-bio p { font-size: 0.9rem; color: var(--gray-light); line-height: 1.75; margin-bottom: 14px; }
         .author-bio p:last-child { margin-bottom: 0; }
-
-        .philosophy-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 20px 0 24px;
-        }
-
+        .philosophy-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 24px; }
         .philosophy-item {
             background: var(--navy-mid);
             border: 1px solid #2a3f58;
@@ -342,9 +478,7 @@
             font-size: 0.8rem;
             font-weight: 700;
             color: var(--white);
-            text-transform: capitalize;
         }
-
         .author-credentials {
             background: var(--navy-mid);
             border: 1px solid #2a3f58;
@@ -352,31 +486,11 @@
             padding: 18px 20px;
             margin-top: 24px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 16px;
         }
-
-        .credential-item { display: block; }
-
-        .credential-number {
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: var(--gold);
-            line-height: 1;
-            margin-bottom: 4px;
-        }
-
-        .credential-label {
-            font-size: 0.75rem;
-            color: var(--gray);
-            line-height: 1.4;
-        }
-
-        @media (max-width: 600px) {
-            .author-card { flex-direction: column; gap: 24px; }
-            .author-initial { width: 72px; height: 72px; font-size: 1.5rem; }
-            .author-credentials { grid-template-columns: 1fr 1fr; }
-        }
+        .cred-num { font-size: 1.6rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+        .cred-lbl { font-size: 0.75rem; color: var(--gray); line-height: 1.4; }
 
         /* ── CTA BANNER ── */
         .cta-banner {
@@ -388,23 +502,9 @@
             text-align: center;
             margin-top: 60px;
         }
-
-        .cta-banner h2 {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--white);
-            margin-bottom: 10px;
-        }
-
-        .cta-banner p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin-bottom: 28px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
+        .cta-banner h2 { font-size: 1.5rem; font-weight: 900; color: var(--white); margin-bottom: 10px; }
+        .cta-banner p { font-size: 0.9rem; color: var(--gray); margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+        .cta-btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
         /* ── FOOTER ── */
         footer {
@@ -413,21 +513,31 @@
             padding: 28px 24px;
             text-align: center;
         }
-
-        footer p {
-            font-size: 0.78rem;
-            color: var(--gray);
-        }
-
+        footer p { font-size: 0.78rem; color: var(--gray); }
         footer strong { color: var(--gold); }
+        footer a { color: var(--gray); text-decoration: none; }
+        footer a:hover { color: var(--gold); }
+
+        @media (max-width: 600px) {
+            .author-card { flex-direction: column; gap: 24px; }
+            .author-photo, .author-initial { width: 80px; height: 80px; font-size: 1.5rem; }
+            .author-credentials { grid-template-columns: 1fr 1fr; }
+            .sample-block { padding: 24px 20px; }
+        }
     </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav class="nav">
-    <div class="nav-brand">Coaching <span>Gen Z</span> Athletes</div>
-    <a href="dashboard.html" class="nav-cta">Open Dashboard &#8594;</a>
+    <a href="index.html" class="nav-brand">Coaching <span>Gen Z</span> Athletes</a>
+    <div class="nav-links">
+        <a href="chapter-one.html" class="nav-link">Read a Chapter</a>
+        <a href="media.html" class="nav-link">Media</a>
+        <a href="#book-kent" class="nav-link">Book Kent</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+    <a href="preorder.html" class="nav-cta">Get the Book &#8594;</a>
 </nav>
 
 <!-- HERO -->
@@ -442,126 +552,263 @@
             </div>
         </div>
         <div class="hero-text">
-            <div class="hero-eyebrow">Coach Companion Dashboard</div>
+            <div class="hero-eyebrow">From Jessup University — Pole Vault Coach</div>
             <h1 class="hero-title">Coaching<br><span>Generation Z</span><br>Athletes</h1>
             <div class="hero-subtitle">A Guide for Modern Sports Leaders</div>
+            <div class="hero-byline">By <strong>Kent Rhodes</strong> &mdash; 25+ years developing athletes at the high school and collegiate levels</div>
             <div class="hero-tagline">
                 <span class="hero-tag">Clarity</span>
                 <span class="hero-tag">Connection</span>
                 <span class="hero-tag">Consistency</span>
             </div>
-            <a href="dashboard.html" class="hero-btn">Open the Dashboard &#8594;</a>
+            <div class="hero-buttons">
+                <a href="preorder.html" class="hero-btn">Get the Book &#8594;</a>
+                <a href="dashboard.html" class="hero-btn-ghost">Open the Dashboard</a>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- MAIN -->
-<main>
+<!-- PULL QUOTE -->
+<div class="quote-band">
+    <blockquote>
+        "Coaching has changed. Not because athletes are worse &mdash; but because they are different."
+        <cite>&mdash; Introduction, Coaching Generation Z Athletes</cite>
+    </blockquote>
+</div>
 
-    <!-- ABOUT THE SITE -->
-    <section class="about-site">
-        <div class="section-label">About This Site</div>
-        <h2 class="section-title">Five field-ready tools &mdash;<br>built around the book.</h2>
-        <p class="section-body">
-            This dashboard is a practical companion to <em>Coaching Generation Z Athletes</em>. Every tool is designed to be used on the sideline &mdash; fast to pull up, easy to apply, and built around the core principle of the book: the simpler the message, the faster athletes improve.
-        </p>
+<!-- TOOLS -->
+<div class="page-section">
+    <div class="tools-badge">Free with the Book</div>
+    <div class="section-label">Five Field-Ready Tools</div>
+    <h2 class="section-title">Built for the sideline.<br>Built around the book.</h2>
+    <p class="section-body">Every tool is designed to be used in real time &mdash; on the track, in the gym, during practice. Fast to pull up, easy to apply, built around the core principle: <em>the simpler the message, the faster athletes improve.</em></p>
 
-        <div class="tools-grid">
-            <div class="tool-card">
-                <div class="tool-number">Tool 01</div>
-                <div class="tool-name">Coaching Cue Library</div>
-                <div class="tool-desc">Every &ldquo;say this / avoid this&rdquo; line from the book. Searchable and filterable by situation, athlete type, and scenario.</div>
-            </div>
-            <div class="tool-card">
-                <div class="tool-number">Tool 02</div>
-                <div class="tool-name">Athlete Archetype Guide</div>
-                <div class="tool-desc">Identify which of the five Gen Z athlete types you&rsquo;re working with &mdash; and get the right response immediately.</div>
-            </div>
-            <div class="tool-card">
-                <div class="tool-number">Tool 03</div>
-                <div class="tool-name">The Reset Protocol</div>
-                <div class="tool-desc">Simplify &rarr; Stabilize &rarr; Rebuild. A fast visual reference for when an athlete is spiraling under pressure.</div>
-            </div>
-            <div class="tool-card">
-                <div class="tool-number">Tool 04</div>
-                <div class="tool-name">Goal Setting Tool</div>
-                <div class="tool-desc">Turn vague goals into Specific, Measurable, Controllable targets. Generates a printable goal card for each athlete.</div>
-            </div>
-            <div class="tool-card">
-                <div class="tool-number">Tool 05</div>
-                <div class="tool-name">Practice Planner</div>
-                <div class="tool-desc">Build your session around one focus per rep. Generates a clean practice card before you step on the track.</div>
-            </div>
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div class="tool-number">Tool 01</div>
+            <div class="tool-name">Coaching Cue Library</div>
+            <div class="tool-desc">Every &ldquo;say this / avoid this&rdquo; line from the book. Searchable and filterable by situation, athlete type, and scenario.</div>
         </div>
-    </section>
+        <div class="tool-card">
+            <div class="tool-number">Tool 02</div>
+            <div class="tool-name">Athlete Archetype Guide</div>
+            <div class="tool-desc">Identify which of the five Gen Z athlete types you&rsquo;re working with &mdash; and get the right response immediately.</div>
+        </div>
+        <div class="tool-card">
+            <div class="tool-number">Tool 03</div>
+            <div class="tool-name">The Reset Protocol</div>
+            <div class="tool-desc">Simplify &rarr; Stabilize &rarr; Rebuild. A fast visual reference for when an athlete is spiraling under pressure.</div>
+        </div>
+        <div class="tool-card">
+            <div class="tool-number">Tool 04</div>
+            <div class="tool-name">Goal Setting Tool</div>
+            <div class="tool-desc">Turn vague goals into Specific, Measurable, Controllable targets. Generates a printable goal card for each athlete.</div>
+        </div>
+        <div class="tool-card">
+            <div class="tool-number">Tool 05</div>
+            <div class="tool-name">Practice Planner</div>
+            <div class="tool-desc">Build your session around one focus per rep. Generates a clean practice card before you step on the track.</div>
+        </div>
+    </div>
+    <div style="margin-top:24px;">
+        <a href="dashboard.html" class="hero-btn-ghost" style="font-size:0.8rem; padding:10px 22px;">Open the Coach Dashboard &#8594;</a>
+    </div>
+</div>
 
+<!-- FREE SAMPLE -->
+<div class="page-section" style="padding-top:0;" id="read-sample">
     <div class="divider"></div>
+    <div class="section-label">Free Sample</div>
+    <h2 class="section-title">Read the Introduction.<br>Download Chapter One.</h2>
+    <p class="section-body">Experience the voice of the book before you buy. The introduction sets up everything that follows.</p>
 
-    <!-- ABOUT THE AUTHOR -->
-    <section class="author-section">
-        <div class="section-label">About the Author</div>
-        <h2 class="section-title">Kent Rhodes</h2>
+    <div class="sample-block">
+        <div class="sample-text">
+            <p>Coaching has changed. Not because athletes are worse &mdash; but because they are different.</p>
+            <p>The athletes you&rsquo;re working with today grew up during a global pandemic. They spent their developmental years separated from competition, isolated from structured team environments, and cut off from the daily rhythm of organized sport. When they came back, they didn&rsquo;t just return to the game. They returned with gaps &mdash; social, emotional, and developmental gaps that no conditioning program can address.</p>
+            <p>That&rsquo;s the problem. And it&rsquo;s why the old approach isn&rsquo;t working.</p>
+            <p>Old-school coaching assumed that intensity drives performance. Get in their face. Push harder. Make them uncomfortable until they respond. That model was built for a different athlete. Today&rsquo;s athlete doesn&rsquo;t lack effort. They lack certainty. They don&rsquo;t need more pressure. They need clarity.</p>
+            <p>This book is built around three principles that work <em>with</em> today&rsquo;s athlete &mdash; not against them: <strong>Clarity. Connection. Consistency.</strong> Not as soft alternatives to accountability. As the most effective tools a modern coach can carry.</p>
+            <p><strong>Don&rsquo;t coach louder. Don&rsquo;t coach harder. Coach clearer.</strong></p>
+        </div>
+        <div class="sample-actions">
+            <a href="chapter-one.html" class="hero-btn" style="font-size:0.82rem; padding:12px 22px;">Read Chapter One &#8594;</a>
+            <a href="preorder.html" class="hero-btn-ghost" style="font-size:0.82rem; padding:12px 22px;">Get the Full Book</a>
+        </div>
+    </div>
+</div>
 
-        <div class="author-card">
-            <div class="author-photo-wrap">
-                <div class="author-initial">KR</div>
+<!-- TESTIMONIALS -->
+<div class="page-section" style="padding-top:0;" id="proof">
+    <div class="divider"></div>
+    <div class="section-label">What Coaches Are Saying</div>
+    <h2 class="section-title">Proof on the sideline.</h2>
+    <p class="section-body">From coaches, athletes, and parents who have applied the system.</p>
+
+    <div class="testimonials-grid">
+        <div class="testimonial-card">
+            <div class="t-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+            <p class="t-quote">&ldquo;I&rsquo;ve been coaching high school track for 15 years and no one has ever explained the &lsquo;shutdown&rsquo; athlete the way Kent does. Chapter 9 alone was worth the price of the book. I completely changed how I respond when an athlete goes quiet on me &mdash; and I&rsquo;m seeing results in real time.&rdquo;</p>
+            <div class="t-name">High School Track &amp; Field Coach</div>
+            <div class="t-role">Northern California</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="t-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+            <p class="t-quote">&ldquo;My coach read this book and within two weeks our practices felt completely different. He started giving one cue at a time instead of lecturing after every rep. I stopped second-guessing myself mid-vault. My PR jumped by the end of the season.&rdquo;</p>
+            <div class="t-name">Collegiate Pole Vault Athlete</div>
+            <div class="t-role">NAIA Program</div>
+        </div>
+        <div class="testimonial-card">
+            <div class="t-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+            <p class="t-quote">&ldquo;Chapter 12 stopped me cold. I didn&rsquo;t realize how much outside noise I was adding to my daughter&rsquo;s pressure. Kent explains it without making you feel like a bad parent &mdash; he gives you the language to actually help instead of hurt.&rdquo;</p>
+            <div class="t-name">Parent of a High School Athlete</div>
+            <div class="t-role">Track &amp; Field, California</div>
+        </div>
+    </div>
+</div>
+
+<!-- EMAIL CAPTURE (full-width) -->
+<section class="email-band-outer" id="cue-quickstart">
+    <div class="email-band-inner">
+        <div class="section-label">Free Download</div>
+        <h2>Get the Cue Quick-Start PDF</h2>
+        <p class="sub">30 pole vault coaching cues. Plain language. Immediate application on the sideline.<br>Enter your name and email &mdash; we&rsquo;ll send it straight to you.</p>
+        <div class="email-form">
+            <input id="ec-name" type="text" placeholder="First name">
+            <input id="ec-email" type="email" placeholder="Your email address">
+            <button id="ec-btn" onclick="handleSubscribe()">Get the PDF</button>
+        </div>
+        <p class="email-note" id="ec-msg">No spam. Unsubscribe anytime. Produced by Horsepower AI.</p>
+    </div>
+</section>
+
+<!-- BOOK KENT (full-width) -->
+<section class="book-kent-outer" id="book-kent">
+    <div class="book-kent-inner">
+        <div class="section-label">Speaking &amp; Training</div>
+        <h2 class="section-title" style="margin-bottom:12px;">Bring This System<br>to Your Program.</h2>
+        <p class="section-body">Kent Rhodes brings the Clarity&ndash;Connection&ndash;Consistency framework to athletic departments, coaching clinics, and staff training sessions. Every session is built around one goal: coaches leaving with tools they can use at practice tomorrow.</p>
+
+        <div class="offerings-grid">
+            <div class="offering-card">
+                <div class="offering-icon">&#127908;</div>
+                <div class="offering-title">Keynote: Coaching the Modern Athlete</div>
+                <div class="offering-desc">45&ndash;60 minutes for athletic departments, booster clubs, and coaching conferences. What changed after COVID, why old-school is breaking down, and what the data says actually works with today&rsquo;s athlete.</div>
             </div>
-            <div class="author-content">
-                <div class="author-name">Kent Rhodes</div>
-                <div class="author-title">Pole Vault Coach &mdash; Jessup University</div>
-                <div class="author-bio">
-                    <p>Jessup University pole vault coach Kent Rhodes has spent more than 25 years developing athletes in the pole vault at the high school and collegiate levels. Known for his direct communication style, technical consistency, and athlete-centered coaching approach, Rhodes has worked with vaulters ranging from beginners to elite state-level competitors throughout Northern California.</p>
-                    <p>Rhodes currently serves as Volunteer Assistant Coach for the pole vault program at Jessup University, where he has helped develop nationally competitive athletes and NAIA All-Americans. Since joining the program, Jessup pole vaulters have earned conference championships, national-level performances, and All-American honors.</p>
-                    <p>In addition to collegiate coaching, Rhodes has coached at Placer High School, Del Oro High School, and currently at Pleasant Grove &mdash; while also operating a year-round private pole vault training program serving athletes across Northern California. Over the years, he has coached numerous CIF Section, Masters, and State Meet qualifiers, including more than 20 athletes who advanced to the CIF State Championships.</p>
-                    <p>Rhodes is recognized for simplifying technical instruction and helping athletes compete with confidence under pressure. His coaching philosophy emphasizes:</p>
-                </div>
-
-                <div class="philosophy-list">
-                    <div class="philosophy-item">Clarity</div>
-                    <div class="philosophy-item">Consistency</div>
-                    <div class="philosophy-item">Athlete Trust</div>
-                    <div class="philosophy-item">Process-Based Development</div>
-                </div>
-
-                <div class="author-bio">
-                    <p>His work focuses not only on technical improvement, but also on communication, accountability, confidence building, and long-term athlete development.</p>
-                    <p>Rhodes is the author of <em>Coaching Generation Z Athletes: A Guide for Modern Sports Leaders</em> &mdash; a practical coaching guide focused on modern athlete communication, motivation, and performance development.</p>
-                </div>
-
-                <div class="author-credentials">
-                    <div class="credential-item">
-                        <div class="credential-number">25+</div>
-                        <div class="credential-label">Years developing athletes at HS and collegiate levels</div>
-                    </div>
-                    <div class="credential-item">
-                        <div class="credential-number">20+</div>
-                        <div class="credential-label">Athletes advanced to CIF State Championships</div>
-                    </div>
-                    <div class="credential-item">
-                        <div class="credential-number">NAIA</div>
-                        <div class="credential-label">All-Americans developed at Jessup University</div>
-                    </div>
-                    <div class="credential-item">
-                        <div class="credential-number">3</div>
-                        <div class="credential-label">High school programs coached across Northern California</div>
-                    </div>
-                </div>
+            <div class="offering-card">
+                <div class="offering-icon">&#128203;</div>
+                <div class="offering-title">Coaching Clinic: Communication That Works</div>
+                <div class="offering-desc">Half-day or full-day workshop for coaching staffs. Interactive. Covers the five athlete archetypes, the one-cue rule, and how to build accountability without confrontation.</div>
+            </div>
+            <div class="offering-card">
+                <div class="offering-icon">&#127967;</div>
+                <div class="offering-title">Staff Workshop: Understanding Gen Z</div>
+                <div class="offering-desc">2&ndash;3 hours for athletic departments and school coaching staffs. The COVID effect, communication strategies for each athlete type, and how to build a team culture that actually holds.</div>
             </div>
         </div>
-    </section>
 
-    <!-- CTA BANNER -->
-    <div class="cta-banner">
-        <h2>Ready to use the dashboard?</h2>
-        <p>All five tools are available now &mdash; optimized for mobile so you can pull them up on the sideline during practice or competition.</p>
-        <a href="dashboard.html" class="hero-btn">Open the Coach Dashboard &#8594;</a>
+        <a href="mailto:kent.rhodes52@gmail.com?subject=Booking%20Inquiry%20%E2%80%94%20Kent%20Rhodes" class="book-kent-cta">Contact Kent to Book &#8594;</a>
+    </div>
+</section>
+
+<!-- AUTHOR + CTA -->
+<div class="page-section">
+    <div class="section-label">About the Author</div>
+    <h2 class="section-title">Kent Rhodes</h2>
+
+    <div class="author-card">
+        <div class="author-photo-wrap">
+            <img src="assets/kent-headshot.jpg" alt="Kent Rhodes — Pole Vault Coach, Jessup University"
+                 class="author-photo"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="author-initial" style="display:none;">KR</div>
+        </div>
+        <div class="author-content">
+            <div class="author-name">Kent Rhodes</div>
+            <div class="author-title">Pole Vault Coach &mdash; Jessup University</div>
+            <div class="author-bio">
+                <p>Kent Rhodes has spent more than 25 years developing athletes at the high school and collegiate levels. Known for his direct communication style, technical consistency, and athlete-centered approach, Rhodes has worked with vaulters from beginners to elite state-level competitors throughout Northern California.</p>
+                <p>Rhodes currently serves as Volunteer Assistant Coach for the pole vault program at Jessup University, where he has helped develop NAIA All-Americans and conference champions. He has also coached at Placer High School, Del Oro High School, and Pleasant Grove &mdash; while operating a year-round private pole vault training program serving athletes across the region.</p>
+                <p>Over his career, Rhodes has coached more than 20 athletes to the CIF State Championships. His work is focused not only on technical improvement, but on the communication, accountability, and confidence-building that turns potential into performance.</p>
+            </div>
+            <div class="philosophy-list">
+                <div class="philosophy-item">Clarity</div>
+                <div class="philosophy-item">Connection</div>
+                <div class="philosophy-item">Consistency</div>
+                <div class="philosophy-item">Athlete Trust</div>
+                <div class="philosophy-item">Process-Based Development</div>
+            </div>
+            <div class="author-credentials">
+                <div><div class="cred-num">25+</div><div class="cred-lbl">Years developing athletes at HS and collegiate levels</div></div>
+                <div><div class="cred-num">20+</div><div class="cred-lbl">Athletes advanced to CIF State Championships</div></div>
+                <div><div class="cred-num">NAIA</div><div class="cred-lbl">All-Americans developed at Jessup University</div></div>
+                <div><div class="cred-num">3</div><div class="cred-lbl">High school programs coached across Northern California</div></div>
+            </div>
+        </div>
     </div>
 
-</main>
+    <div class="cta-banner">
+        <h2>Ready to coach this generation?</h2>
+        <p>Get the book, access the five tools, and bring the system to your program. Everything a modern coach needs &mdash; in one place.</p>
+        <div class="cta-btn-row">
+            <a href="preorder.html" class="hero-btn">Get the Book &#8594;</a>
+            <a href="dashboard.html" class="hero-btn-ghost">Open the Dashboard</a>
+        </div>
+    </div>
+</div>
 
 <footer>
-    <p><strong>Coaching Generation Z Athletes</strong> &nbsp;&middot;&nbsp; Kent Rhodes, Pole Vault Coach &nbsp;&middot;&nbsp; Jessup University</p>
+    <p>
+        <strong>Coaching Generation Z Athletes</strong> &nbsp;&middot;&nbsp;
+        Kent Rhodes, Pole Vault Coach &nbsp;&middot;&nbsp; Jessup University
+        &nbsp;&middot;&nbsp;
+        <a href="media.html">Media Kit</a> &nbsp;&middot;&nbsp;
+        <a href="mailto:kent.rhodes52@gmail.com">Contact</a>
+    </p>
 </footer>
+
+<script>
+async function handleSubscribe() {
+    const name = document.getElementById('ec-name').value.trim();
+    const email = document.getElementById('ec-email').value.trim();
+    const btn = document.getElementById('ec-btn');
+    const msg = document.getElementById('ec-msg');
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.textContent = 'Please enter a valid email address.';
+        msg.style.color = '#e74c3c';
+        return;
+    }
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+        const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, first_name: name, source: 'cue-quickstart' })
+        });
+
+        if (res.ok) {
+            document.querySelector('.email-form').style.display = 'none';
+            msg.innerHTML = '&#10003; You\'re in! <a href="cue-quickstart.html" target="_blank" style="color:var(--gold); font-weight:700;">Open your Cue Quick-Start PDF &#8594;</a>';
+            msg.style.color = '#2ecc71';
+        } else {
+            msg.textContent = 'Something went wrong. Email kent.rhodes52@gmail.com directly for the PDF.';
+            msg.style.color = '#e74c3c';
+            btn.textContent = 'Get the PDF';
+            btn.disabled = false;
+        }
+    } catch {
+        msg.textContent = 'Connection error. Try again or email kent.rhodes52@gmail.com.';
+        msg.style.color = '#e74c3c';
+        btn.textContent = 'Get the PDF';
+        btn.disabled = false;
+    }
+}
+</script>
 
 </body>
 </html>

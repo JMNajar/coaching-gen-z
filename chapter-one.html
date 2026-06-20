@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter One: The COVID Effect — Coaching Generation Z Athletes</title>
+    <meta name="description" content="Read Chapter One of Coaching Generation Z Athletes by Kent Rhodes. The COVID Effect: what athletes lost, and why it still shows up at practice.">
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --navy-mid: #1a2d42;
+            --gold: #f5a623;
+            --gold-dark: #d4891a;
+            --white: #ffffff;
+            --gray: #8a9bb0;
+            --gray-light: #c8d4e0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--navy); color: var(--white); }
+
+        .nav {
+            background: var(--navy);
+            border-bottom: 2px solid var(--gold);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .nav-brand { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--white); text-decoration: none; }
+        .nav-brand span { color: var(--gold); }
+        .nav-cta {
+            display: inline-block;
+            padding: 8px 18px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: var(--gold-dark); }
+
+        .chapter-header {
+            background: linear-gradient(160deg, #0d1b2a 0%, #1a2d42 60%, #0d1b2a 100%);
+            padding: 52px 24px 40px;
+            border-bottom: 1px solid #2a3f58;
+        }
+        .chapter-header-inner { max-width: 720px; margin: 0 auto; }
+        .chapter-label {
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .chapter-num { font-size: 0.82rem; font-weight: 800; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        h1 { font-size: 2rem; font-weight: 900; color: var(--white); line-height: 1.15; margin-bottom: 16px; }
+        h1 span { color: var(--gold); }
+        .chapter-deck { font-size: 1.05rem; color: var(--gray-light); line-height: 1.65; margin-bottom: 20px; font-style: italic; }
+        .chapter-meta { font-size: 0.75rem; color: var(--gray); }
+        .chapter-meta strong { color: var(--gold); }
+
+        .chapter-body {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 52px 24px 80px;
+        }
+
+        .chapter-body p {
+            font-size: 1rem;
+            color: var(--gray-light);
+            line-height: 1.85;
+            margin-bottom: 22px;
+        }
+
+        .chapter-body h2 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--white);
+            margin: 44px 0 16px;
+            padding-top: 8px;
+            border-top: 1px solid #2a3f58;
+        }
+
+        .chapter-body h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--gold);
+            margin: 32px 0 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pull-quote {
+            border-left: 4px solid var(--gold);
+            padding: 16px 24px;
+            margin: 36px 0;
+            background: var(--navy-mid);
+            border-radius: 0 8px 8px 0;
+        }
+        .pull-quote p {
+            font-size: 1.05rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--white);
+            line-height: 1.55;
+            margin-bottom: 0 !important;
+        }
+
+        .five-things {
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-radius: 10px;
+            padding: 28px 32px;
+            margin: 36px 0;
+        }
+        .five-things h3 {
+            font-size: 0.88rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            border-top: none;
+            padding-top: 0;
+            margin-top: 0;
+        }
+        .thing-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+        .thing-item:last-child { margin-bottom: 0; }
+        .thing-num {
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.78rem;
+            font-weight: 900;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .thing-body {}
+        .thing-title { font-size: 0.9rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+        .thing-desc { font-size: 0.85rem; color: var(--gray-light); line-height: 1.6; }
+
+        .chapter-cta {
+            background: linear-gradient(135deg, var(--navy-mid) 0%, #1e3550 100%);
+            border: 1px solid #2a3f58;
+            border-top: 3px solid var(--gold);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        .chapter-cta h2 { font-size: 1.4rem; font-weight: 900; margin-bottom: 10px; }
+        .chapter-cta p { font-size: 0.9rem; color: var(--gray-light); margin-bottom: 24px; line-height: 1.6; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.88rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .cta-btn:hover { background: var(--gold-dark); }
+        .cta-btn-ghost {
+            display: inline-block;
+            padding: 14px 30px;
+            background: transparent;
+            color: var(--gold);
+            font-size: 0.88rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid var(--gold);
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+        .cta-btn-ghost:hover { background: rgba(245,166,35,0.1); }
+
+        footer { background: var(--navy-mid); border-top: 1px solid #2a3f58; padding: 24px; text-align: center; }
+        footer p { font-size: 0.78rem; color: var(--gray); }
+        footer a { color: var(--gray); text-decoration: none; }
+        footer a:hover { color: var(--gold); }
+        footer strong { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="index.html" class="nav-brand">Coaching <span>Gen Z</span> Athletes</a>
+    <a href="preorder.html" class="nav-cta">Get the Full Book &#8594;</a>
+</nav>
+
+<header class="chapter-header">
+    <div class="chapter-header-inner">
+        <div class="chapter-label">Free Sample Chapter</div>
+        <div class="chapter-num">Chapter One</div>
+        <h1>The <span>COVID Effect</span></h1>
+        <p class="chapter-deck">What athletes lost during the pandemic years &mdash; and why those gaps are still showing up at practice right now.</p>
+        <div class="chapter-meta">From <strong>Coaching Generation Z Athletes</strong> by Kent Rhodes &nbsp;&middot;&nbsp; Pole Vault Coach, Jessup University</div>
+    </div>
+</header>
+
+<div class="chapter-body">
+
+    <p>Every coach I&rsquo;ve talked to over the last several years describes the same thing. The athletes are different. Not bad &mdash; different. They respond differently, they disengage differently, they recover from failure differently. The coaches who were doing everything right five years ago are suddenly finding that their approach isn&rsquo;t producing the same results.</p>
+
+    <p>The instinct is to blame the athletes. To chalk it up to a generation that&rsquo;s soft, distracted, or entitled. But that framing is wrong, and it&rsquo;s costing programs significant development time. The athletes aren&rsquo;t worse. They are shaped differently &mdash; by circumstances that no generation of athletes before them has faced at the same scale.</p>
+
+    <p>The most significant shaping event of this generation wasn&rsquo;t social media. It wasn&rsquo;t smartphones. It was a global pandemic that hit during their most critical developmental years &mdash; and sport was one of the first things taken away.</p>
+
+    <div class="pull-quote">
+        <p>&ldquo;The athletes who returned to sport weren&rsquo;t defiant. They weren&rsquo;t lazy. They were underdeveloped in the exact competencies that competition normally builds &mdash; and they had no way to articulate that, and neither did their coaches.&rdquo;</p>
+    </div>
+
+    <h2>What Actually Happened</h2>
+
+    <p>In 2020 and 2021, middle school and early high school athletes lost something that we rarely talk about in coaching: the invisible curriculum of sport. Not the drills. Not the conditioning. The daily rhythm of structured activity, real-time feedback, competition nerves, and team accountability that athletes absorb automatically over years of practice.</p>
+
+    <p>When sport shut down, that invisible curriculum stopped. And when sport came back, those athletes &mdash; now in high school and early college &mdash; showed up without the developmental foundation that every previous generation of athletes had built by this point in their athletic lives.</p>
+
+    <p>The coaches who understood this adapted. The coaches who didn&rsquo;t found themselves increasingly frustrated with athletes who seemed to resist correction, shut down under pressure, and struggle to perform when it mattered. The frustration was understandable. The diagnosis was wrong.</p>
+
+    <h2>The Five Things They Missed</h2>
+
+    <p>When I work through this with coaching staffs, I break it down into five specific competencies that sport normally develops automatically &mdash; and that this generation missed during a critical window.</p>
+
+    <div class="five-things">
+        <h3>Five Developmental Losses &mdash; COVID Generation Athletes</h3>
+        <div class="thing-item">
+            <div class="thing-num">1</div>
+            <div class="thing-body">
+                <div class="thing-title">Daily Structure and Accountability</div>
+                <div class="thing-desc">Practice schedules. Showing up when you don&rsquo;t feel like it. The physical habit of commitment to something outside yourself. Two years of this formation, gone.</div>
+            </div>
+        </div>
+        <div class="thing-item">
+            <div class="thing-num">2</div>
+            <div class="thing-body">
+                <div class="thing-title">Real-Time Coaching Feedback</div>
+                <div class="thing-desc">The experience of someone watching their body, giving immediate correction, and having to process and apply that correction under time pressure. An athlete who trains alone for two years is deprived of this entirely.</div>
+            </div>
+        </div>
+        <div class="thing-item">
+            <div class="thing-num">3</div>
+            <div class="thing-body">
+                <div class="thing-title">Competition Experience Under Pressure</div>
+                <div class="thing-desc">The ability to manage nerves, fail in front of people, and recover. These are skills built through repetition in actual competition. You cannot develop them in practice. This generation was denied multiple competitive seasons at the age when this development is most critical.</div>
+            </div>
+        </div>
+        <div class="thing-item">
+            <div class="thing-num">4</div>
+            <div class="thing-body">
+                <div class="thing-title">Accountability Cycles</div>
+                <div class="thing-desc">Being held to a standard consistently &mdash; and learning, over time, to hold themselves to it. The repeated loop of expectation, performance, consequence, and adjustment that builds self-regulation. This loop was interrupted for years.</div>
+            </div>
+        </div>
+        <div class="thing-item">
+            <div class="thing-num">5</div>
+            <div class="thing-body">
+                <div class="thing-title">Team Belonging and Social Identity</div>
+                <div class="thing-desc">The experience of being part of something bigger than yourself, with shared expectations and mutual accountability. Sport is one of the primary environments where adolescents develop this. Two years of isolation during the years when this identity forms created athletes who struggle to operate within a team structure in ways that previous generations took for granted.</div>
+            </div>
+        </div>
+    </div>
+
+    <h2>What This Looks Like at Practice</h2>
+
+    <p>Understanding the five losses is useful academically. But you didn&rsquo;t buy this book for an academic explanation. You bought it because you&rsquo;re dealing with athletes who are confusing you, and you need practical tools.</p>
+
+    <p>So here is what the COVID effect looks like when you&rsquo;re standing at practice:</p>
+
+    <p>The athlete who shuts down when corrected. The athlete who can&rsquo;t seem to hold standard across reps &mdash; a perfect vault followed immediately by a regression. The athlete who looks motivated but can&rsquo;t perform when the stakes are real. The athlete who resists coaching but doesn&rsquo;t know why. The athlete who is technically capable but mentally fragile under pressure.</p>
+
+    <p>These are not character flaws. These are developmental gaps. They look like attitude problems. They feel like disrespect. But the source is structural, not personal &mdash; and the response needs to match the source.</p>
+
+    <div class="pull-quote">
+        <p>&ldquo;You can&rsquo;t discipline your way out of a development deficit. You can&rsquo;t push an athlete through a gap they didn&rsquo;t choose to have.&rdquo;</p>
+    </div>
+
+    <h2>The Response That Works</h2>
+
+    <p>The good news is that developmental gaps can be closed. The brain is not permanently set by what happened during COVID. Athletes who missed these developmental windows can still build the competencies they need &mdash; it just requires a coaching approach that acknowledges where they actually are, not where previous athletes were at the same age.</p>
+
+    <p>That approach is what the rest of this book is about.</p>
+
+    <p>The athletes you&rsquo;re coaching need three things from you right now: clarity about what&rsquo;s expected, a genuine connection that makes them willing to be coached, and consistency that rebuilds the trust in structure they lost. Not as a soft alternative to accountability &mdash; as the actual delivery mechanism for it.</p>
+
+    <p>Don&rsquo;t coach louder. Don&rsquo;t coach harder. <strong>Coach clearer.</strong></p>
+
+    <p>The chapters that follow give you the specific tools to do exactly that.</p>
+
+    <div class="chapter-cta">
+        <h2>Continue reading.</h2>
+        <p>Chapter One is the foundation. The remaining 13 chapters are the system &mdash; athlete archetypes, communication tools, accountability frameworks, and the complete Cue Library. Get the full book.</p>
+        <a href="preorder.html" class="cta-btn">Get the Full Book &#8594;</a>
+        <a href="index.html#cue-quickstart" class="cta-btn-ghost">Get the Free Cue PDF</a>
+    </div>
+
+</div>
+
+<footer>
+    <p>
+        <strong>Coaching Generation Z Athletes</strong> &nbsp;&middot;&nbsp; Kent Rhodes &nbsp;&middot;&nbsp;
+        <a href="index.html">Home</a> &nbsp;&middot;&nbsp;
+        <a href="media.html">Media Kit</a> &nbsp;&middot;&nbsp;
+        <a href="mailto:kent.rhodes52@gmail.com">Contact</a>
+    </p>
+</footer>
+
+</body>
+</html>

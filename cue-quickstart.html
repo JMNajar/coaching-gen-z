@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cue Quick-Start — Pole Vault Coaching Cues | Kent Rhodes</title>
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --navy-mid: #1a2d42;
+            --gold: #f5a623;
+            --white: #ffffff;
+            --gray: #8a9bb0;
+            --gray-light: #c8d4e0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        /* PRINT BUTTON */
+        .print-bar {
+            background: var(--navy-mid);
+            border-bottom: 2px solid var(--gold);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .print-bar-brand { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-light); }
+        .print-bar-brand span { color: var(--gold); }
+        .print-btn {
+            padding: 8px 20px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .back-link { font-size: 0.72rem; font-weight: 700; color: var(--gray-light); text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+        .back-link:hover { color: var(--gold); }
+
+        /* MAIN DOC */
+        .doc {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 24px 60px;
+        }
+
+        .doc-header {
+            text-align: center;
+            padding-bottom: 28px;
+            border-bottom: 2px solid var(--gold);
+            margin-bottom: 32px;
+        }
+        .doc-eyebrow {
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .doc-title { font-size: 1.8rem; font-weight: 900; color: var(--white); margin-bottom: 6px; }
+        .doc-sub { font-size: 0.9rem; color: var(--gray-light); margin-bottom: 14px; }
+        .doc-author { font-size: 0.75rem; color: var(--gray); }
+        .doc-author strong { color: var(--gold); }
+
+        /* CORE PRINCIPLE */
+        .core-principle {
+            background: var(--gold);
+            border-radius: 8px;
+            padding: 20px 24px;
+            text-align: center;
+            margin-bottom: 36px;
+        }
+        .core-principle p { font-size: 0.95rem; font-weight: 800; color: var(--navy); line-height: 1.5; }
+        .core-principle .rule { font-size: 1.1rem; font-style: italic; margin-top: 8px; color: var(--navy); }
+
+        /* CUE SECTION */
+        .cue-section { margin-bottom: 36px; }
+        .cue-section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #2a3f58;
+        }
+        .cue-section-num {
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.72rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .cue-section-title { font-size: 1rem; font-weight: 900; color: var(--white); }
+
+        .cue-table { width: 100%; border-collapse: collapse; }
+        .cue-table th {
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            text-align: left;
+            padding: 6px 10px;
+            background: var(--navy-mid);
+            border-bottom: 1px solid #2a3f58;
+        }
+        .cue-table td {
+            font-size: 0.82rem;
+            color: var(--gray-light);
+            padding: 10px 10px;
+            border-bottom: 1px solid #1e2f42;
+            vertical-align: top;
+            line-height: 1.5;
+        }
+        .cue-table tr:last-child td { border-bottom: none; }
+        .cue-table td.avoid { color: #e87c7c; }
+        .cue-table td.use { color: #7cdd9c; font-weight: 700; }
+        .cue-table td.visual { font-style: italic; color: var(--gray-light); }
+        .cue-table td.note { color: var(--gray); font-size: 0.78rem; }
+
+        /* RESET PROTOCOL */
+        .reset-block {
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-top: 3px solid var(--gold);
+            border-radius: 10px;
+            padding: 24px 28px;
+            margin-bottom: 36px;
+        }
+        .reset-block h3 { font-size: 1rem; font-weight: 900; color: var(--white); margin-bottom: 14px; }
+        .reset-steps { display: flex; gap: 0; }
+        .reset-step {
+            flex: 1;
+            text-align: center;
+            padding: 14px 10px;
+            position: relative;
+        }
+        .reset-step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+        .reset-num { font-size: 1.4rem; font-weight: 900; color: var(--gold); margin-bottom: 4px; }
+        .reset-name { font-size: 0.78rem; font-weight: 800; color: var(--white); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .reset-desc { font-size: 0.72rem; color: var(--gray); line-height: 1.4; }
+
+        /* FOOTER */
+        .doc-footer {
+            text-align: center;
+            padding-top: 28px;
+            border-top: 1px solid #2a3f58;
+            margin-top: 32px;
+        }
+        .doc-footer p { font-size: 0.75rem; color: var(--gray); line-height: 1.6; }
+        .doc-footer strong { color: var(--gold); }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: white; color: #111; }
+            .print-bar { display: none; }
+            .doc { margin: 20px auto; }
+            .doc-title { color: #0d1b2a; }
+            .doc-sub, .doc-author { color: #555; }
+            .core-principle { background: #f5a623; }
+            .core-principle p, .core-principle .rule { color: #0d1b2a; }
+            .cue-section-num { background: #f5a623; color: #0d1b2a; }
+            .cue-section-title { color: #0d1b2a; }
+            .cue-section-header { border-bottom-color: #ccc; }
+            .cue-table th { background: #f0f0f0; color: #0d1b2a; border-bottom-color: #ccc; }
+            .cue-table td { color: #333; border-bottom-color: #eee; }
+            .cue-table td.avoid { color: #c0392b; }
+            .cue-table td.use { color: #1a7a3a; }
+            .cue-table td.visual { color: #444; }
+            .cue-table td.note { color: #666; }
+            .reset-block { background: #f8f8f8; border-color: #ccc; border-top-color: #f5a623; }
+            .reset-block h3, .reset-name { color: #0d1b2a; }
+            .reset-num { color: #d4891a; }
+            .reset-step::after { color: #d4891a; }
+            .reset-desc { color: #555; }
+            .doc-footer p { color: #777; }
+            .doc-footer strong { color: #d4891a; }
+            .doc-footer a { color: #0d1b2a; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="print-bar">
+    <a href="index.html" class="back-link">&#8592; Back to Home</a>
+    <div class="print-bar-brand">Coaching <span>Gen Z</span> Athletes &nbsp;&middot;&nbsp; Kent Rhodes</div>
+    <button class="print-btn" onclick="window.print()">Save as PDF &#8595;</button>
+</div>
+
+<div class="doc">
+
+    <div class="doc-header">
+        <div class="doc-eyebrow">Free Download &mdash; From the Book</div>
+        <div class="doc-title">Cue Quick-Start</div>
+        <div class="doc-sub">30 Pole Vault Coaching Cues &mdash; Plain Language &mdash; Immediate Application</div>
+        <div class="doc-author">From <strong>Coaching Generation Z Athletes</strong> by Kent Rhodes &nbsp;&middot;&nbsp; jessup.edu Pole Vault Program</div>
+    </div>
+
+    <div class="core-principle">
+        <p>The most important coaching principle in this guide:</p>
+        <p class="rule">&ldquo;One cue per rep. If the athlete can&rsquo;t act on it immediately, it&rsquo;s not effective communication.&rdquo;</p>
+    </div>
+
+    <!-- SECTION 1: APPROACH / RUN-UP -->
+    <div class="cue-section">
+        <div class="cue-section-header">
+            <div class="cue-section-num">Section 1</div>
+            <div class="cue-section-title">Approach &amp; Run-Up</div>
+        </div>
+        <table class="cue-table">
+            <thead>
+                <tr>
+                    <th style="width:22%">Avoid This</th>
+                    <th style="width:25%">Say This</th>
+                    <th style="width:28%">Visualization</th>
+                    <th style="width:25%">Targets</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avoid">"Run faster"</td>
+                    <td class="use">"Accelerate through your marks"</td>
+                    <td class="visual">"Like a jet building speed down the runway &mdash; smooth, then explosive"</td>
+                    <td class="note">Consistent acceleration, not top-end speed</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Be more aggressive"</td>
+                    <td class="use">"Tall spine, drive your knees"</td>
+                    <td class="visual">"Imagine a flagpole running from the ground through the top of your head"</td>
+                    <td class="note">Posture and knee drive, not raw energy</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Hit your steps"</td>
+                    <td class="use">"Trust your checkmarks &mdash; don&rsquo;t look down"</td>
+                    <td class="visual">"Eyes on the box, not the ground"</td>
+                    <td class="note">Eyes forward, confidence in the approach</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Speed up at the end"</td>
+                    <td class="use">"Last three strides: penultimate is your power step"</td>
+                    <td class="visual">"Coil and explode &mdash; like a spring releasing"</td>
+                    <td class="note">Penultimate step as the power generation point</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Stay in control"</td>
+                    <td class="use">"Commit to the approach; the pole handles the rest"</td>
+                    <td class="visual">"You&rsquo;re setting up the system &mdash; let it work"</td>
+                    <td class="note">Mental commitment, reduces hesitation</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECTION 2: PLANT / TAKEOFF -->
+    <div class="cue-section">
+        <div class="cue-section-header">
+            <div class="cue-section-num">Section 2</div>
+            <div class="cue-section-title">Plant &amp; Takeoff</div>
+        </div>
+        <table class="cue-table">
+            <thead>
+                <tr><th>Avoid This</th><th>Say This</th><th>Visualization</th><th>Targets</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avoid">"Plant harder"</td>
+                    <td class="use">"Left hand leads, right hand punches sky"</td>
+                    <td class="visual">"Like throwing a spear straight up &mdash; both hands active"</td>
+                    <td class="note">Hand position and upward drive on plant</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Jump higher"</td>
+                    <td class="use">"Drive up and through &mdash; not at the bar"</td>
+                    <td class="visual">"Launch like a rocket, not a standing jump"</td>
+                    <td class="note">Vertical drive, not horizontal stalling</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Get on the pole"</td>
+                    <td class="use">"Plant tall &mdash; left arm high, eyes up"</td>
+                    <td class="visual">"Like raising a flag with both arms extended"</td>
+                    <td class="note">Body position at the moment of plant</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Wait longer"</td>
+                    <td class="use">"Plant at your last stride, not before it"</td>
+                    <td class="visual">"The plant happens when your foot hits &mdash; same moment"</td>
+                    <td class="note">Plant timing with takeoff foot</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"More power"</td>
+                    <td class="use">"One word at takeoff: UP"</td>
+                    <td class="visual">"Gravity reversed &mdash; your whole body going vertical"</td>
+                    <td class="note">Simplifies the cue to single direction focus</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECTION 3: SWING / INVERSION -->
+    <div class="cue-section">
+        <div class="cue-section-header">
+            <div class="cue-section-num">Section 3</div>
+            <div class="cue-section-title">Swing &amp; Inversion</div>
+        </div>
+        <table class="cue-table">
+            <thead>
+                <tr><th>Avoid This</th><th>Say This</th><th>Visualization</th><th>Targets</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avoid">"Pull yourself up"</td>
+                    <td class="use">"Swing long, swing fast &mdash; bottom hand anchors"</td>
+                    <td class="visual">"Like a pendulum swinging from your bottom hand"</td>
+                    <td class="note">Long free swing, not an early pull</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Curl up"</td>
+                    <td class="use">"Hips to sky &mdash; lead with your feet"</td>
+                    <td class="visual">"Your feet are a rocket and the pole is the launch pad"</td>
+                    <td class="note">Hip drive and feet-first inversion</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Stay tight"</td>
+                    <td class="use">"Long body on the swing, then compress at the top"</td>
+                    <td class="visual">"A spring stretching out before it coils"</td>
+                    <td class="note">Full extension before compression at inversion</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Kick over"</td>
+                    <td class="use">"Drive your toes to the sky &mdash; don&rsquo;t curl"</td>
+                    <td class="visual">"Toes pointing straight up at the top of your swing"</td>
+                    <td class="note">Clean inversion, toes leading not curling</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Get upside down"</td>
+                    <td class="use">"Let the pole carry you &mdash; your job is the swing"</td>
+                    <td class="visual">"You&rsquo;re a passenger until the top &mdash; then you drive"</td>
+                    <td class="note">Trust the pole, focus on swing mechanics</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECTION 4: TURN / EXTENSION / PUSH-OFF -->
+    <div class="cue-section">
+        <div class="cue-section-header">
+            <div class="cue-section-num">Section 4</div>
+            <div class="cue-section-title">Turn, Extension &amp; Push-Off</div>
+        </div>
+        <table class="cue-table">
+            <thead>
+                <tr><th>Avoid This</th><th>Say This</th><th>Visualization</th><th>Targets</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avoid">"Turn faster"</td>
+                    <td class="use">"Hips rotate &mdash; shoulder follows"</td>
+                    <td class="visual">"Like a wheel rotating: hips are the axle"</td>
+                    <td class="note">Hip-initiated rotation, not shoulder-led</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Push off the pole"</td>
+                    <td class="use">"Extend fully, then push from your shoulders"</td>
+                    <td class="visual">"Full stretch first &mdash; like pushing off a wall when fully extended"</td>
+                    <td class="note">Full extension before push initiates</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Get away from the pole"</td>
+                    <td class="use">"Release when your hips are above your hands"</td>
+                    <td class="visual">"Let go at the peak &mdash; not before, not after"</td>
+                    <td class="note">Release timing at optimal point</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Keep pushing"</td>
+                    <td class="use">"One push &mdash; clean and complete"</td>
+                    <td class="visual">"Like a clean bench press &mdash; full extension, then release"</td>
+                    <td class="note">Single clean push-off, not multiple attempts</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Don&rsquo;t drop your legs"</td>
+                    <td class="use">"Hips stay high through the extension"</td>
+                    <td class="visual">"Body stays as vertical as possible until release"</td>
+                    <td class="note">Hip height maintained through push phase</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECTION 5: BAR CLEARANCE -->
+    <div class="cue-section">
+        <div class="cue-section-header">
+            <div class="cue-section-num">Section 5</div>
+            <div class="cue-section-title">Bar Clearance &amp; Flight</div>
+        </div>
+        <table class="cue-table">
+            <thead>
+                <tr><th>Avoid This</th><th>Say This</th><th>Visualization</th><th>Targets</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="avoid">"Don&rsquo;t knock the bar"</td>
+                    <td class="use">"Eyes to the sky &mdash; arch and reach"</td>
+                    <td class="visual">"Like a bridge between the standards &mdash; belly up, back arched"</td>
+                    <td class="note">Focus on body position, not the bar</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Pull your feet over"</td>
+                    <td class="use">"Chest up and through first, legs follow"</td>
+                    <td class="visual">"Lead with your chest, let legs trail like a ribbon"</td>
+                    <td class="note">Sequential clearance: upper body leads</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Be careful at the top"</td>
+                    <td class="use">"Commit to the clearance &mdash; arch and reach"</td>
+                    <td class="visual">"You&rsquo;re already above it &mdash; just complete the position"</td>
+                    <td class="note">Confidence through bar clearance</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Watch the bar"</td>
+                    <td class="use">"Eyes on the sky until you land"</td>
+                    <td class="visual">"Look for clouds, not the crossbar"</td>
+                    <td class="note">Gaze direction prevents premature collapse</td>
+                </tr>
+                <tr>
+                    <td class="avoid">"Stay tight"</td>
+                    <td class="use">"Long body over the bar &mdash; fully extended"</td>
+                    <td class="visual">"Like a diver in a layout position over the water"</td>
+                    <td class="note">Full extension at bar for maximum clearance height</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- SECTION 6: RESET / PRESSURE -->
+    <div class="cue-section">
+        <div class="cue-section-header">
+            <div class="cue-section-num">Section 6</div>
+            <div class="cue-section-title">General Reset &amp; Pressure Cues</div>
+        </div>
+        <table class="cue-table">
+            <thead>
+                <tr><th>Situation</th><th>Cue</th><th>Why It Works</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="note">Athlete in their head before a rep</td>
+                    <td class="use">"One thing. What&rsquo;s your one thing?"</td>
+                    <td>Forces focus to a single technical target; eliminates overload</td>
+                </tr>
+                <tr>
+                    <td class="note">Athlete rattled after a miss</td>
+                    <td class="use">"Breathe first. Vault second."</td>
+                    <td>Breaks the emotional spiral, resets physiological state</td>
+                </tr>
+                <tr>
+                    <td class="note">Competition nerves, overthinking</td>
+                    <td class="use">"You&rsquo;ve done this a thousand times. Just do it again."</td>
+                    <td>Reconnects athlete to practiced skill, not novel pressure</td>
+                </tr>
+                <tr>
+                    <td class="note">Athlete losing form under pressure</td>
+                    <td class="use">"Back to the approach &mdash; that&rsquo;s where it starts"</td>
+                    <td>Returns focus to the controllable beginning, not the outcome</td>
+                </tr>
+                <tr>
+                    <td class="note">Athlete focusing on result</td>
+                    <td class="use">"Process, not outcome. What&rsquo;s the process?"</td>
+                    <td>Redirects from bar height anxiety to technical execution</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- RESET PROTOCOL -->
+    <div class="reset-block">
+        <h3>The Reset Protocol &mdash; When an Athlete Is Spiraling</h3>
+        <div class="reset-steps">
+            <div class="reset-step">
+                <div class="reset-num">1</div>
+                <div class="reset-name">Simplify</div>
+                <div class="reset-desc">Strip to one cue. One technical focus only.</div>
+            </div>
+            <div class="reset-step">
+                <div class="reset-num">2</div>
+                <div class="reset-name">Stabilize</div>
+                <div class="reset-desc">Lower the bar. Rebuild the rep count at manageable height.</div>
+            </div>
+            <div class="reset-step">
+                <div class="reset-num">3</div>
+                <div class="reset-name">Rebuild</div>
+                <div class="reset-desc">Re-introduce complexity and height only after confidence returns.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="doc-footer">
+        <p>
+            <strong>Cue Quick-Start</strong> &mdash; From the Appendix of <em>Coaching Generation Z Athletes</em><br>
+            By <strong>Kent Rhodes</strong>, Pole Vault Coach &mdash; Jessup University<br>
+            Full Cue Library available in the Coach Dashboard &nbsp;&middot;&nbsp;
+            <a href="preorder.html" style="color:var(--gold);">Get the Book &#8594;</a><br>
+            <span style="color:var(--gray); font-size:0.7rem;">Produced by Horsepower AI &nbsp;&middot;&nbsp; coaching-gen-z.vercel.app</span>
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

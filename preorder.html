@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get the Book — Coaching Generation Z Athletes</title>
+    <meta name="description" content="Order Coaching Generation Z Athletes by Kent Rhodes. Available in print and eBook. A practical guide for every modern coach.">
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --navy-mid: #1a2d42;
+            --gold: #f5a623;
+            --gold-dark: #d4891a;
+            --white: #ffffff;
+            --gray: #8a9bb0;
+            --gray-light: #c8d4e0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--navy); color: var(--white); }
+
+        .nav {
+            background: var(--navy);
+            border-bottom: 2px solid var(--gold);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-brand { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--white); text-decoration: none; }
+        .nav-brand span { color: var(--gold); }
+        .nav-back { font-size: 0.72rem; font-weight: 700; color: var(--gray-light); text-decoration: none; text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-back:hover { color: var(--gold); }
+
+        .hero {
+            background: linear-gradient(160deg, #0d1b2a 0%, #1a2d42 60%, #0d1b2a 100%);
+            padding: 60px 24px;
+            border-bottom: 1px solid #2a3f58;
+        }
+        .hero-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+        .book-col { flex: 0 0 auto; }
+        .book-cover {
+            width: 240px;
+            border-radius: 8px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 4px 16px rgba(245,166,35,0.2);
+            display: block;
+        }
+        .book-placeholder {
+            width: 240px;
+            height: 360px;
+            background: var(--navy-mid);
+            border: 2px dashed #2a3f58;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--gray);
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 20px;
+        }
+        .info-col { flex: 1; padding-top: 4px; }
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            padding: 4px 12px;
+            margin-bottom: 18px;
+        }
+        h1 { font-size: 2.2rem; font-weight: 900; line-height: 1.1; color: var(--white); margin-bottom: 8px; }
+        h1 span { color: var(--gold); }
+        .subtitle { font-size: 1rem; color: var(--gray-light); font-style: italic; margin-bottom: 6px; }
+        .byline { font-size: 0.82rem; color: var(--gray); margin-bottom: 24px; }
+        .byline strong { color: var(--gold); }
+
+        .pitch {
+            font-size: 0.95rem;
+            color: var(--gray-light);
+            line-height: 1.75;
+            margin-bottom: 28px;
+            max-width: 520px;
+        }
+
+        .formats {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        .format-card {
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-radius: 8px;
+            padding: 16px 20px;
+            min-width: 140px;
+        }
+        .format-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 4px; }
+        .format-name { font-size: 0.92rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+        .format-detail { font-size: 0.78rem; color: var(--gray); }
+
+        .buy-btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.92rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s;
+            margin-bottom: 12px;
+        }
+        .buy-btn:hover { background: var(--gold-dark); }
+        .buy-note { font-size: 0.75rem; color: var(--gray); }
+
+        @media (max-width: 680px) {
+            .hero-inner { flex-direction: column; gap: 32px; }
+            .book-cover, .book-placeholder { width: 180px; margin: 0 auto; }
+            .book-placeholder { height: 270px; }
+            h1 { font-size: 1.8rem; }
+        }
+
+        /* WHAT'S INSIDE */
+        .inside { max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+        .section-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 10px; }
+        .section-title { font-size: 1.5rem; font-weight: 900; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 28px;
+        }
+        .chapter-card {
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-left: 3px solid var(--gold);
+            border-radius: 8px;
+            padding: 16px 18px;
+        }
+        .chapter-num { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 4px; }
+        .chapter-title { font-size: 0.88rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+        .chapter-hook { font-size: 0.78rem; color: var(--gray); line-height: 1.5; }
+
+        .divider { height: 1px; background: #2a3f58; margin: 48px 0; }
+
+        .framework-block {
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-top: 3px solid var(--gold);
+            border-radius: 10px;
+            padding: 32px 36px;
+            text-align: center;
+            margin-top: 24px;
+        }
+        .framework-block p { font-size: 0.95rem; color: var(--gray-light); line-height: 1.7; margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .framework-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+        .framework-pill {
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 20px;
+            border-radius: 30px;
+        }
+
+        footer { background: var(--navy-mid); border-top: 1px solid #2a3f58; padding: 24px; text-align: center; }
+        footer p { font-size: 0.78rem; color: var(--gray); }
+        footer a { color: var(--gray); text-decoration: none; }
+        footer a:hover { color: var(--gold); }
+        footer strong { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="index.html" class="nav-brand">Coaching <span>Gen Z</span> Athletes</a>
+    <a href="index.html" class="nav-back">&#8592; Back to Home</a>
+</nav>
+
+<section class="hero">
+    <div class="hero-inner">
+        <div class="book-col">
+            <img src="assets/book-cover.jpg" alt="Coaching Generation Z Athletes" class="book-cover"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="book-placeholder" style="display:none;">
+                <div style="font-size:2.5rem;">📖</div>
+                <div>Cover<br>coming soon</div>
+            </div>
+        </div>
+        <div class="info-col">
+            <div class="eyebrow">Available Now</div>
+            <h1>Coaching <span>Generation Z</span> Athletes</h1>
+            <div class="subtitle">A Guide for Modern Sports Leaders</div>
+            <div class="byline">By <strong>Kent Rhodes</strong> &mdash; Pole Vault Coach, Jessup University</div>
+
+            <p class="pitch">
+                Today&rsquo;s athletes aren&rsquo;t broken &mdash; they&rsquo;re different. After years of developmental disruption, they came back to sport with gaps that intensity alone can&rsquo;t fix. This book gives coaches a practical, field-tested system for reaching, motivating, and developing the Gen Z athlete at every level.
+            </p>
+
+            <div class="formats">
+                <div class="format-card">
+                    <div class="format-label">Print</div>
+                    <div class="format-name">Paperback</div>
+                    <div class="format-detail">Available on Amazon</div>
+                </div>
+                <div class="format-card">
+                    <div class="format-label">Digital</div>
+                    <div class="format-name">Kindle / eBook</div>
+                    <div class="format-detail">Available on Amazon</div>
+                </div>
+            </div>
+
+            <!-- Amazon link goes here when listing is live -->
+            <a href="https://www.amazon.com" class="buy-btn" target="_blank" rel="noopener">
+                Order on Amazon &#8594;
+            </a>
+            <br>
+            <span class="buy-note">Print &amp; Kindle formats available &nbsp;&middot;&nbsp; Ships from Amazon</span>
+        </div>
+    </div>
+</section>
+
+<div class="inside">
+    <div class="section-label">What&rsquo;s Inside</div>
+    <h2 class="section-title">14 chapters. One system.<br>Built for coaches who want results.</h2>
+
+    <div class="chapters-grid">
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 1</div>
+            <div class="chapter-title">The COVID Effect</div>
+            <div class="chapter-hook">What athletes lost during the pandemic years &mdash; and why those gaps are still showing up at practice.</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 2</div>
+            <div class="chapter-title">The Information-Overloaded Athlete</div>
+            <div class="chapter-hook">&ldquo;Today&rsquo;s athlete processes more than any generation before. What they lack isn&rsquo;t effort &mdash; it&rsquo;s certainty.&rdquo;</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 3</div>
+            <div class="chapter-title">Why Old-School Is Breaking Down</div>
+            <div class="chapter-hook">Intensity vs. clarity. Why the approach that worked for previous generations is failing today.</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 4</div>
+            <div class="chapter-title">What Gen Z Actually Wants</div>
+            <div class="chapter-hook">&ldquo;They don&rsquo;t want less coaching. They want better coaching.&rdquo; What that looks like in practice.</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 5</div>
+            <div class="chapter-title">Connection Before Correction</div>
+            <div class="chapter-hook">The sequence that builds trust: Connect &rarr; Correct &rarr; Confirm. Why order matters.</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 6</div>
+            <div class="chapter-title">The One-Cue Rule</div>
+            <div class="chapter-hook">&ldquo;If the athlete can&rsquo;t act on it immediately, it&rsquo;s not effective communication.&rdquo;</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 7</div>
+            <div class="chapter-title">Accountability That Sticks</div>
+            <div class="chapter-hook">Moving athletes from emotional accountability to structured accountability &mdash; without confrontation.</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 8</div>
+            <div class="chapter-title">Motivation Follows Execution</div>
+            <div class="chapter-hook">Why pre-practice speeches don&rsquo;t work &mdash; and what actually builds drive in a Gen Z athlete.</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 9</div>
+            <div class="chapter-title">The Athlete Who Shuts Down</div>
+            <div class="chapter-hook">&ldquo;Shutdown is not defiance. It&rsquo;s overload.&rdquo; How to recognize it and what to do.</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 10</div>
+            <div class="chapter-title">The Resistant Athlete</div>
+            <div class="chapter-hook">&ldquo;Resistance is not the problem. It&rsquo;s a signal.&rdquo; What it&rsquo;s telling you &mdash; and how to respond.</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 11</div>
+            <div class="chapter-title">No Confidence</div>
+            <div class="chapter-hook">&ldquo;Confidence is not something you say. It&rsquo;s something you build.&rdquo; The step-by-step process.</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 12</div>
+            <div class="chapter-title">Parents, Pressure &amp; Outside Noise</div>
+            <div class="chapter-hook">&ldquo;You are filtering noise.&rdquo; How to manage external pressure and protect your athlete&rsquo;s focus.</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 13</div>
+            <div class="chapter-title">Building Team Culture</div>
+            <div class="chapter-hook">&ldquo;What you allow becomes the standard. What you reinforce becomes the culture.&rdquo;</div>
+        </div>
+        <div class="chapter-card">
+            <div class="chapter-num">Chapter 14</div>
+            <div class="chapter-title">The Social Media Trap</div>
+            <div class="chapter-hook">&ldquo;Comparison destroys confidence. Execution builds it.&rdquo; How to coach athletes in the comparison era.</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="framework-block">
+        <div class="section-label" style="text-align:center; margin-bottom:14px;">The Framework</div>
+        <h2 class="section-title" style="text-align:center; margin-bottom:12px;">Three principles. Every chapter.</h2>
+        <p>Every tool in this book flows from the same core system. Not as abstract philosophy &mdash; as a practical coaching language you can use from day one.</p>
+        <div class="framework-row">
+            <div class="framework-pill">Clarity</div>
+            <div class="framework-pill">Connection</div>
+            <div class="framework-pill">Consistency</div>
+        </div>
+        <a href="https://www.amazon.com" class="buy-btn" target="_blank" rel="noopener" style="margin-bottom:0;">Order on Amazon &#8594;</a>
+    </div>
+</div>
+
+<footer>
+    <p>
+        <strong>Coaching Generation Z Athletes</strong> &nbsp;&middot;&nbsp; Kent Rhodes &nbsp;&middot;&nbsp;
+        <a href="index.html">Home</a> &nbsp;&middot;&nbsp;
+        <a href="media.html">Media Kit</a> &nbsp;&middot;&nbsp;
+        <a href="mailto:kent.rhodes52@gmail.com">Contact</a>
+    </p>
+</footer>
+
+</body>
+</html>

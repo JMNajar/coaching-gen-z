@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Kit — Kent Rhodes | Coaching Generation Z Athletes</title>
+    <meta name="description" content="Media kit for Kent Rhodes, author of Coaching Generation Z Athletes. Bio, talking points, and booking information for interviews, podcasts, and speaking engagements.">
+    <style>
+        :root {
+            --navy: #0d1b2a;
+            --navy-mid: #1a2d42;
+            --gold: #f5a623;
+            --gold-dark: #d4891a;
+            --white: #ffffff;
+            --gray: #8a9bb0;
+            --gray-light: #c8d4e0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--navy); color: var(--white); }
+
+        .nav {
+            background: var(--navy);
+            border-bottom: 2px solid var(--gold);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-brand { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--white); text-decoration: none; }
+        .nav-brand span { color: var(--gold); }
+        .nav-cta {
+            display: inline-block;
+            padding: 8px 18px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: var(--gold-dark); }
+
+        .page-header {
+            background: linear-gradient(160deg, #0d1b2a 0%, #1a2d42 60%, #0d1b2a 100%);
+            padding: 52px 24px;
+            border-bottom: 1px solid #2a3f58;
+            text-align: center;
+        }
+        .page-header .eyebrow {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            padding: 4px 12px;
+            margin-bottom: 18px;
+        }
+        .page-header h1 { font-size: 2rem; font-weight: 900; color: var(--white); margin-bottom: 10px; }
+        .page-header h1 span { color: var(--gold); }
+        .page-header p { font-size: 0.95rem; color: var(--gray-light); max-width: 560px; margin: 0 auto; line-height: 1.65; }
+
+        main { max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+        .section-label { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--gold); margin-bottom: 10px; }
+        .section-title { font-size: 1.5rem; font-weight: 900; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
+        .divider { height: 1px; background: #2a3f58; margin: 56px 0; }
+
+        /* BIO CARD */
+        .bio-card {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-radius: 12px;
+            padding: 36px;
+        }
+        .bio-photo-wrap { flex: 0 0 auto; }
+        .bio-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            border: 3px solid var(--gold);
+            display: block;
+        }
+        .bio-initial {
+            width: 140px;
+            height: 140px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--navy);
+        }
+        .bio-content { flex: 1; }
+        .bio-name { font-size: 1.4rem; font-weight: 900; color: var(--white); margin-bottom: 2px; }
+        .bio-title { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold); margin-bottom: 16px; }
+        .bio-text p { font-size: 0.9rem; color: var(--gray-light); line-height: 1.75; margin-bottom: 12px; }
+        .bio-text p:last-child { margin-bottom: 0; }
+        .bio-stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #2a3f58;
+        }
+        .bio-stat-num { font-size: 1.4rem; font-weight: 900; color: var(--gold); line-height: 1; }
+        .bio-stat-lbl { font-size: 0.72rem; color: var(--gray); line-height: 1.4; }
+
+        @media (max-width: 600px) {
+            .bio-card { flex-direction: column; gap: 20px; padding: 24px; }
+            .bio-photo, .bio-initial { width: 90px; height: 90px; font-size: 1.8rem; }
+        }
+
+        /* TALKING POINTS */
+        .points-list { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
+        .point-card {
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-left: 4px solid var(--gold);
+            border-radius: 8px;
+            padding: 20px 24px;
+        }
+        .point-topic { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 4px; }
+        .point-headline { font-size: 1rem; font-weight: 800; color: var(--white); margin-bottom: 6px; }
+        .point-detail { font-size: 0.85rem; color: var(--gray-light); line-height: 1.65; }
+        .point-quote { font-style: italic; color: var(--gold); font-size: 0.85rem; margin-top: 8px; display: block; }
+
+        /* SAMPLE QS */
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 24px;
+        }
+        .q-card {
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-radius: 8px;
+            padding: 16px 18px;
+            font-size: 0.88rem;
+            color: var(--gray-light);
+            line-height: 1.55;
+        }
+        .q-card::before {
+            content: 'Q';
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            font-weight: 900;
+            font-size: 0.7rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* BOOK BLOCK */
+        .book-block {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            background: var(--navy-mid);
+            border: 1px solid #2a3f58;
+            border-radius: 10px;
+            padding: 28px 32px;
+            margin-top: 28px;
+        }
+        .book-block img { width: 100px; border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+        .book-block-placeholder { width: 100px; height: 150px; background: var(--navy); border: 1px dashed #2a3f58; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--gray); font-size: 0.7rem; text-align: center; }
+        .book-block-text h3 { font-size: 1rem; font-weight: 900; color: var(--white); margin-bottom: 6px; }
+        .book-block-text p { font-size: 0.85rem; color: var(--gray-light); line-height: 1.6; margin-bottom: 14px; }
+        .btn-sm {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .btn-sm:hover { background: var(--gold-dark); }
+
+        @media (max-width: 580px) { .book-block { flex-direction: column; } }
+
+        /* CONTACT BLOCK */
+        .contact-block {
+            background: linear-gradient(135deg, var(--navy-mid) 0%, #1e3550 100%);
+            border: 1px solid #2a3f58;
+            border-top: 3px solid var(--gold);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+        }
+        .contact-block h2 { font-size: 1.5rem; font-weight: 900; margin-bottom: 10px; }
+        .contact-block p { font-size: 0.9rem; color: var(--gray-light); line-height: 1.6; margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto; }
+        .contact-email-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.88rem;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s;
+            margin-bottom: 12px;
+        }
+        .contact-email-btn:hover { background: var(--gold-dark); }
+        .contact-note { font-size: 0.75rem; color: var(--gray); }
+
+        footer { background: var(--navy-mid); border-top: 1px solid #2a3f58; padding: 24px; text-align: center; }
+        footer p { font-size: 0.78rem; color: var(--gray); }
+        footer a { color: var(--gray); text-decoration: none; }
+        footer a:hover { color: var(--gold); }
+        footer strong { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="index.html" class="nav-brand">Coaching <span>Gen Z</span> Athletes</a>
+    <a href="preorder.html" class="nav-cta">Get the Book &#8594;</a>
+</nav>
+
+<header class="page-header">
+    <div class="eyebrow">Press &amp; Media</div>
+    <h1>Media Kit &mdash; <span>Kent Rhodes</span></h1>
+    <p>Everything you need to book an interview, plan a podcast episode, or introduce Kent to your audience. We make it easy to say yes.</p>
+</header>
+
+<main>
+
+    <!-- BIO -->
+    <section>
+        <div class="section-label">One-Paragraph Bio</div>
+        <h2 class="section-title">About Kent Rhodes</h2>
+
+        <div class="bio-card">
+            <div class="bio-photo-wrap">
+                <img src="assets/kent-headshot.jpg" alt="Kent Rhodes — Author and Pole Vault Coach"
+                     class="bio-photo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="bio-initial" style="display:none;">KR</div>
+            </div>
+            <div class="bio-content">
+                <div class="bio-name">Kent Rhodes</div>
+                <div class="bio-title">Author &mdash; Pole Vault Coach, Jessup University &mdash; Speaker</div>
+                <div class="bio-text">
+                    <p>Kent Rhodes is a pole vault coach and author who has spent more than 25 years developing athletes at the high school and collegiate levels in Northern California. Currently serving as Volunteer Assistant Coach at Jessup University &mdash; where he has helped develop NAIA All-Americans and conference champions &mdash; Rhodes has also coached at Placer High School, Del Oro High School, and Pleasant Grove, and operates a year-round private training program serving athletes across the region.</p>
+                    <p>His book, <em>Coaching Generation Z Athletes: A Guide for Modern Sports Leaders</em>, draws on decades of frontline coaching experience to address the single most pressing challenge in modern athletics: how do you reach, motivate, and develop an athlete shaped by a global pandemic, social media, and constant information overload? Rhodes&rsquo;s answer is built on three principles &mdash; Clarity, Connection, and Consistency &mdash; and delivers a practical system coaches can apply immediately.</p>
+                </div>
+                <div class="bio-stats">
+                    <div><div class="bio-stat-num">25+</div><div class="bio-stat-lbl">Years coaching</div></div>
+                    <div><div class="bio-stat-num">20+</div><div class="bio-stat-lbl">CIF State qualifiers</div></div>
+                    <div><div class="bio-stat-num">NAIA</div><div class="bio-stat-lbl">All-Americans</div></div>
+                    <div><div class="bio-stat-num">3</div><div class="bio-stat-lbl">HS programs coached</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- TALKING POINTS -->
+    <section>
+        <div class="section-label">Suggested Topics</div>
+        <h2 class="section-title">Five talking points for any format.</h2>
+
+        <div class="points-list">
+            <div class="point-card">
+                <div class="point-topic">Topic 1 &mdash; The COVID Effect</div>
+                <div class="point-headline">What coaches are still dealing with from the pandemic years</div>
+                <div class="point-detail">Athletes who were in middle school during 2020&ndash;21 missed critical developmental windows &mdash; not just conditioning, but the social and emotional structure that sport normally builds automatically. They returned to competition carrying gaps that intensity alone can&rsquo;t fix. Kent explains exactly what was lost and what coaches can do about it now.</div>
+                <span class="point-quote">&ldquo;You can&rsquo;t discipline your way out of a development deficit.&rdquo;</span>
+            </div>
+
+            <div class="point-card">
+                <div class="point-topic">Topic 2 &mdash; Why Old-School Is Breaking Down</div>
+                <div class="point-headline">The approach that worked for previous generations is failing today&rsquo;s athlete</div>
+                <div class="point-detail">Old-school coaching was built on one premise: intensity drives performance. But today&rsquo;s athlete doesn&rsquo;t lack effort &mdash; they lack certainty. Pushing harder creates shutdown, not output. Kent walks through the specific reasons why, and what coaches who are struggling with today&rsquo;s athletes are likely doing wrong without knowing it.</div>
+                <span class="point-quote">&ldquo;Don&rsquo;t coach louder. Don&rsquo;t coach harder. Coach clearer.&rdquo;</span>
+            </div>
+
+            <div class="point-card">
+                <div class="point-topic">Topic 3 &mdash; The Five Athlete Archetypes</div>
+                <div class="point-headline">Every Gen Z coach encounters the same five athlete types &mdash; most coaches only know how to handle one</div>
+                <div class="point-detail">The athlete who shuts down. The resistant athlete. The athlete with no confidence. The athlete crushed by parent pressure. The athlete who can&rsquo;t find motivation. Kent profiles each archetype, explains what&rsquo;s actually driving the behavior, and gives coaches a specific, practical response for each one.</div>
+                <span class="point-quote">&ldquo;Shutdown is not defiance. It&rsquo;s overload. Resistance is not the problem &mdash; it&rsquo;s a signal.&rdquo;</span>
+            </div>
+
+            <div class="point-card">
+                <div class="point-topic">Topic 4 &mdash; The One-Cue Rule</div>
+                <div class="point-headline">The single coaching habit that changes everything</div>
+                <div class="point-detail">Most coaches give athletes too much information per rep &mdash; corrections, reminders, encouragement, and criticism all at once. The result is paralysis, not performance. Kent&rsquo;s one-cue rule is simple, research-grounded, and immediately applicable: one cue per rep. If the athlete can&rsquo;t act on it immediately, it&rsquo;s not effective communication.</div>
+                <span class="point-quote">&ldquo;Say less. Be clearer.&rdquo;</span>
+            </div>
+
+            <div class="point-card">
+                <div class="point-topic">Topic 5 &mdash; Building Culture with Gen Z</div>
+                <div class="point-headline">How team culture actually forms with today&rsquo;s athlete &mdash; and what kills it</div>
+                <div class="point-detail">Social media comparison, parent pressure, motivation deficits, and inconsistent standards all erode culture before it can take root. Kent explains the two-part formula that works with Gen Z: what you allow becomes the standard, and what you reinforce becomes the culture. Coaches leave with a clear understanding of where their culture is built &mdash; and where it&rsquo;s quietly being destroyed.</div>
+                <span class="point-quote">&ldquo;Comparison destroys confidence. Execution builds it.&rdquo;</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- SAMPLE QUESTIONS -->
+    <section>
+        <div class="section-label">For Podcast Hosts</div>
+        <h2 class="section-title">Sample interview questions.</h2>
+
+        <div class="questions-grid">
+            <div class="q-card">What changed about athletes after COVID &mdash; and why are coaches still dealing with it?</div>
+            <div class="q-card">What does &ldquo;coach clearer&rdquo; actually look like at practice?</div>
+            <div class="q-card">Walk me through the five athlete archetypes. Which one do coaches struggle with most?</div>
+            <div class="q-card">What&rsquo;s the one-cue rule and how did you come up with it?</div>
+            <div class="q-card">You talk about &ldquo;connection before correction.&rdquo; What does that mean in practical terms?</div>
+            <div class="q-card">What does a coach who&rsquo;s doing it right look like versus one who&rsquo;s still using yesterday&rsquo;s playbook?</div>
+            <div class="q-card">How do you handle parents who are undermining the culture you&rsquo;re trying to build?</div>
+            <div class="q-card">What&rsquo;s the difference between an athlete who shuts down and one who&rsquo;s just not trying?</div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- THE BOOK -->
+    <section>
+        <div class="section-label">The Book</div>
+        <h2 class="section-title">Coaching Generation Z Athletes</h2>
+
+        <div class="book-block">
+            <img src="assets/book-cover.jpg" alt="Coaching Generation Z Athletes"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="book-block-placeholder" style="display:none; font-size:1.5rem;">📖</div>
+            <div class="book-block-text">
+                <h3>Coaching Generation Z Athletes: A Guide for Modern Sports Leaders</h3>
+                <p>14 chapters. A complete system for communication, motivation, accountability, and team culture with the generation shaped by COVID, social media, and constant information overload. Includes the Pole Vault Cue Dictionary appendix and access to five digital coaching tools.</p>
+                <a href="preorder.html" class="btn-sm">Order the Book &#8594;</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <section>
+        <div class="contact-block">
+            <h2>Ready to book Kent?</h2>
+            <p>For interview requests, podcast bookings, speaking inquiries, and press questions. Kent responds personally.</p>
+            <a href="mailto:kent.rhodes52@gmail.com?subject=Media%20Inquiry%20%E2%80%94%20Kent%20Rhodes" class="contact-email-btn">
+                Email kent.rhodes52@gmail.com &#8594;
+            </a>
+            <br>
+            <span class="contact-note">For keynotes, clinics, and staff workshops, see <a href="index.html#book-kent" style="color: var(--gold);">Book Kent</a> on the main page.</span>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>
+        <strong>Coaching Generation Z Athletes</strong> &nbsp;&middot;&nbsp; Kent Rhodes &nbsp;&middot;&nbsp;
+        <a href="index.html">Home</a> &nbsp;&middot;&nbsp;
+        <a href="preorder.html">Get the Book</a> &nbsp;&middot;&nbsp;
+        <a href="mailto:kent.rhodes52@gmail.com">kent.rhodes52@gmail.com</a>
+    </p>
+</footer>
+
+</body>
+</html>
