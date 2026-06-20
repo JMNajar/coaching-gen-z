@@ -518,6 +518,31 @@
         .offering-icon { font-size: 1.5rem; margin-bottom: 10px; }
         .offering-title { font-size: 0.92rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
         .offering-desc { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+        .bk-form-section {
+            margin-top: 40px;
+            padding-top: 36px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        .bk-form-headline {
+            font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .bk-form-services {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 28px;
+            letter-spacing: 0.5px;
+        }
+        .bk-contact-result {
+            font-size: 0.85rem;
+            color: var(--gold);
+            min-height: 22px;
+            margin-top: 10px;
+        }
         .book-kent-cta {
             display: inline-block;
             padding: 14px 32px;
@@ -930,7 +955,20 @@
             </div>
         </div>
 
-        <a href="mailto:kent.rhodes52@gmail.com?subject=Booking%20Inquiry%20%E2%80%94%20Kent%20Rhodes" class="book-kent-cta">Contact Kent to Book &#8594;</a>
+        <div class="bk-form-section" id="book-kent-contact">
+            <div class="section-label" style="margin-bottom:12px; color:var(--gold);">Book Kent</div>
+            <h2 class="bk-form-headline">Ready to bring this framework<br>to your program?</h2>
+            <p class="bk-form-services">Keynotes &nbsp;&middot;&nbsp; Coaching Clinics &nbsp;&middot;&nbsp; Staff Workshops &nbsp;&middot;&nbsp; Athletic Department Training</p>
+            <form class="contact-form" style="justify-content:center;" onsubmit="handleContactBK(event)">
+                <input type="text" class="contact-input" id="bk-name" placeholder="Your name" required>
+                <input type="email" class="contact-input" id="bk-email" placeholder="Your email address" required>
+                <button type="submit" class="contact-btn">Send to Kent &#8594;</button>
+            </form>
+            <div class="contact-message-wrap" style="max-width:680px; margin:10px auto 0;">
+                <textarea class="contact-textarea" id="bk-message" placeholder="Tell Kent about your program, event, or what you have in mind..."></textarea>
+            </div>
+            <div class="bk-contact-result" id="bk-contact-result"></div>
+        </div>
     </div>
 </section>
 
@@ -1009,6 +1047,32 @@
 </footer>
 
 <script>
+async function handleContactBK(e) {
+    e.preventDefault();
+    const name = document.getElementById('bk-name').value.trim();
+    const email = document.getElementById('bk-email').value.trim();
+    const message = document.getElementById('bk-message').value.trim();
+    const result = document.getElementById('bk-contact-result');
+    result.textContent = 'Sending…';
+    try {
+        const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, message, source: 'book-kent' })
+        });
+        if (res.ok) {
+            result.textContent = 'Message sent. Kent will be in touch soon.';
+            document.getElementById('bk-name').value = '';
+            document.getElementById('bk-email').value = '';
+            document.getElementById('bk-message').value = '';
+        } else {
+            result.textContent = 'Something went wrong. Email kent.rhodes52@gmail.com directly.';
+        }
+    } catch(err) {
+        result.textContent = 'Could not send. Email kent.rhodes52@gmail.com directly.';
+    }
+}
+
 async function handleContact(e) {
     e.preventDefault();
     const name = document.getElementById('contact-name').value.trim();
