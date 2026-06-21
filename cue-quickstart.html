@@ -22,6 +22,16 @@
             color: var(--white);
         }
 
+        /* NAV */
+        .nav { background: var(--navy); border-bottom: 2px solid var(--gold); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; position: sticky; top: 0; z-index: 100; }
+        .nav-brand { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--white); text-decoration: none; }
+        .nav-brand span { color: var(--gold); }
+        .nav-links { display: flex; align-items: center; gap: 22px; }
+        .nav-link { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-light); text-decoration: none; transition: color 0.2s; }
+        .nav-link:hover { color: var(--gold); }
+        .nav-cta { display: inline-block; padding: 8px 18px; background: var(--gold); color: var(--navy); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; border-radius: 6px; transition: background 0.2s; }
+        .nav-cta:hover { background: #d4891a; }
+
         /* PRINT BUTTON */
         .print-bar {
             background: var(--navy-mid);
@@ -207,6 +217,17 @@
     </style>
 </head>
 <body>
+
+<nav class="nav">
+    <a href="index.html" class="nav-brand">Coaching <span>Gen Z</span> Athletes</a>
+    <div class="nav-links">
+        <a href="chapter-one.html" class="nav-link">Read a Chapter</a>
+        <a href="media.html" class="nav-link">Media</a>
+        <a href="index.html#book-kent" class="nav-link">Book Kent</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </div>
+    <a href="preorder.html" class="nav-cta">Preorder the Book &#8594;</a>
+</nav>
 
 <div class="print-bar">
     <a href="index.html" class="back-link">&#8592; Back to Home</a>
