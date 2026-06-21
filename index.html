@@ -761,8 +761,12 @@
 <section class="hero">
     <div class="hero-inner">
         <div class="hero-book">
+            <audio id="kent-message" src="assets/Kent_Rhodes_audio.mp3" preload="auto"></audio>
             <img src="assets/book-cover.jpg" alt="Coaching Generation Z Athletes — Kent Rhodes"
+                 style="cursor: pointer;"
+                 onclick="document.getElementById('kent-message').play()"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <p style="font-size: 0.8rem; text-align: center; margin-top: 8px; opacity: 0.65; letter-spacing: 0.04em;">&#9654; Tap the cover to hear from Kent</p>
             <div class="hero-book-placeholder" style="display:none;">
                 <div style="font-size:2rem;">📖</div>
                 <div>Book cover<br>coming soon</div>
