@@ -239,13 +239,12 @@
             width: auto;
             max-width: 140px;
             object-fit: contain;
-            filter: brightness(0) invert(1);
-            opacity: 0.75;
-            transition: opacity 0.2s ease, filter 0.2s ease;
+            opacity: 0.85;
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .trust-logo-item:hover img {
-            filter: none;
             opacity: 1;
+            transform: scale(1.05);
         }
         .trust-logo-item span {
             font-size: 0.62rem;
