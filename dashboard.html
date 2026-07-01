@@ -711,6 +711,101 @@
         .book-chapter-footer { margin-top: 32px; padding-top: 20px; border-top: 1px solid #2a3f58; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .book-progress { font-size: 0.72rem; color: var(--gray); }
         .book-footer-btns { display: flex; gap: 8px; }
+
+        /* ─── DRILLS ──────────────────────────────────────────────────────── */
+        .drills-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .drills-layout {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            .drills-video-col { flex: 0 0 42%; }
+            .drills-photos-col { flex: 1; min-width: 0; }
+        }
+
+        .drill-video-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .video-embed {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        .drill-photos-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .drill-photo-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .drill-photo-num {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        .drill-photo-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 6px;
+            display: block;
+            border: 1px solid #2a3f58;
+            background: var(--card-bg);
+        }
+
+        .drill-audio-player {
+            width: 100%;
+            accent-color: var(--gold);
+        }
+
+        .coming-soon {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray);
+        }
+
+        .coming-soon-icon { font-size: 2.5rem; margin-bottom: 12px; }
+
+        .coming-soon-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .coming-soon-text { font-size: 0.82rem; }
     </style>
 </head>
 <body>
@@ -728,6 +823,9 @@
     <button class="nav-btn" onclick="showSection('goals', this)">Goal Setting</button>
     <button class="nav-btn" onclick="showSection('planner', this)">Practice Planner</button>
     <button class="nav-btn" onclick="showSection('book', this)">Book</button>
+    <button class="nav-btn" onclick="showSection('beginning-drills', this)">Beginning Drills</button>
+    <button class="nav-btn" onclick="showSection('intermediate-drills', this)">Intermediate Drills</button>
+    <button class="nav-btn" onclick="showSection('advanced-drills', this)">Advanced Drills</button>
 </nav>
 
 <div class="content">
@@ -945,6 +1043,79 @@
                 <div id="pc-reps"></div>
             </div>
             <button class="btn btn-secondary" onclick="resetPlanner()" style="margin-top: 8px;">New Session</button>
+        </div>
+    </div>
+
+    <!-- 7. BEGINNING DRILLS -->
+    <div id="section-beginning-drills" class="section">
+        <div class="section-title">Beginning Drills</div>
+        <div class="section-sub">Foundational drills for athletes learning pole vault fundamentals.</div>
+
+        <div class="drills-layout">
+
+            <!-- Video — left -->
+            <div class="drills-video-col">
+                <div class="drill-video-label">Drill Video</div>
+                <div class="video-embed">
+                    <iframe src="https://www.youtube.com/embed/soRE6-xIedY"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Photos + Audio — right -->
+            <div class="drills-photos-col">
+                <div class="drill-photos-row">
+
+                    <div class="drill-photo-item">
+                        <div class="drill-photo-num">1</div>
+                        <img class="drill-photo-img" src="assets/drill-begin-1.jpg" alt="Beginning Drill — Position 1">
+                        <audio class="drill-audio-player" controls>
+                            <source src="assets/drill-begin-audio-1.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+
+                    <div class="drill-photo-item">
+                        <div class="drill-photo-num">2</div>
+                        <img class="drill-photo-img" src="assets/drill-begin-2.jpg" alt="Beginning Drill — Position 2">
+                        <audio class="drill-audio-player" controls>
+                            <source src="assets/drill-begin-audio-2.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+
+                    <div class="drill-photo-item">
+                        <div class="drill-photo-num">3</div>
+                        <img class="drill-photo-img" src="assets/drill-begin-3.jpg" alt="Beginning Drill — Position 3">
+                        <audio class="drill-audio-player" controls>
+                            <source src="assets/drill-begin-audio-3.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 8. INTERMEDIATE DRILLS -->
+    <div id="section-intermediate-drills" class="section">
+        <div class="section-title">Intermediate Drills</div>
+        <div class="section-sub">Progression drills for athletes building on foundational technique.</div>
+        <div class="coming-soon">
+            <div class="coming-soon-icon">&#9881;</div>
+            <div class="coming-soon-title">Content Coming Soon</div>
+            <div class="coming-soon-text">Intermediate drill videos, photos, and coaching audio will be added here.</div>
+        </div>
+    </div>
+
+    <!-- 9. ADVANCED DRILLS -->
+    <div id="section-advanced-drills" class="section">
+        <div class="section-title">Advanced Drills</div>
+        <div class="section-sub">High-performance drills for experienced vaulters refining technique.</div>
+        <div class="coming-soon">
+            <div class="coming-soon-icon">&#9881;</div>
+            <div class="coming-soon-title">Content Coming Soon</div>
+            <div class="coming-soon-text">Advanced drill videos, photos, and coaching audio will be added here.</div>
         </div>
     </div>
 
