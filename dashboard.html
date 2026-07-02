@@ -785,11 +785,6 @@
             background: var(--card-bg);
         }
 
-        .drill-audio-player {
-            width: 100%;
-            accent-color: var(--gold);
-        }
-
         .coming-soon {
             text-align: center;
             padding: 60px 20px;
@@ -1057,7 +1052,7 @@
             <div class="drills-video-col">
                 <div class="drill-video-label">Drill Video</div>
                 <div class="video-embed">
-                    <iframe src="https://www.youtube.com/embed/soRE6-xIedY"
+                    <iframe src="https://www.youtube.com/embed/k6m9SuDo9i8"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
@@ -1069,26 +1064,29 @@
 
                     <div class="drill-photo-item">
                         <div class="drill-photo-num">1</div>
-                        <img class="drill-photo-img" src="assets/drill-begin-1.jpg" alt="Beginning Drill — Position 1" style="object-position: right center;">
-                        <audio class="drill-audio-player" controls>
-                            <source src="assets/drill-begin-audio-1.m4a" type="audio/mp4">
-                        </audio>
+                        <audio id="drill-begin-audio-1" src="assets/drill-begin-audio-1.m4a" preload="auto"></audio>
+                        <img class="drill-photo-img" src="assets/drill-begin-1.jpg" alt="Beginning Drill — Position 1"
+                             style="object-position: right center; cursor: pointer;"
+                             onclick="document.getElementById('drill-begin-audio-1').play()">
+                        <p style="font-size: 0.62rem; text-align: center; opacity: 0.65; letter-spacing: 0.02em; margin: 0;">&#9654; Tap for cue</p>
                     </div>
 
                     <div class="drill-photo-item">
                         <div class="drill-photo-num">2</div>
-                        <img class="drill-photo-img" src="assets/drill-begin-2.jpg" alt="Beginning Drill — Position 2" style="object-position: right center;">
-                        <audio class="drill-audio-player" controls>
-                            <source src="assets/drill-begin-audio-2.m4a" type="audio/mp4">
-                        </audio>
+                        <audio id="drill-begin-audio-2" src="assets/drill-begin-audio-2.m4a" preload="auto"></audio>
+                        <img class="drill-photo-img" src="assets/drill-begin-2.jpg" alt="Beginning Drill — Position 2"
+                             style="object-position: right center; cursor: pointer;"
+                             onclick="document.getElementById('drill-begin-audio-2').play()">
+                        <p style="font-size: 0.62rem; text-align: center; opacity: 0.65; letter-spacing: 0.02em; margin: 0;">&#9654; Tap for cue</p>
                     </div>
 
                     <div class="drill-photo-item">
                         <div class="drill-photo-num">3</div>
-                        <img class="drill-photo-img" src="assets/drill-begin-3.jpg" alt="Beginning Drill — Position 3">
-                        <audio class="drill-audio-player" controls>
-                            <source src="assets/drill-begin-audio-3.m4a" type="audio/mp4">
-                        </audio>
+                        <audio id="drill-begin-audio-3" src="assets/drill-begin-audio-3.m4a" preload="auto"></audio>
+                        <img class="drill-photo-img" src="assets/drill-begin-3.jpg" alt="Beginning Drill — Position 3"
+                             style="cursor: pointer;"
+                             onclick="document.getElementById('drill-begin-audio-3').play()">
+                        <p style="font-size: 0.62rem; text-align: center; opacity: 0.65; letter-spacing: 0.02em; margin: 0;">&#9654; Tap for cue</p>
                     </div>
 
                 </div>
