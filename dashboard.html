@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coach Dashboard — Coaching Gen Z Athletes</title>
+    <meta name="description" content="Coach tools from Coaching Generation Z Athletes: reset protocol, goal setting, practice planner, book reader, and pole vault drill library.">
+    <link rel="canonical" href="https://coaching-gen-z.vercel.app/dashboard.html">
     <style>
         :root {
             --navy: #0d1b2a;
@@ -73,6 +75,8 @@
             border-bottom: 3px solid transparent;
             white-space: nowrap;
             transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
@@ -116,183 +120,6 @@
             color: var(--gold);
             margin-bottom: 8px;
         }
-
-        .search-box {
-            width: 100%;
-            padding: 12px 16px;
-            background: var(--card-bg);
-            border: 1px solid #2a3f58;
-            border-radius: 8px;
-            color: var(--white);
-            font-size: 0.9rem;
-            margin-bottom: 16px;
-            outline: none;
-        }
-
-        .search-box:focus { border-color: var(--gold); }
-        .search-box::placeholder { color: var(--gray); }
-
-        .cue-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px 0;
-            border-bottom: 1px solid #2a3f58;
-        }
-
-        .cue-item:last-child { border-bottom: none; }
-
-        .cue-badge {
-            flex: 0 0 auto;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        .cue-badge.say { background: #1a4a2e; color: var(--green); }
-        .cue-badge.dont { background: #4a1a1a; color: var(--red); }
-
-        .cue-text {
-            font-size: 0.9rem;
-            color: var(--white);
-            font-style: italic;
-            flex: 1;
-        }
-
-        .cue-context {
-            font-size: 0.72rem;
-            color: var(--gray);
-            margin-top: 2px;
-            font-style: normal;
-        }
-
-        .filter-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .filter-tag {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            border: 1px solid #2a3f58;
-            background: transparent;
-            color: var(--gray);
-            transition: all 0.2s;
-        }
-
-        .filter-tag.active {
-            background: var(--gold);
-            color: var(--navy);
-            border-color: var(--gold);
-        }
-
-        .archetype-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 18px;
-            margin-bottom: 12px;
-            border-left: 4px solid var(--gold);
-            cursor: pointer;
-        }
-
-        .archetype-card.expanded .archetype-detail { display: block; }
-        .archetype-detail { display: none; margin-top: 14px; }
-
-        .archetype-name {
-            font-size: 1rem;
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 4px;
-        }
-
-        .archetype-trigger {
-            font-size: 0.78rem;
-            color: var(--gray);
-        }
-
-        .symptom-list { list-style: none; margin: 10px 0; }
-
-        .symptom-list li {
-            font-size: 0.82rem;
-            color: var(--gray);
-            padding: 3px 0;
-        }
-
-        .symptom-list li::before { content: "→ "; color: var(--gold); }
-
-        .response-box {
-            background: #0d2518;
-            border-left: 3px solid var(--green);
-            border-radius: 6px;
-            padding: 12px;
-            margin-top: 10px;
-        }
-
-        .response-box .label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--green);
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .response-box .cue {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-
-        .response-box .note {
-            font-size: 0.78rem;
-            color: #7db89a;
-            margin-top: 6px;
-            font-style: italic;
-        }
-
-        .avoid-box {
-            background: #2a0d0d;
-            border-left: 3px solid var(--red);
-            border-radius: 6px;
-            padding: 10px 12px;
-            margin-top: 8px;
-            font-size: 0.78rem;
-            color: #cc8888;
-        }
-
-        .avoid-box .label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            color: var(--red);
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .archetype-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chevron {
-            transition: transform 0.2s;
-            color: var(--gold);
-            font-size: 0.8rem;
-        }
-
-        .archetype-card.expanded .chevron { transform: rotate(180deg); }
 
         .reset-steps {
             display: flex;
@@ -647,12 +474,6 @@
             margin: 14px 0;
         }
 
-        .no-results {
-            text-align: center;
-            padding: 30px;
-            color: var(--gray);
-            font-size: 0.85rem;
-        }
 
         .principle-box {
             background: #0d1b2a;
@@ -712,95 +533,6 @@
         .book-progress { font-size: 0.72rem; color: var(--gray); }
         .book-footer-btns { display: flex; gap: 8px; }
 
-        /* ─── DRILLS ──────────────────────────────────────────────────────── */
-        .drills-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        @media (min-width: 600px) {
-            .drills-layout {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 16px;
-            }
-            .drills-video-col { flex: 0 0 42%; }
-            .drills-photos-col { flex: 1; min-width: 0; }
-        }
-
-        .drill-video-label {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-
-        .video-embed {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 8px;
-            background: #000;
-        }
-
-        .video-embed iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-        }
-
-        .drill-photos-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-        }
-
-        .drill-photo-item {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .drill-photo-num {
-            font-size: 0.68rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gold);
-            text-align: center;
-        }
-
-        .drill-photo-img {
-            width: 100%;
-            aspect-ratio: 3/4;
-            object-fit: cover;
-            border-radius: 6px;
-            display: block;
-            border: 1px solid #2a3f58;
-            background: var(--card-bg);
-        }
-
-        .coming-soon {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--gray);
-        }
-
-        .coming-soon-icon { font-size: 2.5rem; margin-bottom: 12px; }
-
-        .coming-soon-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 6px;
-        }
-
-        .coming-soon-text { font-size: 0.82rem; }
     </style>
 </head>
 <body>
@@ -812,47 +544,22 @@
 </div>
 
 <nav class="nav">
-    <button class="nav-btn active" onclick="showSection('cues', this)">Cue Library</button>
-    <button class="nav-btn" onclick="showSection('archetypes', this)">Archetypes</button>
-    <button class="nav-btn" onclick="showSection('reset', this)">Reset Protocol</button>
+    <a class="nav-btn" href="cue-library.html">Cue Library</a>
+    <a class="nav-btn" href="archetypes.html">Archetypes</a>
+    <button class="nav-btn active" onclick="showSection('reset', this)">Reset Protocol</button>
     <button class="nav-btn" onclick="showSection('goals', this)">Goal Setting</button>
     <button class="nav-btn" onclick="showSection('planner', this)">Practice Planner</button>
     <button class="nav-btn" onclick="showSection('book', this)">Book</button>
-    <button class="nav-btn" onclick="showSection('beginning-drills', this)">Beginning Drills</button>
-    <button class="nav-btn" onclick="showSection('intermediate-drills', this)">Intermediate Drills</button>
-    <button class="nav-btn" onclick="showSection('advanced-drills', this)">Advanced Drills</button>
+    <a class="nav-btn" href="drills/beginning.html">Beginning Drills</a>
+    <a class="nav-btn" href="drills/intermediate.html">Intermediate Drills</a>
+    <a class="nav-btn" href="drills/advanced.html">Advanced Drills</a>
 </nav>
 
 <div class="content">
 
     <!-- 1. CUE LIBRARY -->
-    <div id="section-cues" class="section active">
-        <div class="section-title">Coaching Cue Library</div>
-        <div class="section-sub">Short, repeatable cues from the book. Search by situation or filter by category.</div>
-
-        <input type="text" class="search-box" id="cue-search" placeholder="Search cues, situations..." oninput="renderCues()">
-
-        <div class="filter-row">
-            <button class="filter-tag active" onclick="setCueFilter('all', this)">All</button>
-            <button class="filter-tag" onclick="setCueFilter('correction', this)">Correction</button>
-            <button class="filter-tag" onclick="setCueFilter('overload', this)">Overload</button>
-            <button class="filter-tag" onclick="setCueFilter('competition', this)">Competition</button>
-            <button class="filter-tag" onclick="setCueFilter('motivation', this)">Motivation</button>
-            <button class="filter-tag" onclick="setCueFilter('trust', this)">Trust</button>
-        </div>
-
-        <div id="cue-list"></div>
-    </div>
-
-    <!-- 2. ARCHETYPES -->
-    <div id="section-archetypes" class="section">
-        <div class="section-title">Athlete Archetype Guide</div>
-        <div class="section-sub">Identify what you're seeing &mdash; tap an archetype to get the right response immediately.</div>
-        <div id="archetype-list"></div>
-    </div>
-
     <!-- 3. RESET PROTOCOL -->
-    <div id="section-reset" class="section">
+    <div id="section-reset" class="section active">
         <div class="section-title">The Reset Protocol</div>
         <div class="section-sub">Deploy when an athlete is spiraling. Reduce first. Rebuild from there.</div>
 
@@ -1041,82 +748,6 @@
         </div>
     </div>
 
-    <!-- 7. BEGINNING DRILLS -->
-    <div id="section-beginning-drills" class="section">
-        <div class="section-title">Beginning Drills</div>
-        <div class="section-sub">Foundational drills for athletes learning pole vault fundamentals.</div>
-
-        <div class="drills-layout">
-
-            <!-- Video — left -->
-            <div class="drills-video-col">
-                <div class="drill-video-label">Drill Video</div>
-                <div class="video-embed">
-                    <iframe src="https://www.youtube.com/embed/k6m9SuDo9i8?cc_load_policy=0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <!-- Photos + Audio — right -->
-            <div class="drills-photos-col">
-                <div class="drill-photos-row">
-
-                    <div class="drill-photo-item">
-                        <div class="drill-photo-num">1</div>
-                        <audio id="drill-begin-audio-1" src="assets/drill-begin-audio-1.m4a" preload="auto"></audio>
-                        <img class="drill-photo-img" src="assets/drill-begin-1.jpg" alt="Beginning Drill — Position 1"
-                             style="object-position: right center; cursor: pointer;"
-                             onclick="document.getElementById('drill-begin-audio-1').play()">
-                        <p style="font-size: 0.62rem; text-align: center; opacity: 0.65; letter-spacing: 0.02em; margin: 0;">&#9654; Tap for cue</p>
-                    </div>
-
-                    <div class="drill-photo-item">
-                        <div class="drill-photo-num">2</div>
-                        <audio id="drill-begin-audio-2" src="assets/drill-begin-audio-2.m4a" preload="auto"></audio>
-                        <img class="drill-photo-img" src="assets/drill-begin-2.jpg" alt="Beginning Drill — Position 2"
-                             style="object-position: right center; cursor: pointer;"
-                             onclick="document.getElementById('drill-begin-audio-2').play()">
-                        <p style="font-size: 0.62rem; text-align: center; opacity: 0.65; letter-spacing: 0.02em; margin: 0;">&#9654; Tap for cue</p>
-                    </div>
-
-                    <div class="drill-photo-item">
-                        <div class="drill-photo-num">3</div>
-                        <audio id="drill-begin-audio-3" src="assets/drill-begin-audio-3.m4a" preload="auto"></audio>
-                        <img class="drill-photo-img" src="assets/drill-begin-3.jpg" alt="Beginning Drill — Position 3"
-                             style="cursor: pointer;"
-                             onclick="document.getElementById('drill-begin-audio-3').play()">
-                        <p style="font-size: 0.62rem; text-align: center; opacity: 0.65; letter-spacing: 0.02em; margin: 0;">&#9654; Tap for cue</p>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- 8. INTERMEDIATE DRILLS -->
-    <div id="section-intermediate-drills" class="section">
-        <div class="section-title">Intermediate Drills</div>
-        <div class="section-sub">Progression drills for athletes building on foundational technique.</div>
-        <div class="coming-soon">
-            <div class="coming-soon-icon">&#9881;</div>
-            <div class="coming-soon-title">Content Coming Soon</div>
-            <div class="coming-soon-text">Intermediate drill videos, photos, and coaching audio will be added here.</div>
-        </div>
-    </div>
-
-    <!-- 9. ADVANCED DRILLS -->
-    <div id="section-advanced-drills" class="section">
-        <div class="section-title">Advanced Drills</div>
-        <div class="section-sub">High-performance drills for experienced vaulters refining technique.</div>
-        <div class="coming-soon">
-            <div class="coming-soon-icon">&#9881;</div>
-            <div class="coming-soon-title">Content Coming Soon</div>
-            <div class="coming-soon-text">Advanced drill videos, photos, and coaching audio will be added here.</div>
-        </div>
-    </div>
-
     <!-- 6. BOOK -->
     <div id="section-book" class="section">
         <div class="section-title">Coaching Generation Z Athletes</div>
@@ -1148,144 +779,9 @@
 </div>
 
 <script>
-// ─── DATA ────────────────────────────────────────────────────────────────────
-
-const CUES = [
-    { text: "Hit your mid-mark.", type: "say", context: "Athlete missing takeoff marks — single correction", tags: ["correction"] },
-    { text: "Reset.", type: "say", context: "After a missed rep or visible frustration", tags: ["correction", "overload"] },
-    { text: "One correction.", type: "say", context: "Redirecting focus during practice", tags: ["correction"] },
-    { text: "Take a breath. We are resetting the rhythm.", type: "say", context: "Athlete visibly frustrated or spiraling", tags: ["overload", "trust"] },
-    { text: "Eyes up.", type: "say", context: "Posture and awareness cue", tags: ["correction"] },
-    { text: "Hit your mark.", type: "say", context: "Approach and execution reminder", tags: ["correction"] },
-    { text: "Same rhythm.", type: "say", context: "Competition or high-pressure moment", tags: ["correction", "competition"] },
-    { text: "Tall posture.", type: "say", context: "Body mechanics cue — short and actionable", tags: ["correction"] },
-    { text: "Give me one clean rep.", type: "say", context: "Rebuilding confidence mid-session", tags: ["motivation", "correction"] },
-    { text: "Repeat that execution.", type: "say", context: "After a good rep — reinforce it immediately", tags: ["motivation"] },
-    { text: "One focus.", type: "say", context: "Overloaded athlete — reduce complexity now", tags: ["overload"] },
-    { text: "Just hit your mark.", type: "say", context: "Athlete overthinking under pressure", tags: ["overload", "competition"] },
-    { text: "Try it once.", type: "say", context: "Resistant athlete — remove the argument", tags: ["trust", "correction"] },
-    { text: "What are you noticing?", type: "say", context: "Involve the athlete in their own correction", tags: ["trust"] },
-    { text: "Hands up earlier.", type: "say", context: "Specific technical cue with clear action", tags: ["correction"] },
-    { text: "Same run, same takeoff.", type: "say", context: "Overthinking athlete — simplify to process", tags: ["correction", "overload"] },
-    { text: "Reset and repeat.", type: "say", context: "Calm accountability after missed standard", tags: ["correction"] },
-    { text: "Hit your mark again.", type: "say", context: "Simple re-do instruction — no emotion", tags: ["correction"] },
-    { text: "Same execution.", type: "say", context: "Consistency reminder during competition", tags: ["competition", "correction"] },
-    { text: "First three steps only.", type: "say", context: "Athlete shut down or overwhelmed — reduce the task", tags: ["overload"] },
-    { text: "That rep was below standard. Reset.", type: "say", context: "Calm, direct accountability — no emotion", tags: ["correction"] },
-    { text: "Today we only care about approach rhythm.", type: "say", context: "Remove outcome pressure during a slump", tags: ["motivation", "overload"] },
-    { text: "What feels different today?", type: "say", context: "Athlete struggling — involve them in the diagnosis", tags: ["trust"] },
-    { text: "What did you feel?", type: "say", context: "Post-rep self-awareness prompt", tags: ["trust"] },
-    { text: "What changed?", type: "say", context: "Post-rep awareness — make them think", tags: ["trust"] },
-    { text: "What looked different?", type: "say", context: "Collaborative correction — athlete becomes part of the solution", tags: ["trust"] },
-    { text: "Clean rhythm.", type: "say", context: "Brief stabilization cue under pressure", tags: ["overload", "competition"] },
-    { text: "Repeat that rep.", type: "say", context: "After successful execution — lock it in", tags: ["motivation"] },
-    // AVOID ✗
-    { text: "What are you doing?", type: "dont", context: "Creates shame — athlete shuts down or gets defensive", tags: ["correction", "trust"] },
-    { text: "You should know better.", type: "dont", context: "Emotional — destroys trust, creates fear", tags: ["trust"] },
-    { text: "Focus.", type: "dont", context: "Vague — athlete is already trying, this adds nothing", tags: ["overload"] },
-    { text: "Want it more.", type: "dont", context: "Emotional appeal — not actionable", tags: ["motivation"] },
-    { text: "Try harder.", type: "dont", context: "Vague — no clear action, creates frustration", tags: ["motivation"] },
-    { text: "Do exactly what I say.", type: "dont", context: "Creates compliance, not ownership or buy-in", tags: ["trust"] },
-    { text: "Stop doing that.", type: "dont", context: "No replacement instruction — athlete left without guidance", tags: ["correction"] },
-    { text: "Fix everything.", type: "dont", context: "Overloads athlete immediately — opposite of what's needed", tags: ["overload", "correction"] },
-    { text: "Be more consistent.", type: "dont", context: "Outcome-focused, not process — athlete doesn't know how", tags: ["motivation", "correction"] },
-    { text: "Relax.", type: "dont", context: "Dismissive — athletes cannot execute this instruction", tags: ["overload"] },
-    { text: "You're overthinking.", type: "dont", context: "Labels the problem without providing a solution", tags: ["overload"] },
-    { text: "Wake up.", type: "dont", context: "Shaming a distracted athlete — increases withdrawal", tags: ["motivation"] },
-    { text: "Get fired up.", type: "dont", context: "Emotional, not executable — athletes don't know how to do this", tags: ["motivation"] },
-    { text: "Bring energy.", type: "dont", context: "Vague — athlete doesn't know what action to take", tags: ["motivation"] },
-    { text: "That's not good enough.", type: "dont", context: "Shame-based — no path forward given", tags: ["correction"] },
-    { text: "You're not trying.", type: "dont", context: "Almost always wrong — usually overload, not effort", tags: ["motivation", "overload"] },
-    { text: "We need a big jump.", type: "dont", context: "Outcome focus increases pressure at the worst moment", tags: ["competition"] },
-    { text: "Fix your run, stay tall, and get up earlier.", type: "dont", context: "Three corrections at once — guaranteed overload", tags: ["overload", "correction"] },
-];
-
-const ARCHETYPES = [
-    {
-        id: 0,
-        name: "The Overthinking Athlete",
-        trigger: "Over-processes every technical detail before and during reps",
-        color: "#6a3aaa",
-        symptoms: [
-            "Hesitation before every rep",
-            "Inconsistent timing despite knowing the technique",
-            "Lack of aggression or commitment at the critical moment",
-            "Visible frustration after technically incorrect feeling reps"
-        ],
-        response: "Simplify everything. Give them fewer thoughts — not more.",
-        cues: ['"Same run. Same takeoff."', '"Mid-mark."', '"One focus."'],
-        avoid: "More technical information — giving more corrections makes it worse",
-        lesson: "Overthinking athletes rarely need more information. They need fewer thoughts."
-    },
-    {
-        id: 1,
-        name: "The Resistant Athlete",
-        trigger: "Pushes back against correction — argues, dismisses, or ignores",
-        color: "#aa3a3a",
-        symptoms: [
-            "Argues with instruction or body language signals disagreement",
-            "Eye-rolls or visible dismissal of correction",
-            "Maintains their own approach regardless",
-            "Frustration escalates when corrected repeatedly"
-        ],
-        response: "Don't argue. Let them feel the correction — not hear it.",
-        cues: ['"Try it once."', '"Give me one rep this way."', '"What are you noticing?"'],
-        avoid: "Power struggles / Repeating the same correction louder",
-        lesson: "Athletes believe what they feel — not what they are told. Get them to experience the correction."
-    },
-    {
-        id: 2,
-        name: "The Athlete Who Shuts Down",
-        trigger: "Emotionally overwhelmed — withdraws from the practice environment",
-        color: "#3a6aaa",
-        symptoms: [
-            "Silence — stops responding to instruction",
-            "Drops eye contact, turns away",
-            "Stops attempting reps or goes through motions",
-            "Emotional withdrawal visible in body language"
-        ],
-        response: "Deploy the Reset Protocol. Simplify to one controllable action.",
-        cues: ['"First three steps only."', '"One focus."', '"Reset."'],
-        avoid: "Louder correction / More information / Any visible frustration",
-        lesson: "Overwhelmed athletes need simplicity — not intensity. The more overwhelmed, the simpler coaching must become."
-    },
-    {
-        id: 3,
-        name: "The Low Confidence Athlete",
-        trigger: "Afraid of failure — performs cautiously and avoids commitment",
-        color: "#3aaa5a",
-        symptoms: [
-            "Cautious, hesitant movement at key moments",
-            "Inconsistent execution — holds back",
-            "Lack of aggression when commitment is required",
-            "Avoids new attempts or heights"
-        ],
-        response: "Remove outcome pressure completely. Build through small wins.",
-        cues: ['"Today we only care about clean rhythm."', '"Give me one clean rep."', '"Repeat that execution."'],
-        avoid: '"We need bigger jumps." / Any outcome-focused language',
-        lesson: "Confidence grows through successful repetition — not speeches. Build small wins every single practice."
-    },
-    {
-        id: 4,
-        name: "The Distracted Athlete",
-        trigger: "Cannot maintain focus through practice — attention shifts constantly",
-        color: "#aa6a3a",
-        symptoms: [
-            "Checking phone or environment between reps",
-            "Late to respond to instruction",
-            "Short attention window on reps",
-            "Inconsistent effort across the session"
-        ],
-        response: "Shorten communication. Don't fight their attention — adapt to it.",
-        cues: ['"Eyes up."', '"Hit your mark."', '"Same rhythm."'],
-        avoid: '"Wake up." / Long technical explanations / Criticizing their focus directly',
-        lesson: "Attention improves when instruction becomes immediately actionable. Don't lecture — cue."
-    }
-];
 
 // ─── STATE ───────────────────────────────────────────────────────────────────
 
-let currentCueFilter = 'all';
 let repCount = 0;
 
 // ─── NAVIGATION ──────────────────────────────────────────────────────────────
@@ -1295,105 +791,6 @@ function showSection(id, btn) {
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('section-' + id).classList.add('active');
     btn.classList.add('active');
-}
-
-// ─── CUE LIBRARY ─────────────────────────────────────────────────────────────
-
-function renderCues() {
-    const search = document.getElementById('cue-search').value.toLowerCase().trim();
-
-    const filtered = CUES.filter(c => {
-        const matchesText = !search ||
-            c.text.toLowerCase().includes(search) ||
-            c.context.toLowerCase().includes(search);
-        const matchesFilter = currentCueFilter === 'all' || c.tags.includes(currentCueFilter);
-        return matchesText && matchesFilter;
-    });
-
-    const say = filtered.filter(c => c.type === 'say');
-    const dont = filtered.filter(c => c.type === 'dont');
-
-    let html = '';
-
-    if (say.length > 0) {
-        html += `<div class="card"><div class="card-title" style="color: var(--green);">&#10003; Say This</div>`;
-        say.forEach(c => {
-            html += `<div class="cue-item">
-                <div class="cue-badge say">&#10003;</div>
-                <div>
-                    <div class="cue-text">&ldquo;${c.text}&rdquo;</div>
-                    <div class="cue-context">${c.context}</div>
-                </div>
-            </div>`;
-        });
-        html += '</div>';
-    }
-
-    if (dont.length > 0) {
-        html += `<div class="card"><div class="card-title" style="color: var(--red);">&#10007; Avoid This</div>`;
-        dont.forEach(c => {
-            html += `<div class="cue-item">
-                <div class="cue-badge dont">&#10007;</div>
-                <div>
-                    <div class="cue-text">&ldquo;${c.text}&rdquo;</div>
-                    <div class="cue-context">${c.context}</div>
-                </div>
-            </div>`;
-        });
-        html += '</div>';
-    }
-
-    if (filtered.length === 0) {
-        html = '<div class="no-results">No cues match that search. Try a different term.</div>';
-    }
-
-    document.getElementById('cue-list').innerHTML = html;
-}
-
-function setCueFilter(filter, btn) {
-    currentCueFilter = filter;
-    document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
-    renderCues();
-}
-
-// ─── ARCHETYPES ──────────────────────────────────────────────────────────────
-
-function renderArchetypes() {
-    let html = '';
-    ARCHETYPES.forEach(a => {
-        html += `
-            <div class="archetype-card" id="arch-${a.id}" onclick="toggleArchetype(${a.id})" style="border-left-color: ${a.color}">
-                <div class="archetype-header">
-                    <div>
-                        <div class="archetype-name">${a.name}</div>
-                        <div class="archetype-trigger">${a.trigger}</div>
-                    </div>
-                    <span class="chevron">&#9660;</span>
-                </div>
-                <div class="archetype-detail">
-                    <div class="card-title" style="font-size: 0.7rem; margin-bottom: 6px;">Symptoms</div>
-                    <ul class="symptom-list">
-                        ${a.symptoms.map(s => `<li>${s}</li>`).join('')}
-                    </ul>
-                    <div class="response-box">
-                        <div class="label">Modern Response</div>
-                        <div class="cue">${a.response}</div>
-                        <div class="note">${a.cues.join(' &nbsp;&middot;&nbsp; ')}</div>
-                    </div>
-                    <div class="avoid-box">
-                        <div class="label">Avoid</div>
-                        ${a.avoid}
-                    </div>
-                    <div class="principle-box" style="margin-top: 10px;">${a.lesson}</div>
-                </div>
-            </div>`;
-    });
-    document.getElementById('archetype-list').innerHTML = html;
-}
-
-function toggleArchetype(id) {
-    document.getElementById('arch-' + id).classList.toggle('expanded');
 }
 
 // ─── GOAL SETTING ─────────────────────────────────────────────────────────────
@@ -1689,8 +1086,6 @@ function bookSelectChapter(sel) { renderBookChapter(parseInt(sel.value, 10)); }
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 
-renderCues();
-renderArchetypes();
 initBook();
 
 const today = new Date().toISOString().split('T')[0];
